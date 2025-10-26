@@ -43,8 +43,13 @@ const remoteStoreConfig = buildRemoteStoreConfig();
     const outputDir = outputOverride
       ? path.dirname(outputOverride)
       : path.resolve(process.cwd(), OUT_DIR);
-    const outputPath =
-      outputOverride ?? path.join(outputDir, `${canonicalBaseName}.html`);
+    const outputFileName =
+      outputOverride
+        ? path.basename(outputOverride)
+        : canonicalBaseName === "cards"
+        ? "index.html"
+        : `${canonicalBaseName}.html`;
+    const outputPath = outputOverride ?? path.join(outputDir, outputFileName);
     const htmlDir = path.dirname(outputPath);
     const assetsDir = path.join(outputDir, "assets");
     const iconsDir = path.join(assetsDir, "set-icons");
