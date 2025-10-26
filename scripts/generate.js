@@ -576,7 +576,7 @@ function sortSetEntries(a, b) {
  * @param {string} sourceFileName
  */
 function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datasetKey, remoteStoreConfig }) {
-  const title = `${capitalize(colorLabel)} Cube Cards`;
+  const title = `Pixel Cube ${capitalize(colorLabel)}`;
   const generated = new Date().toLocaleString();
   const dataUrl = dataPath.startsWith(".") ? dataPath : `./${dataPath}`;
   const inlineDataset = inlineJson(datasetString);
@@ -625,25 +625,6 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         flex-direction: column;
         box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
         border: 1px solid rgba(226, 232, 240, 0.9);
-      }
-      .tabs {
-        display: flex;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-      }
-      .tab-button {
-        padding: 0.45rem 1rem;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.6);
-        background: transparent;
-        font-weight: 600;
-        cursor: pointer;
-        color: #0f172a;
-      }
-      .tab-button[aria-selected="true"] {
-        background: #2563eb;
-        color: #fff;
-        border-color: #2563eb;
       }
       .controls {
         display: flex;
@@ -715,9 +696,6 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
       .copy-button:disabled {
         opacity: 0.45;
         cursor: not-allowed;
-      }
-      .recent-filters {
-        margin: 1rem 0;
       }
       .card__image {
         display: block;
@@ -882,30 +860,6 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         font-size: 0.9rem;
         color: #475569;
       }
-      .recent-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.65rem;
-      }
-      .recent-item {
-        padding: 0.75rem 1rem;
-        background: #fff;
-        border-radius: 12px;
-        border: 1px solid rgba(226, 232, 240, 0.9);
-        box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-      }
-      .recent-item__title {
-        margin: 0;
-        font-weight: 600;
-      }
-      .recent-item__meta {
-        font-size: 0.85rem;
-        color: #475569;
-      }
     </style>
   </head>
   <body>
@@ -913,12 +867,8 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
       <h1>${escapeHtml(title)}</h1>
       <p class="notice">Generated ${escapeHtml(generated)} from ${escapeHtml(
         sourceFileName
-      )}. Click a card image for its Scryfall page.</p>
+      )}.</p>
     </header>
-    <nav class="tabs" role="tablist">
-      <button class="tab-button" role="tab" data-tab="gallery" aria-selected="true">Gallery</button>
-      <button class="tab-button" role="tab" data-tab="recent" aria-selected="false">2024+ Sets</button>
-    </nav>
     <section class="controls" data-controls>
       <div class="control">
         <span class="control__label">Colors</span>
@@ -942,6 +892,21 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         </select>
       </div>
       <div class="control">
+        <span class="control__label">Show Only</span>
+        <label class="checkbox">
+          <input type="checkbox" id="filter-recent" />
+          Cards printed in 2024+
+        </label>
+      </div>
+      <div class="control">
+        <label class="control__label" for="ownership-select">Ownership</label>
+        <select id="ownership-select" class="sort-select">
+          <option value="all">All cards</option>
+          <option value="owned">Owned (checked)</option>
+          <option value="unowned">Unowned (unchecked)</option>
+        </select>
+      </div>
+      <div class="control">
         <span class="control__label">Selected Cards</span>
         <button id="copy-selected" class="copy-button" disabled>Copy Selected</button>
       </div>
@@ -949,13 +914,6 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
     <p id="loading-state" class="loading">Loading cards…</p>
     <section id="cards-grid" class="grid" aria-live="polite"></section>
     <p id="empty-state" class="empty-state" hidden>No cards match the current filter.</p>
-    <section class="recent-filters" data-recent-filters hidden>
-      <label class="checkbox">
-        <input type="checkbox" id="recent-hide-selected" />
-        Hide checked cards
-      </label>
-    </section>
-    <section id="recent-list" class="recent-list" hidden aria-live="polite"></section>
     <script id="card-data" type="application/json">${inlineDataset}</script>
     <script>
       const DATASET_KEY = ${JSON.stringify(safeDatasetKey)};
@@ -977,17 +935,14 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         };
 
         const grid = document.getElementById("cards-grid");
-        const recentList = document.getElementById("recent-list");
         const emptyState = document.getElementById("empty-state");
         const loadingState = document.getElementById("loading-state");
         const sortSelect = document.getElementById("sort-select");
         const colorInputs = Array.from(document.querySelectorAll(".color-filter input"));
         const landsToggle = document.getElementById("lands-toggle");
         const copyButton = document.getElementById("copy-selected");
-        const controlsSection = document.querySelector("[data-controls]");
-        const tabButtons = Array.from(document.querySelectorAll(".tab-button"));
-        const recentFilters = document.querySelector("[data-recent-filters]");
-        const hideSelectedToggle = document.getElementById("recent-hide-selected");
+        const recentFilterToggle = document.getElementById("filter-recent");
+        const ownershipSelect = document.getElementById("ownership-select");
         const inlineDataEl = document.getElementById("card-data");
         const inlineData = inlineDataEl ? JSON.parse(inlineDataEl.textContent) : null;
 
@@ -995,14 +950,13 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         let activeColors = new Set(FILTER_CODES);
         const selectedNames = new Set();
         let saveTimeout = null;
-        let activeTab = "gallery";
 
         Promise.all([loadData(), loadSelectionState()])
           .then(([payload, storedSelection]) => {
             allCards = Array.isArray(payload.cards) ? payload.cards : [];
             (storedSelection || []).forEach((name) => selectedNames.add(name));
             refreshCopyButton();
-            renderActiveTab();
+            renderCardsView();
           })
           .catch((error) => {
             if (loadingState) {
@@ -1020,52 +974,23 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
             } else {
               activeColors.delete(input.value);
             }
-            renderActiveTab();
+            renderCardsView();
           });
         });
 
-        sortSelect.addEventListener("change", () => renderActiveTab());
+        sortSelect.addEventListener("change", () => renderCardsView());
         if (landsToggle) {
-          landsToggle.addEventListener("change", () => renderActiveTab());
+          landsToggle.addEventListener("change", () => renderCardsView());
         }
         if (copyButton) {
           copyButton.addEventListener("click", copySelected);
           refreshCopyButton();
         }
-        if (hideSelectedToggle) {
-          hideSelectedToggle.addEventListener("change", () => {
-            if (activeTab === "recent") {
-              renderRecentList();
-            }
-          });
+        if (recentFilterToggle) {
+          recentFilterToggle.addEventListener("change", () => renderCardsView());
         }
-        tabButtons.forEach((button) => {
-          button.addEventListener("click", () => {
-            const tab = button.dataset.tab;
-            if (!tab || tab === activeTab) return;
-            activeTab = tab;
-            tabButtons.forEach((btn) => btn.setAttribute("aria-selected", btn.dataset.tab === activeTab ? "true" : "false"));
-            renderActiveTab();
-          });
-        });
-
-        function renderActiveTab() {
-          if (activeTab === "gallery") {
-            if (controlsSection) controlsSection.hidden = false;
-            if (recentFilters) recentFilters.hidden = true;
-            grid.hidden = false;
-            emptyState.hidden = true;
-            recentList.hidden = true;
-            const filtered = allCards.filter((card) => matchesColorFilter(card) && matchesLandFilter(card));
-            const sorted = sortCards(filtered, sortSelect.value);
-            renderCards(sorted);
-          } else if (activeTab === "recent") {
-            if (controlsSection) controlsSection.hidden = true;
-            if (recentFilters) recentFilters.hidden = false;
-            grid.hidden = true;
-            emptyState.hidden = true;
-            renderRecentList();
-          }
+        if (ownershipSelect) {
+          ownershipSelect.addEventListener("change", () => renderCardsView());
         }
 
         function matchesColorFilter(card) {
@@ -1160,6 +1085,15 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           };
         }
 
+        function renderCardsView() {
+          const filtered = allCards
+            .filter((card) => matchesColorFilter(card) && matchesLandFilter(card))
+            .filter((card) => matchesRecentFilter(card))
+            .filter((card) => matchesOwnershipFilter(card));
+          const sorted = sortCards(filtered, sortSelect.value);
+          renderCards(sorted);
+        }
+
         function renderCards(cards) {
           if (loadingState) {
             loadingState.hidden = true;
@@ -1174,46 +1108,6 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           cards.forEach((card) => fragment.appendChild(createCardElement(card)));
           grid.appendChild(fragment);
           grid.hidden = false;
-        }
-
-        function renderRecentList() {
-          if (loadingState) {
-            loadingState.hidden = true;
-          }
-          const hideSelected = hideSelectedToggle?.checked;
-          const entries = allCards
-            .map((card) => {
-              const recentSet = latestRecentSet(card);
-              return recentSet ? { card, recentSet } : null;
-            })
-            .filter(Boolean)
-            .filter((entry) => !(hideSelected && selectedNames.has(entry.card.name)))
-            .sort((a, b) => {
-              const dateDelta = new Date(b.recentSet.releasedAt || 0) - new Date(a.recentSet.releasedAt || 0);
-              if (dateDelta !== 0) return dateDelta;
-              return a.card.name.localeCompare(b.card.name);
-            });
-
-          recentList.innerHTML = "";
-          if (!entries.length) {
-            recentList.innerHTML = "<p class=\\\"empty-state\\\">No cards found from 2024 or newer sets.</p>";
-          } else {
-            entries.forEach(({ card, recentSet }) => {
-              const item = document.createElement("article");
-              item.className = "recent-item";
-              const title = document.createElement("p");
-              title.className = "recent-item__title";
-              title.textContent = card.name;
-              const meta = document.createElement("div");
-              meta.className = "recent-item__meta";
-              const year = recentSet.releasedAt ? new Date(recentSet.releasedAt).getFullYear() : "Unknown";
-              meta.textContent = recentSet.setName + " (" + recentSet.setCode + ") • " + year;
-              item.appendChild(title);
-              item.appendChild(meta);
-              recentList.appendChild(item);
-            });
-          }
-          recentList.hidden = false;
         }
 
         function createCardElement(card) {
@@ -1250,6 +1144,7 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
             }
             refreshCopyButton();
             scheduleSaveSelection();
+            renderCardsView();
           });
           nameRow.appendChild(checkbox);
           const name = document.createElement("h2");
@@ -1442,15 +1337,15 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
 
         async function loadRemoteSelection() {
           if (!REMOTE_STORE) return [];
-          const baseUrl = REMOTE_STORE.baseUrl.replace(/\/$/, "");
-          const url =
-            baseUrl +
-            "/rest/v1/" +
-            REMOTE_STORE.table +
-            "?profile_id=eq." +
-            encodeURIComponent(REMOTE_STORE.profile) +
-            "&select=card_name";
+          const baseUrl = REMOTE_STORE.baseUrl.replace(/\\\/$/, "");
           try {
+            const url =
+              baseUrl +
+              "/rest/v1/" +
+              REMOTE_STORE.table +
+              "?profile_id=eq." +
+              encodeURIComponent(REMOTE_STORE.profile) +
+              "&select=card_name";
             const resp = await fetch(url, { headers: remoteHeaders() });
             if (!resp.ok) {
               throw new Error("HTTP " + resp.status);
@@ -1465,10 +1360,10 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
 
         async function saveRemoteSelection(list) {
           if (!REMOTE_STORE) return;
-          const baseUrl = REMOTE_STORE.baseUrl.replace(/\/$/, "");
-          const tableUrl = baseUrl + "/rest/v1/" + REMOTE_STORE.table;
-          const query = "?profile_id=eq." + encodeURIComponent(REMOTE_STORE.profile);
+          const baseUrl = REMOTE_STORE.baseUrl.replace(/\\\/$/, "");
           try {
+            const tableUrl = baseUrl + "/rest/v1/" + REMOTE_STORE.table;
+            const query = "?profile_id=eq." + encodeURIComponent(REMOTE_STORE.profile);
             await fetch(tableUrl + query, {
               method: "DELETE",
               headers: remoteHeaders(),
@@ -1509,6 +1404,26 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           } catch (error) {
             fallbackCopy(text);
           }
+        }
+
+        function matchesRecentFilter(card) {
+          if (!recentFilterToggle?.checked) {
+            return true;
+          }
+          return cardHasRecentSet(card);
+        }
+
+        function matchesOwnershipFilter(card) {
+          if (!ownershipSelect) return true;
+          const mode = ownershipSelect.value;
+          const isChecked = selectedNames.has(card.name);
+          if (mode === "owned") {
+            return isChecked;
+          }
+          if (mode === "unowned") {
+            return !isChecked;
+          }
+          return true;
         }
 
         function cardHasRecentSet(card) {

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2025-10-26T17:32:31.201Z",
-  "sourceFile": "cards.txt",
+  "generatedAt": "2025-10-26T18:14:17.071Z",
+  "sourceFile": "cards-1.txt",
   "totalCards": 3053,
   "cards": [
     {
@@ -47536,6 +47536,16 @@
         "R"
       ],
       "setPrintings": [
+        {
+          "setCode": "TLE",
+          "setName": "Avatar: The Last Airbender Eternal",
+          "rarities": [
+            "mythic"
+          ],
+          "releasedAt": "2025-11-21",
+          "iconPath": "assets/set-icons/tle.svg",
+          "previewCardUri": "https://scryfall.com/card/tle/61/valakut-the-molten-pinnacle?utm_source=api"
+        },
         {
           "setCode": "SLP",
           "setName": "Secret Lair Showdown",
