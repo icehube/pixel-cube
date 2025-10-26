@@ -907,6 +907,16 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         </select>
       </div>
       <div class="control">
+        <label class="control__label" for="rarity-select">Rarity</label>
+        <select id="rarity-select" class="sort-select">
+          <option value="all">All rarities</option>
+          <option value="common">Common</option>
+          <option value="uncommon">Uncommon</option>
+          <option value="rare">Rare</option>
+          <option value="mythic">Mythic</option>
+        </select>
+      </div>
+      <div class="control">
         <span class="control__label">Selected Cards</span>
         <button id="copy-selected" class="copy-button" disabled>Copy Selected</button>
       </div>
@@ -943,6 +953,7 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         const copyButton = document.getElementById("copy-selected");
         const recentFilterToggle = document.getElementById("filter-recent");
         const ownershipSelect = document.getElementById("ownership-select");
+        const raritySelect = document.getElementById("rarity-select");
         const inlineDataEl = document.getElementById("card-data");
         const inlineData = inlineDataEl ? JSON.parse(inlineDataEl.textContent) : null;
 
@@ -991,6 +1002,9 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         }
         if (ownershipSelect) {
           ownershipSelect.addEventListener("change", () => renderCardsView());
+        }
+        if (raritySelect) {
+          raritySelect.addEventListener("change", () => renderCardsView());
         }
 
         function matchesColorFilter(card) {
@@ -1089,7 +1103,8 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           const filtered = allCards
             .filter((card) => matchesColorFilter(card) && matchesLandFilter(card))
             .filter((card) => matchesRecentFilter(card))
-            .filter((card) => matchesOwnershipFilter(card));
+            .filter((card) => matchesOwnershipFilter(card))
+            .filter((card) => matchesRarityFilter(card));
           const sorted = sortCards(filtered, sortSelect.value);
           renderCards(sorted);
         }
@@ -1424,6 +1439,19 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
             return !isChecked;
           }
           return true;
+        }
+
+        function matchesRarityFilter(card) {
+          if (!raritySelect || raritySelect.value === "all") {
+            return true;
+          }
+          const desired = raritySelect.value;
+          if (!Array.isArray(card.setPrintings) || !card.setPrintings.length) {
+            return false;
+          }
+          return card.setPrintings.some((set) =>
+            Array.isArray(set.rarities) && set.rarities.some((rarity) => rarity === desired)
+          );
         }
 
         function cardHasRecentSet(card) {

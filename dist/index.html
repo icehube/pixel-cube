@@ -280,7 +280,7 @@
   <body>
     <header>
       <h1>Pixel Cube Cards</h1>
-      <p class="notice">Generated 10/26/2025, 4:01:36 PM from cards.txt.</p>
+      <p class="notice">Generated 10/26/2025, 4:05:53 PM from cards.txt.</p>
     </header>
     <section class="controls" data-controls>
       <div class="control">
@@ -345,6 +345,16 @@
           <option value="all">All cards</option>
           <option value="owned">Owned (checked)</option>
           <option value="unowned">Unowned (unchecked)</option>
+        </select>
+      </div>
+      <div class="control">
+        <label class="control__label" for="rarity-select">Rarity</label>
+        <select id="rarity-select" class="sort-select">
+          <option value="all">All rarities</option>
+          <option value="common">Common</option>
+          <option value="uncommon">Uncommon</option>
+          <option value="rare">Rare</option>
+          <option value="mythic">Mythic</option>
         </select>
       </div>
       <div class="control">
@@ -248151,6 +248161,7 @@
         const copyButton = document.getElementById("copy-selected");
         const recentFilterToggle = document.getElementById("filter-recent");
         const ownershipSelect = document.getElementById("ownership-select");
+        const raritySelect = document.getElementById("rarity-select");
         const inlineDataEl = document.getElementById("card-data");
         const inlineData = inlineDataEl ? JSON.parse(inlineDataEl.textContent) : null;
 
@@ -248199,6 +248210,9 @@
         }
         if (ownershipSelect) {
           ownershipSelect.addEventListener("change", () => renderCardsView());
+        }
+        if (raritySelect) {
+          raritySelect.addEventListener("change", () => renderCardsView());
         }
 
         function matchesColorFilter(card) {
@@ -248297,7 +248311,8 @@
           const filtered = allCards
             .filter((card) => matchesColorFilter(card) && matchesLandFilter(card))
             .filter((card) => matchesRecentFilter(card))
-            .filter((card) => matchesOwnershipFilter(card));
+            .filter((card) => matchesOwnershipFilter(card))
+            .filter((card) => matchesRarityFilter(card));
           const sorted = sortCards(filtered, sortSelect.value);
           renderCards(sorted);
         }
@@ -248632,6 +248647,19 @@
             return !isChecked;
           }
           return true;
+        }
+
+        function matchesRarityFilter(card) {
+          if (!raritySelect || raritySelect.value === "all") {
+            return true;
+          }
+          const desired = raritySelect.value;
+          if (!Array.isArray(card.setPrintings) || !card.setPrintings.length) {
+            return false;
+          }
+          return card.setPrintings.some((set) =>
+            Array.isArray(set.rarities) && set.rarities.some((rarity) => rarity === desired)
+          );
         }
 
         function cardHasRecentSet(card) {
