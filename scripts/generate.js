@@ -1196,7 +1196,7 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
 
           recentList.innerHTML = "";
           if (!entries.length) {
-            recentList.innerHTML = "<p class=\"empty-state\">No cards found from 2024 or newer sets.</p>";
+            recentList.innerHTML = "<p class=\\\"empty-state\\\">No cards found from 2024 or newer sets.</p>";
           } else {
             entries.forEach(({ card, recentSet }) => {
               const item = document.createElement("article");
