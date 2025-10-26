@@ -1,0 +1,77 @@
+Nature's Claim	1209	18005	13867
+Secure the Wastes	1232	28948	13864
+Temple of Abandon	1219	11797	13863
+Thundermaw Hellkite	1254	31342	13849
+Evolution Sage	1298	13645	13839
+Abundant Harvest	1252	44199	13813
+Thespian's Stage	1297	30859	13799
+Shardless Agent	1216	19101	13756
+Temple of Malice	1176	11772	13739
+Lumbering Falls	1201	22832	13723
+Waterlogged Grove	1280	42585	13711
+Temple of Plenty	1192	12552	13708
+Ancestral Vision	1397	23392	13697
+Razorverge Thicket	1142	32303	13693
+Sheoldred, Whispering One	1348	17441	13681
+Castle of Aaargh	1333	32655	13637
+Dark Depths	1333	32655	13637
+Felidar Retreat	1315	17408	13634
+Anafenza, Kin-Tree Spirit	1236	22496	13623
+Slimer's Feast	1295	12082	13622
+Windfall	1295	12082	13622
+Otawara, Soaring City	1347	29001	13614
+Magda, Brazen Outlaw	1348	42503	13591
+Pelt Collector	1249	20667	13588
+Putrid Imp	1242	32868	13559
+All That Glitters	1275	13887	13549
+Spider Spawning	1218	14776	13518
+Arc Trail	1310	40993	13489
+Deep Forest Hermit	1227	36457	13472
+Beholder's Fear Ray	1200	15206	13469
+Drown in the Loch	1200	15206	13469
+Sai, Master Thopterist	1356	17537	13461
+Runaway Steam-Kin	1271	24988	13457
+Champion of Wits	1294	20170	13454
+Omnath, Locus of Creation	1309	46718	13428
+Scrapwork Mutt	1277	28263	13421
+Liliana, Death's Majesty	1334	23936	13402
+Relic of Progenitus	1292	28568	13402
+Intrepid Adversary	1237	47375	13401
+Cathartic Reunion	1285	13974	13400
+Searing Spear	1393	30008	13377
+Bitter Triumph	1409	31301	13370
+Feldon of the Third Path	1253	19370	13329
+Hardened Scales	1299	12748	13301
+Talisman of Unity	1222	20093	13298
+Mesmeric Fiend	1315	30039	13295
+The Banyan Tree	1456	23384	13288
+The Great Henge	1456	23384	13288
+The Party Tree	1456	23384	13288
+Arcane Sanctum	1311	15524	13284
+Frost Titan	1321	15200	13263
+Silent Clearing	1257	46688	13258
+Ulamog, the Infinite Gyre	1315	32818	13234
+Nettlecyst	1305	29571	13226
+Crackling Drake	1272	15149	13225
+Censor	1326	24093	13224
+Mikaeus, the Lunarch	1300	16900	13223
+Jungle Shrine	1231	16661	13207
+Maul of the Skyclaves	1220	21586	13205
+Lightning Axe	1322	17355	13189
+Duskwatch Recruiter	1244	20077	13187
+Krallenhorde Howler	1244	20077	13187
+Bag End	1206	39152	13152
+Horizon Canopy	1206	39152	13152
+Cogwork Librarian	1182	19670	13137
+Char	1309	29915	13133
+Wandering Fumarole	1222	23387	13104
+Siren Stormtamer	1224	13398	13073
+Persist	1361	30918	13070
+Rampaging Baloths	1316	14166	13070
+Elder Gargaroth	1310	31875	13068
+Worldly Tutor	1351	22020	13059
+Sleight of Hand	1354	19563	13054
+Goblin Bushwhacker	1224	17302	13037
+Bedlam Reveler	1190	15198	13026
+Kaldra Compleat	1318	36259	12988
+Ichor Wellspring	1300	15228	12971

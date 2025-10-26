@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample Cube Cards</title>
+    <style>
+      :root {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: #ffffff;
+        color: #0f172a;
+      }
+      body {
+        margin: 0;
+        padding: 2rem 1rem 3rem;
+        background: #f8fafc;
+      }
+      header {
+        margin-bottom: 1.5rem;
+      }
+      h1 {
+        margin: 0 0 0.5rem;
+        font-size: 2rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+      }
+      @media (min-width: 1280px) {
+        .grid {
+          grid-template-columns: repeat(8, minmax(0, 1fr));
+        }
+      }
+      .card {
+        background: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+      }
+      .tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .tab-button {
+        padding: 0.45rem 1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: transparent;
+        font-weight: 600;
+        cursor: pointer;
+        color: #0f172a;
+      }
+      .tab-button[aria-selected="true"] {
+        background: #2563eb;
+        color: #fff;
+        border-color: #2563eb;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        background: #ffffff;
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+      }
+      .control {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .control__label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #475569;
+      }
+      .color-filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.75rem;
+      }
+      .color-filter label {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.85rem;
+        color: #0f172a;
+      }
+      .color-filter input {
+        accent-color: #2563eb;
+      }
+      .checkbox {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.9rem;
+        color: #0f172a;
+        margin-top: 0.35rem;
+      }
+      .checkbox input {
+        accent-color: #2563eb;
+      }
+      .sort-select {
+        min-width: 180px;
+        padding: 0.35rem 0.5rem;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        border-radius: 8px;
+        font-size: 0.9rem;
+        background: #f8fafc;
+        color: #0f172a;
+      }
+      .copy-button {
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        border: none;
+        background: #2563eb;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .copy-button:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      .card__image {
+        display: block;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      }
+      .card__image img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .card__body {
+        padding: 0.75rem 0.85rem 1.25rem;
+      }
+      .card__name-row {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        margin-bottom: 0.2rem;
+      }
+      .card__select {
+        margin-right: 0.25rem;
+      }
+      .card__name {
+        margin: 0 0 0.35rem;
+        font-size: 0.95rem;
+      }
+      .card__badge {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #f97316;
+        background: rgba(249, 115, 22, 0.15);
+        border: 1px solid rgba(249, 115, 22, 0.4);
+        border-radius: 999px;
+        padding: 0.05rem 0.45rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .card__mana-line {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0;
+        font-size: 0.85rem;
+        color: #0f172a;
+      }
+      .card__meta {
+        margin: 0.1rem 0 0;
+        font-size: 0.85rem;
+        color: #475569;
+      }
+      .card__meta:first-of-type {
+        margin-top: 0;
+      }
+      .card__mana {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .card__mv {
+        font-size: 0.8rem;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .card__typeline {
+        margin: 0.6rem 0 0;
+        font-size: 0.82rem;
+        color: #334155;
+      }
+      .card__sets {
+        margin-top: 0.8rem;
+      }
+      .card__sets-title {
+        margin: 0 0 0.45rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #0f172a;
+      }
+      .sets-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.55rem;
+      }
+      .set-item {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.4rem 0.55rem;
+        background: #f1f5f9;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+      }
+      .set-item--empty {
+        justify-content: center;
+        text-align: center;
+      }
+      .set-item--empty .set-item__text {
+        display: block;
+        font-size: 0.74rem;
+        color: #64748b;
+      }
+      .set-item__icon {
+        width: 26px;
+        height: 26px;
+        flex-shrink: 0;
+      }
+      .set-item__icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .set-item__text {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.75rem;
+        line-height: 1.1;
+      }
+      .set-item__rarities {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        margin-top: 0.25rem;
+      }
+      .set-item__rarity {
+        font-weight: 600;
+        font-size: 0.72rem;
+      }
+      .rarity--common {
+        color: #2a2426;
+      }
+      .rarity--uncommon {
+        color: #56839f;
+      }
+      .rarity--rare {
+        color: #a68236;
+      }
+      .rarity--mythic {
+        color: #d34420;
+      }
+      .rarity--unknown {
+        color: #334155;
+      }
+      .notice {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin: 0;
+      }
+      a {
+        color: #2563eb;
+      }
+      .empty-state {
+        margin-top: 1.5rem;
+        font-size: 0.95rem;
+        color: #475569;
+        text-align: center;
+      }
+      .loading {
+        margin: 1rem 0;
+        font-size: 0.9rem;
+        color: #475569;
+      }
+      .recent-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+      .recent-item {
+        padding: 0.75rem 1rem;
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+      .recent-item__title {
+        margin: 0;
+        font-weight: 600;
+      }
+      .recent-item__meta {
+        font-size: 0.85rem;
+        color: #475569;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Sample Cube Cards</h1>
+      <p class="notice">Generated 10/26/2025, 10:24:28 AM from sample.txt. Click a card image for its Scryfall page.</p>
+    </header>
+    <nav class="tabs" role="tablist">
+      <button class="tab-button" role="tab" data-tab="gallery" aria-selected="true">Gallery</button>
+      <button class="tab-button" role="tab" data-tab="recent" aria-selected="false">2024+ Sets</button>
+    </nav>
+    <section class="controls" data-controls>
+      <div class="control">
+        <span class="control__label">Colors</span>
+        <div class="color-filter">
+          
+        <label>
+          <input type="checkbox" value="W" checked />
+          White
+        </label>
+        <label>
+          <input type="checkbox" value="U" checked />
+          Blue
+        </label>
+        <label>
+          <input type="checkbox" value="B" checked />
+          Black
+        </label>
+        <label>
+          <input type="checkbox" value="R" checked />
+          Red
+        </label>
+        <label>
+          <input type="checkbox" value="G" checked />
+          Green
+        </label>
+        <label>
+          <input type="checkbox" value="C" checked />
+          Colorless
+        </label>
+        <label>
+          <input type="checkbox" value="M" checked />
+          Multicoloured
+        </label>
+        </div>
+      </div>
+      <div class="control">
+        <span class="control__label">Card Types</span>
+        <label class="checkbox">
+          <input type="checkbox" id="lands-toggle" checked />
+          Show lands
+        </label>
+      </div>
+      <div class="control">
+        <label class="control__label" for="sort-select">Sort</label>
+        <select id="sort-select" class="sort-select">
+          <option value="mv-asc">Mana Value ↑</option>
+          <option value="mv-desc">Mana Value ↓</option>
+          <option value="color">Color Identity (WUBRGC)</option>
+        </select>
+      </div>
+      <div class="control">
+        <span class="control__label">Selected Cards</span>
+        <button id="copy-selected" class="copy-button" disabled>Copy Selected</button>
+      </div>
+    </section>
+    <p id="loading-state" class="loading">Loading cards…</p>
+    <section id="cards-grid" class="grid" aria-live="polite"></section>
+    <p id="empty-state" class="empty-state" hidden>No cards match the current filter.</p>
+    <section id="recent-list" class="recent-list" hidden aria-live="polite"></section>
+    <script id="card-data" type="application/json">{"generatedAt":"2025-10-26T16:24:28.711Z","sourceFile":"sample.txt","totalCards":71,"cards":[{"name":"Ancestral Vision","cubeCount":"23392","imagePath":"assets/card-images/9ec075ba-db56-4dcf-b1dc-fe6270b7ab36.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/9/e/9ec075ba-db56-4dcf-b1dc-fe6270b7ab36.jpg?1743206272","scryfallUri":"https://scryfall.com/card/tdc/144/ancestral-vision?utm_source=api","typeLine":"Sorcery","manaCost":"","manaValue":0,"colorIdentity":["U"],"setPrintings":[{"setCode":"TDC","setName":"Tarkir: Dragonstorm Commander","rarities":["rare"],"releasedAt":"2025-04-11","iconPath":"assets/set-icons/tdc.svg","previewCardUri":"https://scryfall.com/card/tdc/144/ancestral-vision?utm_source=api"},{"setCode":"TSR","setName":"Time Spiral Remastered","rarities":["mythic"],"releasedAt":"2021-03-19","iconPath":"assets/set-icons/tsr.svg","previewCardUri":"https://scryfall.com/card/tsr/52/ancestral-vision?utm_source=api"},{"setCode":"IMA","setName":"Iconic Masters","rarities":["rare"],"releasedAt":"2017-11-17","iconPath":"assets/set-icons/ima.svg","previewCardUri":"https://scryfall.com/card/ima/42/ancestral-vision?utm_source=api"},{"setCode":"JVC","setName":"Duel Decks Anthology: Jace vs. Chandra","rarities":["rare"],"releasedAt":"2014-12-05","iconPath":"assets/set-icons/jvc.svg","previewCardUri":"https://scryfall.com/card/jvc/21/ancestral-vision?utm_source=api"},{"setCode":"DD2","setName":"Duel Decks: Jace vs. Chandra","rarities":["rare"],"releasedAt":"2008-11-07","iconPath":"assets/set-icons/dd2.svg","previewCardUri":"https://scryfall.com/card/dd2/21/ancestral-vision?utm_source=api"},{"setCode":"TSP","setName":"Time Spiral","rarities":["rare"],"releasedAt":"2006-10-06","iconPath":"assets/set-icons/tsp.svg","previewCardUri":"https://scryfall.com/card/tsp/48/ancestral-vision?utm_source=api"}],"isNew":false},{"name":"Arcane Sanctum","cubeCount":"15524","imagePath":"assets/card-images/c75eeb97-3249-4762-84b0-387f27fb255f.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/c/7/c75eeb97-3249-4762-84b0-387f27fb255f.jpg?1726285349","scryfallUri":"https://scryfall.com/card/dsc/259/arcane-sanctum?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["B","U","W"],"setPrintings":[{"setCode":"FIC","setName":"Final Fantasy Commander","rarities":["uncommon"],"releasedAt":"2025-06-13","iconPath":"assets/set-icons/fic.svg","previewCardUri":"https://scryfall.com/card/fic/373/arcane-sanctum?utm_source=api"},{"setCode":"DRC","setName":"Aetherdrift Commander","rarities":["uncommon"],"releasedAt":"2025-02-14","iconPath":"assets/set-icons/drc.svg","previewCardUri":"https://scryfall.com/card/drc/146/arcane-sanctum?utm_source=api"},{"setCode":"DSC","setName":"Duskmourn: House of Horror Commander","rarities":["uncommon"],"releasedAt":"2024-09-27","iconPath":"assets/set-icons/dsc.svg","previewCardUri":"https://scryfall.com/card/dsc/259/arcane-sanctum?utm_source=api"},{"setCode":"MOC","setName":"March of the Machine Commander","rarities":["uncommon"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/moc.svg","previewCardUri":"https://scryfall.com/card/moc/390/arcane-sanctum?utm_source=api"},{"setCode":"BRC","setName":"The Brothers' War Commander","rarities":["uncommon"],"releasedAt":"2022-11-18","iconPath":"assets/set-icons/brc.svg","previewCardUri":"https://scryfall.com/card/brc/173/arcane-sanctum?utm_source=api"},{"setCode":"40K","setName":"Warhammer 40,000 Commander","rarities":["uncommon"],"releasedAt":"2022-10-07","iconPath":"assets/set-icons/40k.svg","previewCardUri":"https://scryfall.com/card/40k/264%E2%98%85/arcane-sanctum?utm_source=api"},{"setCode":"DMC","setName":"Dominaria United Commander","rarities":["uncommon"],"releasedAt":"2022-09-09","iconPath":"assets/set-icons/dmc.svg","previewCardUri":"https://scryfall.com/card/dmc/196/arcane-sanctum?utm_source=api"},{"setCode":"NCC","setName":"New Capenna Commander","rarities":["uncommon"],"releasedAt":"2022-04-29","iconPath":"assets/set-icons/ncc.svg","previewCardUri":"https://scryfall.com/card/ncc/385/arcane-sanctum?utm_source=api"},{"setCode":"AFC","setName":"Forgotten Realms Commander","rarities":["uncommon"],"releasedAt":"2021-07-23","iconPath":"assets/set-icons/afc.svg","previewCardUri":"https://scryfall.com/card/afc/223/arcane-sanctum?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["uncommon"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/MOC-390/arcane-sanctum?utm_source=api"},{"setCode":"C18","setName":"Commander 2018","rarities":["uncommon"],"releasedAt":"2018-08-10","iconPath":"assets/set-icons/c18.svg","previewCardUri":"https://scryfall.com/card/c18/232/arcane-sanctum?utm_source=api"},{"setCode":"CM2","setName":"Commander Anthology Volume II","rarities":["uncommon"],"releasedAt":"2018-06-08","iconPath":"assets/set-icons/cm2.svg","previewCardUri":"https://scryfall.com/card/cm2/234/arcane-sanctum?utm_source=api"},{"setCode":"C17","setName":"Commander 2017","rarities":["uncommon"],"releasedAt":"2017-08-25","iconPath":"assets/set-icons/c17.svg","previewCardUri":"https://scryfall.com/card/c17/234/arcane-sanctum?utm_source=api"},{"setCode":"MM3","setName":"Modern Masters 2017","rarities":["uncommon"],"releasedAt":"2017-03-17","iconPath":"assets/set-icons/mm3.svg","previewCardUri":"https://scryfall.com/card/mm3/228/arcane-sanctum?utm_source=api"},{"setCode":"C16","setName":"Commander 2016","rarities":["uncommon"],"releasedAt":"2016-11-11","iconPath":"assets/set-icons/c16.svg","previewCardUri":"https://scryfall.com/card/c16/281/arcane-sanctum?utm_source=api"},{"setCode":"PZ1","setName":"Legendary Cube Prize Pack","rarities":["uncommon"],"releasedAt":"2015-11-18","iconPath":"assets/set-icons/pz1.svg","previewCardUri":"https://scryfall.com/card/pz1/134/arcane-sanctum?utm_source=api"},{"setCode":"C13","setName":"Commander 2013","rarities":["uncommon"],"releasedAt":"2013-11-01","iconPath":"assets/set-icons/c13.svg","previewCardUri":"https://scryfall.com/card/c13/273/arcane-sanctum?utm_source=api"},{"setCode":"ALA","setName":"Shards of Alara","rarities":["uncommon"],"releasedAt":"2008-10-03","iconPath":"assets/set-icons/ala.svg","previewCardUri":"https://scryfall.com/card/ala/220/arcane-sanctum?utm_source=api"}],"isNew":false},{"name":"Dark Depths","cubeCount":"32655","imagePath":"assets/card-images/3a8b11ad-d077-40b6-988c-0462e118fe3d.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/3/a/3a8b11ad-d077-40b6-988c-0462e118fe3d.jpg?1676452514","scryfallUri":"https://scryfall.com/card/dmr/244/dark-depths?utm_source=api","typeLine":"Legendary Snow Land","manaCost":"","manaValue":0,"colorIdentity":[],"setPrintings":[{"setCode":"M3C","setName":"Modern Horizons 3 Commander","rarities":["mythic"],"releasedAt":"2024-06-14","iconPath":"assets/set-icons/m3c.svg","previewCardUri":"https://scryfall.com/card/m3c/334/dark-depths?utm_source=api"},{"setCode":"DMR","setName":"Dominaria Remastered","rarities":["mythic"],"releasedAt":"2023-01-13","iconPath":"assets/set-icons/dmr.svg","previewCardUri":"https://scryfall.com/card/dmr/454/dark-depths?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["rare"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/CSP-145/dark-depths?utm_source=api"},{"setCode":"2XM","setName":"Double Masters","rarities":["mythic"],"releasedAt":"2020-08-07","iconPath":"assets/set-icons/2xm.svg","previewCardUri":"https://scryfall.com/card/2xm/314/dark-depths?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["mythic"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/1680/dark-depths?utm_source=api"},{"setCode":"PUMA","setName":"Ultimate Box Topper","rarities":["mythic"],"releasedAt":"2018-12-07","iconPath":"assets/set-icons/puma.svg","previewCardUri":"https://scryfall.com/card/puma/U35/dark-depths?utm_source=api"},{"setCode":"UMA","setName":"Ultimate Masters","rarities":["mythic"],"releasedAt":"2018-12-07","iconPath":"assets/set-icons/uma.svg","previewCardUri":"https://scryfall.com/card/uma/241/dark-depths?utm_source=api"},{"setCode":"V16","setName":"From the Vault: Lore","rarities":["mythic"],"releasedAt":"2016-08-19","iconPath":"assets/set-icons/v16.svg","previewCardUri":"https://scryfall.com/card/v16/4/dark-depths?utm_source=api"},{"setCode":"CSP","setName":"Coldsnap","rarities":["rare"],"releasedAt":"2006-07-21","iconPath":"assets/set-icons/csp.svg","previewCardUri":"https://scryfall.com/card/csp/145/dark-depths?utm_source=api"}],"isNew":false},{"name":"Horizon Canopy","cubeCount":"39152","imagePath":"assets/card-images/93f7c880-9bae-4d29-b7b6-b6be6b2ffa89.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/9/3/93f7c880-9bae-4d29-b7b6-b6be6b2ffa89.jpg?1562851585","scryfallUri":"https://scryfall.com/card/ima/240/horizon-canopy?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["G","W"],"setPrintings":[{"setCode":"WHO","setName":"Doctor Who","rarities":["rare"],"releasedAt":"2023-10-13","iconPath":"assets/set-icons/who.svg","previewCardUri":"https://scryfall.com/card/who/1094/horizon-canopy?utm_source=api"},{"setCode":"LTC","setName":"Tales of Middle-earth Commander","rarities":["mythic"],"releasedAt":"2023-06-23","iconPath":"assets/set-icons/ltc.svg","previewCardUri":"https://scryfall.com/card/ltc/396z/horizon-canopy?utm_source=api"},{"setCode":"ZNE","setName":"Zendikar Rising Expeditions","rarities":["mythic"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/zne.svg","previewCardUri":"https://scryfall.com/card/zne/26/horizon-canopy?utm_source=api"},{"setCode":"IMA","setName":"Iconic Masters","rarities":["rare"],"releasedAt":"2017-11-17","iconPath":"assets/set-icons/ima.svg","previewCardUri":"https://scryfall.com/card/ima/240/horizon-canopy?utm_source=api"},{"setCode":"EXP","setName":"Zendikar Expeditions","rarities":["mythic"],"releasedAt":"2015-10-02","iconPath":"assets/set-icons/exp.svg","previewCardUri":"https://scryfall.com/card/exp/40/horizon-canopy?utm_source=api"},{"setCode":"FUT","setName":"Future Sight","rarities":["rare"],"releasedAt":"2007-05-04","iconPath":"assets/set-icons/fut.svg","previewCardUri":"https://scryfall.com/card/fut/177/horizon-canopy?utm_source=api"}],"isNew":false},{"name":"Jungle Shrine","cubeCount":"16661","imagePath":"assets/card-images/194c6ee7-c220-41a5-bf44-5e1d8d92879b.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/1/9/194c6ee7-c220-41a5-bf44-5e1d8d92879b.jpg?1712355055","scryfallUri":"https://scryfall.com/card/otc/303/jungle-shrine?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["G","R","W"],"setPrintings":[{"setCode":"FIC","setName":"Final Fantasy Commander","rarities":["uncommon"],"releasedAt":"2025-06-13","iconPath":"assets/set-icons/fic.svg","previewCardUri":"https://scryfall.com/card/fic/406/jungle-shrine?utm_source=api"},{"setCode":"OTC","setName":"Outlaws of Thunder Junction Commander","rarities":["uncommon"],"releasedAt":"2024-04-19","iconPath":"assets/set-icons/otc.svg","previewCardUri":"https://scryfall.com/card/otc/303/jungle-shrine?utm_source=api"},{"setCode":"PIP","setName":"Fallout","rarities":["uncommon"],"releasedAt":"2024-03-08","iconPath":"assets/set-icons/pip.svg","previewCardUri":"https://scryfall.com/card/pip/798/jungle-shrine?utm_source=api"},{"setCode":"MKC","setName":"Murders at Karlov Manor Commander","rarities":["uncommon"],"releasedAt":"2024-02-09","iconPath":"assets/set-icons/mkc.svg","previewCardUri":"https://scryfall.com/card/mkc/268/jungle-shrine?utm_source=api"},{"setCode":"LCC","setName":"The Lost Caverns of Ixalan Commander","rarities":["uncommon"],"releasedAt":"2023-11-17","iconPath":"assets/set-icons/lcc.svg","previewCardUri":"https://scryfall.com/card/lcc/338/jungle-shrine?utm_source=api"},{"setCode":"CMM","setName":"Commander Masters","rarities":["uncommon"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/1006/jungle-shrine?utm_source=api"},{"setCode":"MOC","setName":"March of the Machine Commander","rarities":["uncommon"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/moc.svg","previewCardUri":"https://scryfall.com/card/moc/408/jungle-shrine?utm_source=api"},{"setCode":"DMC","setName":"Dominaria United Commander","rarities":["uncommon"],"releasedAt":"2022-09-09","iconPath":"assets/set-icons/dmc.svg","previewCardUri":"https://scryfall.com/card/dmc/215/jungle-shrine?utm_source=api"},{"setCode":"NCC","setName":"New Capenna Commander","rarities":["uncommon"],"releasedAt":"2022-04-29","iconPath":"assets/set-icons/ncc.svg","previewCardUri":"https://scryfall.com/card/ncc/409/jungle-shrine?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["uncommon"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/OTC-303/jungle-shrine?utm_source=api"},{"setCode":"ZNC","setName":"Zendikar Rising Commander","rarities":["uncommon"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/znc.svg","previewCardUri":"https://scryfall.com/card/znc/132/jungle-shrine?utm_source=api"},{"setCode":"C19","setName":"Commander 2019","rarities":["uncommon"],"releasedAt":"2019-08-23","iconPath":"assets/set-icons/c19.svg","previewCardUri":"https://scryfall.com/card/c19/255/jungle-shrine?utm_source=api"},{"setCode":"E02","setName":"Explorers of Ixalan","rarities":["uncommon"],"releasedAt":"2017-11-24","iconPath":"assets/set-icons/e02.svg","previewCardUri":"https://scryfall.com/card/e02/46/jungle-shrine?utm_source=api"},{"setCode":"C17","setName":"Commander 2017","rarities":["uncommon"],"releasedAt":"2017-08-25","iconPath":"assets/set-icons/c17.svg","previewCardUri":"https://scryfall.com/card/c17/257/jungle-shrine?utm_source=api"},{"setCode":"MM3","setName":"Modern Masters 2017","rarities":["uncommon"],"releasedAt":"2017-03-17","iconPath":"assets/set-icons/mm3.svg","previewCardUri":"https://scryfall.com/card/mm3/238/jungle-shrine?utm_source=api"},{"setCode":"C16","setName":"Commander 2016","rarities":["uncommon"],"releasedAt":"2016-11-11","iconPath":"assets/set-icons/c16.svg","previewCardUri":"https://scryfall.com/card/c16/304/jungle-shrine?utm_source=api"},{"setCode":"PZ1","setName":"Legendary Cube Prize Pack","rarities":["uncommon"],"releasedAt":"2015-11-18","iconPath":"assets/set-icons/pz1.svg","previewCardUri":"https://scryfall.com/card/pz1/142/jungle-shrine?utm_source=api"},{"setCode":"C13","setName":"Commander 2013","rarities":["uncommon"],"releasedAt":"2013-11-01","iconPath":"assets/set-icons/c13.svg","previewCardUri":"https://scryfall.com/card/c13/299/jungle-shrine?utm_source=api"},{"setCode":"DDH","setName":"Duel Decks: Ajani vs. Nicol Bolas","rarities":["uncommon"],"releasedAt":"2011-09-02","iconPath":"assets/set-icons/ddh.svg","previewCardUri":"https://scryfall.com/card/ddh/34/jungle-shrine?utm_source=api"},{"setCode":"ALA","setName":"Shards of Alara","rarities":["uncommon"],"releasedAt":"2008-10-03","iconPath":"assets/set-icons/ala.svg","previewCardUri":"https://scryfall.com/card/ala/226/jungle-shrine?utm_source=api"}],"isNew":false},{"name":"Lumbering Falls","cubeCount":"22832","imagePath":"assets/card-images/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/f/7/f7e9db98-3a2d-46d8-a07f-99d66a4d9f2f.jpg?1631589871","scryfallUri":"https://scryfall.com/card/afc/247/lumbering-falls?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["G","U"],"setPrintings":[{"setCode":"EOS","setName":"Edge of Eternities: Stellar Sights","rarities":["rare"],"releasedAt":"2025-08-01","iconPath":"assets/set-icons/eos.svg","previewCardUri":"https://scryfall.com/card/eos/159/lumbering-falls?utm_source=api"},{"setCode":"PIO","setName":"Pioneer Masters","rarities":["rare"],"releasedAt":"2024-12-10","iconPath":"assets/set-icons/pio.svg","previewCardUri":"https://scryfall.com/card/pio/268/lumbering-falls?utm_source=api"},{"setCode":"M3C","setName":"Modern Horizons 3 Commander","rarities":["rare"],"releasedAt":"2024-06-14","iconPath":"assets/set-icons/m3c.svg","previewCardUri":"https://scryfall.com/card/m3c/355/lumbering-falls?utm_source=api"},{"setCode":"AFC","setName":"Forgotten Realms Commander","rarities":["rare"],"releasedAt":"2021-07-23","iconPath":"assets/set-icons/afc.svg","previewCardUri":"https://scryfall.com/card/afc/247/lumbering-falls?utm_source=api"},{"setCode":"C21","setName":"Commander 2021","rarities":["rare"],"releasedAt":"2021-04-23","iconPath":"assets/set-icons/c21.svg","previewCardUri":"https://scryfall.com/card/c21/299/lumbering-falls?utm_source=api"},{"setCode":"BFZ","setName":"Battle for Zendikar","rarities":["rare"],"releasedAt":"2015-10-02","iconPath":"assets/set-icons/bfz.svg","previewCardUri":"https://scryfall.com/card/bfz/239/lumbering-falls?utm_source=api"},{"setCode":"PBFZ","setName":"Battle for Zendikar Promos","rarities":["rare"],"releasedAt":"2015-10-02","iconPath":"assets/set-icons/pbfz.svg","previewCardUri":"https://scryfall.com/card/pbfz/239s/lumbering-falls?utm_source=api"}],"isNew":false},{"name":"Otawara, Soaring City","cubeCount":"29001","imagePath":"assets/card-images/486d7edc-d983-41f0-8b78-c99aecd72996.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/8/486d7edc-d983-41f0-8b78-c99aecd72996.jpg?1654568960","scryfallUri":"https://scryfall.com/card/neo/271/otawara-soaring-city?utm_source=api","typeLine":"Legendary Land","manaCost":"","manaValue":0,"colorIdentity":["U"],"setPrintings":[{"setCode":"NEO","setName":"Kamigawa: Neon Dynasty","rarities":["rare"],"releasedAt":"2022-02-18","iconPath":"assets/set-icons/neo.svg","previewCardUri":"https://scryfall.com/card/neo/503/otawara-soaring-city?utm_source=api"},{"setCode":"PNEO","setName":"Kamigawa: Neon Dynasty Promos","rarities":["rare"],"releasedAt":"2022-02-18","iconPath":"assets/set-icons/pneo.svg","previewCardUri":"https://scryfall.com/card/pneo/271s/otawara-soaring-city?utm_source=api"}],"isNew":false},{"name":"Razorverge Thicket","cubeCount":"32303","imagePath":"assets/card-images/65b26f68-3a25-4c4e-bc76-a199ab479a50.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/6/5/65b26f68-3a25-4c4e-bc76-a199ab479a50.jpg?1675957278","scryfallUri":"https://scryfall.com/card/one/257/razorverge-thicket?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["G","W"],"setPrintings":[{"setCode":"BLC","setName":"Bloomburrow Commander","rarities":["rare"],"releasedAt":"2024-08-02","iconPath":"assets/set-icons/blc.svg","previewCardUri":"https://scryfall.com/card/blc/325/razorverge-thicket?utm_source=api"},{"setCode":"ONE","setName":"Phyrexia: All Will Be One","rarities":["rare"],"releasedAt":"2023-02-10","iconPath":"assets/set-icons/one.svg","previewCardUri":"https://scryfall.com/card/one/373/razorverge-thicket?utm_source=api"},{"setCode":"PONE","setName":"Phyrexia: All Will Be One Promos","rarities":["rare"],"releasedAt":"2023-02-10","iconPath":"assets/set-icons/pone.svg","previewCardUri":"https://scryfall.com/card/pone/257s/razorverge-thicket?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["rare"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/ONE-257/razorverge-thicket?utm_source=api"},{"setCode":"ZNE","setName":"Zendikar Rising Expeditions","rarities":["mythic"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/zne.svg","previewCardUri":"https://scryfall.com/card/zne/15/razorverge-thicket?utm_source=api"},{"setCode":"SOM","setName":"Scars of Mirrodin","rarities":["rare"],"releasedAt":"2010-10-01","iconPath":"assets/set-icons/som.svg","previewCardUri":"https://scryfall.com/card/som/228/razorverge-thicket?utm_source=api"}],"isNew":false},{"name":"Silent Clearing","cubeCount":"46688","imagePath":"assets/card-images/ac07e230-0297-4e1d-bdfe-119010e0ad8e.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/a/c/ac07e230-0297-4e1d-bdfe-119010e0ad8e.jpg?1562202597","scryfallUri":"https://scryfall.com/card/mh1/246/silent-clearing?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["B","W"],"setPrintings":[{"setCode":"ACR","setName":"Assassin's Creed","rarities":["rare"],"releasedAt":"2024-07-05","iconPath":"assets/set-icons/acr.svg","previewCardUri":"https://scryfall.com/card/acr/115/silent-clearing?utm_source=api"},{"setCode":"HA7","setName":"Historic Anthology 7","rarities":["rare"],"releasedAt":"2023-07-18","iconPath":"assets/set-icons/ha7.svg","previewCardUri":"https://scryfall.com/card/ha7/24/silent-clearing?utm_source=api"},{"setCode":"MH1","setName":"Modern Horizons","rarities":["rare"],"releasedAt":"2019-06-14","iconPath":"assets/set-icons/mh1.svg","previewCardUri":"https://scryfall.com/card/mh1/246/silent-clearing?utm_source=api"}],"isNew":false},{"name":"Temple of Abandon","cubeCount":"11797","imagePath":"assets/card-images/d2ce0759-6b24-41a6-8a24-16cf44dfc162.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/d/2/d2ce0759-6b24-41a6-8a24-16cf44dfc162.jpg?1743207768","scryfallUri":"https://scryfall.com/card/tdc/400/temple-of-abandon?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["G","R"],"setPrintings":[{"setCode":"TDC","setName":"Tarkir: Dragonstorm Commander","rarities":["rare"],"releasedAt":"2025-04-11","iconPath":"assets/set-icons/tdc.svg","previewCardUri":"https://scryfall.com/card/tdc/400/temple-of-abandon?utm_source=api"},{"setCode":"FDN","setName":"Foundations","rarities":["rare"],"releasedAt":"2024-11-15","iconPath":"assets/set-icons/fdn.svg","previewCardUri":"https://scryfall.com/card/fdn/696/temple-of-abandon?utm_source=api"},{"setCode":"BLC","setName":"Bloomburrow Commander","rarities":["rare"],"releasedAt":"2024-08-02","iconPath":"assets/set-icons/blc.svg","previewCardUri":"https://scryfall.com/card/blc/338/temple-of-abandon?utm_source=api"},{"setCode":"M3C","setName":"Modern Horizons 3 Commander","rarities":["rare"],"releasedAt":"2024-06-14","iconPath":"assets/set-icons/m3c.svg","previewCardUri":"https://scryfall.com/card/m3c/385/temple-of-abandon?utm_source=api"},{"setCode":"PIP","setName":"Fallout","rarities":["rare"],"releasedAt":"2024-03-08","iconPath":"assets/set-icons/pip.svg","previewCardUri":"https://scryfall.com/card/pip/1044/temple-of-abandon?utm_source=api"},{"setCode":"MKC","setName":"Murders at Karlov Manor Commander","rarities":["rare"],"releasedAt":"2024-02-09","iconPath":"assets/set-icons/mkc.svg","previewCardUri":"https://scryfall.com/card/mkc/301/temple-of-abandon?utm_source=api"},{"setCode":"WHO","setName":"Doctor Who","rarities":["rare"],"releasedAt":"2023-10-13","iconPath":"assets/set-icons/who.svg","previewCardUri":"https://scryfall.com/card/who/1114/temple-of-abandon?utm_source=api"},{"setCode":"MOC","setName":"March of the Machine Commander","rarities":["rare"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/moc.svg","previewCardUri":"https://scryfall.com/card/moc/430/temple-of-abandon?utm_source=api"},{"setCode":"SCD","setName":"Starter Commander Decks","rarities":["rare"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/scd.svg","previewCardUri":"https://scryfall.com/card/scd/323/temple-of-abandon?utm_source=api"},{"setCode":"40K","setName":"Warhammer 40,000 Commander","rarities":["rare"],"releasedAt":"2022-10-07","iconPath":"assets/set-icons/40k.svg","previewCardUri":"https://scryfall.com/card/40k/297%E2%98%85/temple-of-abandon?utm_source=api"},{"setCode":"CLB","setName":"Commander Legends: Battle for Baldur's Gate","rarities":["rare"],"releasedAt":"2022-06-10","iconPath":"assets/set-icons/clb.svg","previewCardUri":"https://scryfall.com/card/clb/921/temple-of-abandon?utm_source=api"},{"setCode":"NEC","setName":"Neon Dynasty Commander","rarities":["rare"],"releasedAt":"2022-02-18","iconPath":"assets/set-icons/nec.svg","previewCardUri":"https://scryfall.com/card/nec/179/temple-of-abandon?utm_source=api"},{"setCode":"PTHB","setName":"Theros Beyond Death Promos","rarities":["rare"],"releasedAt":"2020-01-24","iconPath":"assets/set-icons/pthb.svg","previewCardUri":"https://scryfall.com/card/pthb/244s/temple-of-abandon?utm_source=api"},{"setCode":"THB","setName":"Theros Beyond Death","rarities":["rare"],"releasedAt":"2020-01-24","iconPath":"assets/set-icons/thb.svg","previewCardUri":"https://scryfall.com/card/thb/347%E2%98%85/temple-of-abandon?utm_source=api"},{"setCode":"THS","setName":"Theros","rarities":["rare"],"releasedAt":"2013-09-27","iconPath":"assets/set-icons/ths.svg","previewCardUri":"https://scryfall.com/card/ths/224/temple-of-abandon?utm_source=api"}],"isNew":false},{"name":"Temple of Malice","cubeCount":"11772","imagePath":"assets/card-images/d78eccc4-1500-43f1-94f5-b39c160b6381.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/d/7/d78eccc4-1500-43f1-94f5-b39c160b6381.jpg?1730491258","scryfallUri":"https://scryfall.com/card/fdn/701/temple-of-malice?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["B","R"],"setPrintings":[{"setCode":"FDN","setName":"Foundations","rarities":["rare"],"releasedAt":"2024-11-15","iconPath":"assets/set-icons/fdn.svg","previewCardUri":"https://scryfall.com/card/fdn/701/temple-of-malice?utm_source=api"},{"setCode":"DSC","setName":"Duskmourn: House of Horror Commander","rarities":["rare"],"releasedAt":"2024-09-27","iconPath":"assets/set-icons/dsc.svg","previewCardUri":"https://scryfall.com/card/dsc/310/temple-of-malice?utm_source=api"},{"setCode":"M3C","setName":"Modern Horizons 3 Commander","rarities":["rare"],"releasedAt":"2024-06-14","iconPath":"assets/set-icons/m3c.svg","previewCardUri":"https://scryfall.com/card/m3c/389/temple-of-malice?utm_source=api"},{"setCode":"OTC","setName":"Outlaws of Thunder Junction Commander","rarities":["rare"],"releasedAt":"2024-04-19","iconPath":"assets/set-icons/otc.svg","previewCardUri":"https://scryfall.com/card/otc/331/temple-of-malice?utm_source=api"},{"setCode":"PIP","setName":"Fallout","rarities":["rare"],"releasedAt":"2024-03-08","iconPath":"assets/set-icons/pip.svg","previewCardUri":"https://scryfall.com/card/pip/1049/temple-of-malice?utm_source=api"},{"setCode":"WHO","setName":"Doctor Who","rarities":["rare"],"releasedAt":"2023-10-13","iconPath":"assets/set-icons/who.svg","previewCardUri":"https://scryfall.com/card/who/1118/temple-of-malice?utm_source=api"},{"setCode":"SCD","setName":"Starter Commander Decks","rarities":["rare"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/scd.svg","previewCardUri":"https://scryfall.com/card/scd/326/temple-of-malice?utm_source=api"},{"setCode":"BRC","setName":"The Brothers' War Commander","rarities":["rare"],"releasedAt":"2022-11-18","iconPath":"assets/set-icons/brc.svg","previewCardUri":"https://scryfall.com/card/brc/208/temple-of-malice?utm_source=api"},{"setCode":"DMC","setName":"Dominaria United Commander","rarities":["rare"],"releasedAt":"2022-09-09","iconPath":"assets/set-icons/dmc.svg","previewCardUri":"https://scryfall.com/card/dmc/236/temple-of-malice?utm_source=api"},{"setCode":"VOC","setName":"Crimson Vow Commander","rarities":["rare"],"releasedAt":"2021-11-19","iconPath":"assets/set-icons/voc.svg","previewCardUri":"https://scryfall.com/card/voc/186/temple-of-malice?utm_source=api"},{"setCode":"PTHB","setName":"Theros Beyond Death Promos","rarities":["rare"],"releasedAt":"2020-01-24","iconPath":"assets/set-icons/pthb.svg","previewCardUri":"https://scryfall.com/card/pthb/247s/temple-of-malice?utm_source=api"},{"setCode":"THB","setName":"Theros Beyond Death","rarities":["rare"],"releasedAt":"2020-01-24","iconPath":"assets/set-icons/thb.svg","previewCardUri":"https://scryfall.com/card/thb/350/temple-of-malice?utm_source=api"},{"setCode":"BNG","setName":"Born of the Gods","rarities":["rare"],"releasedAt":"2014-02-07","iconPath":"assets/set-icons/bng.svg","previewCardUri":"https://scryfall.com/card/bng/164/temple-of-malice?utm_source=api"}],"isNew":false},{"name":"Temple of Plenty","cubeCount":"12552","imagePath":"assets/card-images/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/d/e/de1f7e5e-a503-4f99-91a1-2fdabb7d5e89.jpg?1743207789","scryfallUri":"https://scryfall.com/card/tdc/405/temple-of-plenty?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["G","W"],"setPrintings":[{"setCode":"FIC","setName":"Final Fantasy Commander","rarities":["rare"],"releasedAt":"2025-06-13","iconPath":"assets/set-icons/fic.svg","previewCardUri":"https://scryfall.com/card/fic/437/temple-of-plenty?utm_source=api"},{"setCode":"TDC","setName":"Tarkir: Dragonstorm Commander","rarities":["rare"],"releasedAt":"2025-04-11","iconPath":"assets/set-icons/tdc.svg","previewCardUri":"https://scryfall.com/card/tdc/405/temple-of-plenty?utm_source=api"},{"setCode":"FDN","setName":"Foundations","rarities":["rare"],"releasedAt":"2024-11-15","iconPath":"assets/set-icons/fdn.svg","previewCardUri":"https://scryfall.com/card/fdn/703/temple-of-plenty?utm_source=api"},{"setCode":"BLC","setName":"Bloomburrow Commander","rarities":["rare"],"releasedAt":"2024-08-02","iconPath":"assets/set-icons/blc.svg","previewCardUri":"https://scryfall.com/card/blc/343/temple-of-plenty?utm_source=api"},{"setCode":"PIP","setName":"Fallout","rarities":["rare"],"releasedAt":"2024-03-08","iconPath":"assets/set-icons/pip.svg","previewCardUri":"https://scryfall.com/card/pip/1051/temple-of-plenty?utm_source=api"},{"setCode":"MKC","setName":"Murders at Karlov Manor Commander","rarities":["rare"],"releasedAt":"2024-02-09","iconPath":"assets/set-icons/mkc.svg","previewCardUri":"https://scryfall.com/card/mkc/304/temple-of-plenty?utm_source=api"},{"setCode":"WHO","setName":"Doctor Who","rarities":["rare"],"releasedAt":"2023-10-13","iconPath":"assets/set-icons/who.svg","previewCardUri":"https://scryfall.com/card/who/1120/temple-of-plenty?utm_source=api"},{"setCode":"WOC","setName":"Wilds of Eldraine Commander","rarities":["rare"],"releasedAt":"2023-09-08","iconPath":"assets/set-icons/woc.svg","previewCardUri":"https://scryfall.com/card/woc/171/temple-of-plenty?utm_source=api"},{"setCode":"CMM","setName":"Commander Masters","rarities":["rare"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/1044/temple-of-plenty?utm_source=api"},{"setCode":"MOC","setName":"March of the Machine Commander","rarities":["rare"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/moc.svg","previewCardUri":"https://scryfall.com/card/moc/435/temple-of-plenty?utm_source=api"},{"setCode":"ONC","setName":"Phyrexia: All Will Be One Commander","rarities":["rare"],"releasedAt":"2023-02-10","iconPath":"assets/set-icons/onc.svg","previewCardUri":"https://scryfall.com/card/onc/170/temple-of-plenty?utm_source=api"},{"setCode":"SCD","setName":"Starter Commander Decks","rarities":["rare"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/scd.svg","previewCardUri":"https://scryfall.com/card/scd/327/temple-of-plenty?utm_source=api"},{"setCode":"MIC","setName":"Midnight Hunt Commander","rarities":["rare"],"releasedAt":"2021-09-24","iconPath":"assets/set-icons/mic.svg","previewCardUri":"https://scryfall.com/card/mic/185/temple-of-plenty?utm_source=api"},{"setCode":"PTHB","setName":"Theros Beyond Death Promos","rarities":["rare"],"releasedAt":"2020-01-24","iconPath":"assets/set-icons/pthb.svg","previewCardUri":"https://scryfall.com/card/pthb/248s/temple-of-plenty?utm_source=api"},{"setCode":"THB","setName":"Theros Beyond Death","rarities":["rare"],"releasedAt":"2020-01-24","iconPath":"assets/set-icons/thb.svg","previewCardUri":"https://scryfall.com/card/thb/351/temple-of-plenty?utm_source=api"},{"setCode":"BNG","setName":"Born of the Gods","rarities":["rare"],"releasedAt":"2014-02-07","iconPath":"assets/set-icons/bng.svg","previewCardUri":"https://scryfall.com/card/bng/165/temple-of-plenty?utm_source=api"}],"isNew":false},{"name":"Thespian's Stage","cubeCount":"30859","imagePath":"assets/card-images/269a926d-7788-4668-8bd8-7572dbf5f5eb.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/2/6/269a926d-7788-4668-8bd8-7572dbf5f5eb.jpg?1599710662","scryfallUri":"https://scryfall.com/card/2xm/327/thespians-stage?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":[],"setPrintings":[{"setCode":"EOS","setName":"Edge of Eternities: Stellar Sights","rarities":["rare"],"releasedAt":"2025-08-01","iconPath":"assets/set-icons/eos.svg","previewCardUri":"https://scryfall.com/card/eos/179/thespians-stage?utm_source=api"},{"setCode":"MB2","setName":"Mystery Booster 2","rarities":["rare"],"releasedAt":"2024-08-02","iconPath":"assets/set-icons/mb2.svg","previewCardUri":"https://scryfall.com/card/mb2/113/thespians-stage?utm_source=api"},{"setCode":"M3C","setName":"Modern Horizons 3 Commander","rarities":["rare"],"releasedAt":"2024-06-14","iconPath":"assets/set-icons/m3c.svg","previewCardUri":"https://scryfall.com/card/m3c/395/thespians-stage?utm_source=api"},{"setCode":"RVR","setName":"Ravnica Remastered","rarities":["rare"],"releasedAt":"2024-01-12","iconPath":"assets/set-icons/rvr.svg","previewCardUri":"https://scryfall.com/card/rvr/466/thespians-stage?utm_source=api"},{"setCode":"WHO","setName":"Doctor Who","rarities":["rare"],"releasedAt":"2023-10-13","iconPath":"assets/set-icons/who.svg","previewCardUri":"https://scryfall.com/card/who/1122/thespians-stage?utm_source=api"},{"setCode":"EA3","setName":"Explorer Anthology 3","rarities":["rare"],"releasedAt":"2023-07-18","iconPath":"assets/set-icons/ea3.svg","previewCardUri":"https://scryfall.com/card/ea3/25/thespians-stage?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["rare"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/GTC-248/thespians-stage?utm_source=api"},{"setCode":"2XM","setName":"Double Masters","rarities":["rare"],"releasedAt":"2020-08-07","iconPath":"assets/set-icons/2xm.svg","previewCardUri":"https://scryfall.com/card/2xm/327/thespians-stage?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["rare"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/1607/thespians-stage?utm_source=api"},{"setCode":"C19","setName":"Commander 2019","rarities":["rare"],"releasedAt":"2019-08-23","iconPath":"assets/set-icons/c19.svg","previewCardUri":"https://scryfall.com/card/c19/282/thespians-stage?utm_source=api"},{"setCode":"UMA","setName":"Ultimate Masters","rarities":["rare"],"releasedAt":"2018-12-07","iconPath":"assets/set-icons/uma.svg","previewCardUri":"https://scryfall.com/card/uma/253/thespians-stage?utm_source=api"},{"setCode":"GTC","setName":"Gatecrash","rarities":["rare"],"releasedAt":"2013-02-01","iconPath":"assets/set-icons/gtc.svg","previewCardUri":"https://scryfall.com/card/gtc/248/thespians-stage?utm_source=api"}],"isNew":false},{"name":"Wandering Fumarole","cubeCount":"23387","imagePath":"assets/card-images/ce3a6a8e-a01e-4d14-a6e5-c02c8205c749.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/c/e/ce3a6a8e-a01e-4d14-a6e5-c02c8205c749.jpg?1674143256","scryfallUri":"https://scryfall.com/card/clb/928/wandering-fumarole?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["R","U"],"setPrintings":[{"setCode":"EOS","setName":"Edge of Eternities: Stellar Sights","rarities":["rare"],"releasedAt":"2025-08-01","iconPath":"assets/set-icons/eos.svg","previewCardUri":"https://scryfall.com/card/eos/180/wandering-fumarole?utm_source=api"},{"setCode":"PIO","setName":"Pioneer Masters","rarities":["rare"],"releasedAt":"2024-12-10","iconPath":"assets/set-icons/pio.svg","previewCardUri":"https://scryfall.com/card/pio/278/wandering-fumarole?utm_source=api"},{"setCode":"CLB","setName":"Commander Legends: Battle for Baldur's Gate","rarities":["rare"],"releasedAt":"2022-06-10","iconPath":"assets/set-icons/clb.svg","previewCardUri":"https://scryfall.com/card/clb/928/wandering-fumarole?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["rare"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/OGW-182/wandering-fumarole?utm_source=api"},{"setCode":"OGW","setName":"Oath of the Gatewatch","rarities":["rare"],"releasedAt":"2016-01-22","iconPath":"assets/set-icons/ogw.svg","previewCardUri":"https://scryfall.com/card/ogw/182/wandering-fumarole?utm_source=api"},{"setCode":"POGW","setName":"Oath of the Gatewatch Promos","rarities":["rare"],"releasedAt":"2016-01-22","iconPath":"assets/set-icons/pogw.svg","previewCardUri":"https://scryfall.com/card/pogw/182s/wandering-fumarole?utm_source=api"}],"isNew":false},{"name":"Waterlogged Grove","cubeCount":"42585","imagePath":"assets/card-images/0ab6bfbd-d2e1-4c4c-9f91-6f69c5b8e3bb.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/0/a/0ab6bfbd-d2e1-4c4c-9f91-6f69c5b8e3bb.jpg?1562202616","scryfallUri":"https://scryfall.com/card/mh1/249/waterlogged-grove?utm_source=api","typeLine":"Land","manaCost":"","manaValue":0,"colorIdentity":["G","U"],"setPrintings":[{"setCode":"ACR","setName":"Assassin's Creed","rarities":["rare"],"releasedAt":"2024-07-05","iconPath":"assets/set-icons/acr.svg","previewCardUri":"https://scryfall.com/card/acr/116/waterlogged-grove?utm_source=api"},{"setCode":"WHO","setName":"Doctor Who","rarities":["rare"],"releasedAt":"2023-10-13","iconPath":"assets/set-icons/who.svg","previewCardUri":"https://scryfall.com/card/who/1125/waterlogged-grove?utm_source=api"},{"setCode":"HA7","setName":"Historic Anthology 7","rarities":["rare"],"releasedAt":"2023-07-18","iconPath":"assets/set-icons/ha7.svg","previewCardUri":"https://scryfall.com/card/ha7/25/waterlogged-grove?utm_source=api"},{"setCode":"MH1","setName":"Modern Horizons","rarities":["rare"],"releasedAt":"2019-06-14","iconPath":"assets/set-icons/mh1.svg","previewCardUri":"https://scryfall.com/card/mh1/249/waterlogged-grove?utm_source=api"}],"isNew":false},{"name":"Abundant Harvest","cubeCount":"44199","imagePath":"assets/card-images/516e137a-d9d9-4ba7-89fb-e680ddb2c2d1.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/5/1/516e137a-d9d9-4ba7-89fb-e680ddb2c2d1.jpg?1689998315","scryfallUri":"https://scryfall.com/card/cmm/269/abundant-harvest?utm_source=api","typeLine":"Sorcery","manaCost":"{G}","manaValue":1,"colorIdentity":["G"],"setPrintings":[{"setCode":"CMM","setName":"Commander Masters","rarities":["common"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/269/abundant-harvest?utm_source=api"},{"setCode":"MH2","setName":"Modern Horizons 2","rarities":["common"],"releasedAt":"2021-06-18","iconPath":"assets/set-icons/mh2.svg","previewCardUri":"https://scryfall.com/card/mh2/354/abundant-harvest?utm_source=api"},{"setCode":"STA","setName":"Strixhaven Mystical Archive","rarities":["rare"],"releasedAt":"2021-04-23","iconPath":"assets/set-icons/sta.svg","previewCardUri":"https://scryfall.com/card/sta/111/ja/%E8%B1%8A%E7%A9%A3%E3%81%AA%E5%8F%8E%E7%A9%AB-(abundant-harvest)?utm_source=api"}],"isNew":false},{"name":"Goblin Bushwhacker","cubeCount":"17302","imagePath":"assets/card-images/4085a5bf-a71b-4c73-9b39-0dcc328fe11b.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/0/4085a5bf-a71b-4c73-9b39-0dcc328fe11b.jpg?1562611583","scryfallUri":"https://scryfall.com/card/zen/125/goblin-bushwhacker?utm_source=api","typeLine":"Creature — Goblin Warrior","manaCost":"{R}","manaValue":1,"colorIdentity":["R"],"setPrintings":[{"setCode":"SPG","setName":"Special Guests","rarities":["mythic"],"releasedAt":"2023-11-17","iconPath":"assets/set-icons/spg.svg","previewCardUri":"https://scryfall.com/card/spg/78/goblin-bushwhacker?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["common"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/ZEN-125/goblin-bushwhacker?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["rare"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/17/goblin-bushwhacker?utm_source=api"},{"setCode":"ZEN","setName":"Zendikar","rarities":["common"],"releasedAt":"2009-10-02","iconPath":"assets/set-icons/zen.svg","previewCardUri":"https://scryfall.com/card/zen/125/goblin-bushwhacker?utm_source=api"}],"isNew":false},{"name":"Hardened Scales","cubeCount":"12748","imagePath":"assets/card-images/fc69ad56-9ae2-4eb5-b7e2-558524f6cbcc.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/f/c/fc69ad56-9ae2-4eb5-b7e2-558524f6cbcc.jpg?1698988369","scryfallUri":"https://scryfall.com/card/lcc/243/hardened-scales?utm_source=api","typeLine":"Enchantment","manaCost":"{G}","manaValue":1,"colorIdentity":["G"],"setPrintings":[{"setCode":"FIC","setName":"Final Fantasy Commander","rarities":["rare"],"releasedAt":"2025-06-13","iconPath":"assets/set-icons/fic.svg","previewCardUri":"https://scryfall.com/card/fic/307/hardened-scales?utm_source=api"},{"setCode":"PIP","setName":"Fallout","rarities":["rare"],"releasedAt":"2024-03-08","iconPath":"assets/set-icons/pip.svg","previewCardUri":"https://scryfall.com/card/pip/998/hardened-scales?utm_source=api"},{"setCode":"LCC","setName":"The Lost Caverns of Ixalan Commander","rarities":["rare"],"releasedAt":"2023-11-17","iconPath":"assets/set-icons/lcc.svg","previewCardUri":"https://scryfall.com/card/lcc/243/hardened-scales?utm_source=api"},{"setCode":"WOT","setName":"Wilds of Eldraine: Enchanting Tales","rarities":["rare"],"releasedAt":"2023-09-08","iconPath":"assets/set-icons/wot.svg","previewCardUri":"https://scryfall.com/card/wot/55/hardened-scales?utm_source=api"},{"setCode":"40K","setName":"Warhammer 40,000 Commander","rarities":["rare"],"releasedAt":"2022-10-07","iconPath":"assets/set-icons/40k.svg","previewCardUri":"https://scryfall.com/card/40k/215%E2%98%85/hardened-scales?utm_source=api"},{"setCode":"2X2","setName":"Double Masters 2022","rarities":["rare"],"releasedAt":"2022-07-08","iconPath":"assets/set-icons/2x2.svg","previewCardUri":"https://scryfall.com/card/2x2/462/hardened-scales?utm_source=api"},{"setCode":"J21","setName":"Jumpstart: Historic Horizons","rarities":["rare"],"releasedAt":"2021-08-26","iconPath":"assets/set-icons/j21.svg","previewCardUri":"https://scryfall.com/card/j21/582/hardened-scales?utm_source=api"},{"setCode":"CM2","setName":"Commander Anthology Volume II","rarities":["rare"],"releasedAt":"2018-06-08","iconPath":"assets/set-icons/cm2.svg","previewCardUri":"https://scryfall.com/card/cm2/138/hardened-scales?utm_source=api"},{"setCode":"C16","setName":"Commander 2016","rarities":["rare"],"releasedAt":"2016-11-11","iconPath":"assets/set-icons/c16.svg","previewCardUri":"https://scryfall.com/card/c16/152/hardened-scales?utm_source=api"},{"setCode":"KTK","setName":"Khans of Tarkir","rarities":["rare"],"releasedAt":"2014-09-26","iconPath":"assets/set-icons/ktk.svg","previewCardUri":"https://scryfall.com/card/ktk/133/hardened-scales?utm_source=api"},{"setCode":"PKTK","setName":"Khans of Tarkir Promos","rarities":["rare"],"releasedAt":"2014-09-26","iconPath":"assets/set-icons/pktk.svg","previewCardUri":"https://scryfall.com/card/pktk/133s/hardened-scales?utm_source=api"}],"isNew":false},{"name":"Lightning Axe","cubeCount":"17355","imagePath":"assets/card-images/90911c79-24c3-4566-b72c-02ccde083f1b.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/9/0/90911c79-24c3-4566-b72c-02ccde083f1b.jpg?1736473361","scryfallUri":"https://scryfall.com/card/inr/162/lightning-axe?utm_source=api","typeLine":"Instant","manaCost":"{R}","manaValue":1,"colorIdentity":["R"],"setPrintings":[{"setCode":"INR","setName":"Innistrad Remastered","rarities":["uncommon"],"releasedAt":"2025-01-24","iconPath":"assets/set-icons/inr.svg","previewCardUri":"https://scryfall.com/card/inr/398/lightning-axe?utm_source=api"},{"setCode":"SIR","setName":"Shadows over Innistrad Remastered","rarities":["uncommon"],"releasedAt":"2023-03-21","iconPath":"assets/set-icons/sir.svg","previewCardUri":"https://scryfall.com/card/sir/166/lightning-axe?utm_source=api"},{"setCode":"J22","setName":"Jumpstart 2022","rarities":["uncommon"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/j22.svg","previewCardUri":"https://scryfall.com/card/j22/569/lightning-axe?utm_source=api"},{"setCode":"TSR","setName":"Time Spiral Remastered","rarities":["uncommon"],"releasedAt":"2021-03-19","iconPath":"assets/set-icons/tsr.svg","previewCardUri":"https://scryfall.com/card/tsr/174/lightning-axe?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["common"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/TSP-168/lightning-axe?utm_source=api"},{"setCode":"2XM","setName":"Double Masters","rarities":["common"],"releasedAt":"2020-08-07","iconPath":"assets/set-icons/2xm.svg","previewCardUri":"https://scryfall.com/card/2xm/135/lightning-axe?utm_source=api"},{"setCode":"JMP","setName":"Jumpstart","rarities":["uncommon"],"releasedAt":"2020-07-17","iconPath":"assets/set-icons/jmp.svg","previewCardUri":"https://scryfall.com/card/jmp/341/lightning-axe?utm_source=api"},{"setCode":"SOI","setName":"Shadows over Innistrad","rarities":["uncommon"],"releasedAt":"2016-04-08","iconPath":"assets/set-icons/soi.svg","previewCardUri":"https://scryfall.com/card/soi/170/lightning-axe?utm_source=api"},{"setCode":"TSP","setName":"Time Spiral","rarities":["common"],"releasedAt":"2006-10-06","iconPath":"assets/set-icons/tsp.svg","previewCardUri":"https://scryfall.com/card/tsp/168/lightning-axe?utm_source=api"}],"isNew":false},{"name":"Mikaeus, the Lunarch","cubeCount":"16900","imagePath":"assets/card-images/fb885d30-c6e5-494a-bc01-3d5085b8e262.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/f/b/fb885d30-c6e5-494a-bc01-3d5085b8e262.jpg?1682208524","scryfallUri":"https://scryfall.com/card/moc/197/mikaeus-the-lunarch?utm_source=api","typeLine":"Legendary Creature — Human Cleric","manaCost":"{X}{W}","manaValue":1,"colorIdentity":["W"],"setPrintings":[{"setCode":"J25","setName":"Foundations Jumpstart","rarities":["mythic"],"releasedAt":"2024-11-15","iconPath":"assets/set-icons/j25.svg","previewCardUri":"https://scryfall.com/card/j25/225/mikaeus-the-lunarch?utm_source=api"},{"setCode":"MOC","setName":"March of the Machine Commander","rarities":["mythic"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/moc.svg","previewCardUri":"https://scryfall.com/card/moc/197/mikaeus-the-lunarch?utm_source=api"},{"setCode":"2X2","setName":"Double Masters 2022","rarities":["rare"],"releasedAt":"2022-07-08","iconPath":"assets/set-icons/2x2.svg","previewCardUri":"https://scryfall.com/card/2x2/419/mikaeus-the-lunarch?utm_source=api"},{"setCode":"CLB","setName":"Commander Legends: Battle for Baldur's Gate","rarities":["mythic"],"releasedAt":"2022-06-10","iconPath":"assets/set-icons/clb.svg","previewCardUri":"https://scryfall.com/card/clb/700/mikaeus-the-lunarch?utm_source=api"},{"setCode":"MIC","setName":"Midnight Hunt Commander","rarities":["mythic"],"releasedAt":"2021-09-24","iconPath":"assets/set-icons/mic.svg","previewCardUri":"https://scryfall.com/card/mic/89/mikaeus-the-lunarch?utm_source=api"},{"setCode":"JMP","setName":"Jumpstart","rarities":["mythic"],"releasedAt":"2020-07-17","iconPath":"assets/set-icons/jmp.svg","previewCardUri":"https://scryfall.com/card/jmp/123/mikaeus-the-lunarch?utm_source=api"},{"setCode":"ISD","setName":"Innistrad","rarities":["mythic"],"releasedAt":"2011-09-30","iconPath":"assets/set-icons/isd.svg","previewCardUri":"https://scryfall.com/card/isd/23/mikaeus-the-lunarch?utm_source=api"},{"setCode":"V11","setName":"From the Vault: Legends","rarities":["mythic"],"releasedAt":"2011-08-26","iconPath":"assets/set-icons/v11.svg","previewCardUri":"https://scryfall.com/card/v11/6/mikaeus-the-lunarch?utm_source=api"}],"isNew":false},{"name":"Nature's Claim","cubeCount":"18005","imagePath":"assets/card-images/d24b6640-ef2f-4c92-beb3-afdf78f9c2d5.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/d/2/d24b6640-ef2f-4c92-beb3-afdf78f9c2d5.jpg?1562854212","scryfallUri":"https://scryfall.com/card/ima/177/natures-claim?utm_source=api","typeLine":"Instant","manaCost":"{G}","manaValue":1,"colorIdentity":["G"],"setPrintings":[{"setCode":"FCA","setName":"Final Fantasy: Through the Ages","rarities":["uncommon"],"releasedAt":"2025-06-13","iconPath":"assets/set-icons/fca.svg","previewCardUri":"https://scryfall.com/card/fca/47/natures-claim?utm_source=api"},{"setCode":"MB2","setName":"Mystery Booster 2","rarities":["common"],"releasedAt":"2024-08-02","iconPath":"assets/set-icons/mb2.svg","previewCardUri":"https://scryfall.com/card/mb2/69/natures-claim?utm_source=api"},{"setCode":"TSR","setName":"Time Spiral Remastered","rarities":["special"],"releasedAt":"2021-03-19","iconPath":"assets/set-icons/tsr.svg","previewCardUri":"https://scryfall.com/card/tsr/364/natures-claim?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["common"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/IMA-177/natures-claim?utm_source=api"},{"setCode":"IMA","setName":"Iconic Masters","rarities":["common"],"releasedAt":"2017-11-17","iconPath":"assets/set-icons/ima.svg","previewCardUri":"https://scryfall.com/card/ima/177/natures-claim?utm_source=api"},{"setCode":"EMA","setName":"Eternal Masters","rarities":["common"],"releasedAt":"2016-06-10","iconPath":"assets/set-icons/ema.svg","previewCardUri":"https://scryfall.com/card/ema/178/natures-claim?utm_source=api"},{"setCode":"CNS","setName":"Conspiracy","rarities":["common"],"releasedAt":"2014-06-06","iconPath":"assets/set-icons/cns.svg","previewCardUri":"https://scryfall.com/card/cns/171/natures-claim?utm_source=api"},{"setCode":"WWK","setName":"Worldwake","rarities":["common"],"releasedAt":"2010-02-05","iconPath":"assets/set-icons/wwk.svg","previewCardUri":"https://scryfall.com/card/wwk/108/natures-claim?utm_source=api"}],"isNew":false},{"name":"Pelt Collector","cubeCount":"20667","imagePath":"assets/card-images/bee125cb-12b9-4f78-8e1d-6018d9c52275.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/b/e/bee125cb-12b9-4f78-8e1d-6018d9c52275.jpg?1572893427","scryfallUri":"https://scryfall.com/card/grn/141/pelt-collector?utm_source=api","typeLine":"Creature — Elf Warrior","manaCost":"{G}","manaValue":1,"colorIdentity":["G"],"setPrintings":[{"setCode":"GRN","setName":"Guilds of Ravnica","rarities":["rare"],"releasedAt":"2018-10-05","iconPath":"assets/set-icons/grn.svg","previewCardUri":"https://scryfall.com/card/grn/141/pelt-collector?utm_source=api"},{"setCode":"PGRN","setName":"Guilds of Ravnica Promos","rarities":["rare"],"releasedAt":"2018-10-05","iconPath":"assets/set-icons/pgrn.svg","previewCardUri":"https://scryfall.com/card/pgrn/141p/pelt-collector?utm_source=api"}],"isNew":false},{"name":"Putrid Imp","cubeCount":"32868","imagePath":"assets/card-images/47a929a4-b861-432c-a2f3-3125f8a2665b.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/7/47a929a4-b861-432c-a2f3-3125f8a2665b.jpg?1562909596","scryfallUri":"https://scryfall.com/card/vma/135/putrid-imp?utm_source=api","typeLine":"Creature — Zombie Imp","manaCost":"{B}","manaValue":1,"colorIdentity":["B"],"setPrintings":[{"setCode":"VMA","setName":"Vintage Masters","rarities":["common"],"releasedAt":"2014-06-16","iconPath":"assets/set-icons/vma.svg","previewCardUri":"https://scryfall.com/card/vma/135/putrid-imp?utm_source=api"},{"setCode":"PD3","setName":"Premium Deck Series: Graveborn","rarities":["common"],"releasedAt":"2011-11-18","iconPath":"assets/set-icons/pd3.svg","previewCardUri":"https://scryfall.com/card/pd3/1/putrid-imp?utm_source=api"}],"isNew":false},{"name":"Relic of Progenitus","cubeCount":"28568","imagePath":"assets/card-images/436cd66c-0622-43cd-8748-af4d21a2db3f.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/3/436cd66c-0622-43cd-8748-af4d21a2db3f.jpg?1580015265","scryfallUri":"https://scryfall.com/card/ema/231/relic-of-progenitus?utm_source=api","typeLine":"Artifact","manaCost":"{1}","manaValue":1,"colorIdentity":[],"setPrintings":[{"setCode":"MB2","setName":"Mystery Booster 2","rarities":["common"],"releasedAt":"2024-08-02","iconPath":"assets/set-icons/mb2.svg","previewCardUri":"https://scryfall.com/card/mb2/230/relic-of-progenitus?utm_source=api"},{"setCode":"BRC","setName":"The Brothers' War Commander","rarities":["uncommon"],"releasedAt":"2022-11-18","iconPath":"assets/set-icons/brc.svg","previewCardUri":"https://scryfall.com/card/brc/157/relic-of-progenitus?utm_source=api"},{"setCode":"HA5","setName":"Historic Anthology 5","rarities":["common"],"releasedAt":"2021-05-27","iconPath":"assets/set-icons/ha5.svg","previewCardUri":"https://scryfall.com/card/ha5/25/relic-of-progenitus?utm_source=api"},{"setCode":"EMA","setName":"Eternal Masters","rarities":["uncommon"],"releasedAt":"2016-06-10","iconPath":"assets/set-icons/ema.svg","previewCardUri":"https://scryfall.com/card/ema/231/relic-of-progenitus?utm_source=api"},{"setCode":"MD1","setName":"Modern Event Deck 2014","rarities":["uncommon"],"releasedAt":"2014-05-30","iconPath":"assets/set-icons/md1.svg","previewCardUri":"https://scryfall.com/card/md1/21/relic-of-progenitus?utm_source=api"},{"setCode":"MMA","setName":"Modern Masters","rarities":["uncommon"],"releasedAt":"2013-06-07","iconPath":"assets/set-icons/mma.svg","previewCardUri":"https://scryfall.com/card/mma/213/relic-of-progenitus?utm_source=api"},{"setCode":"TD0","setName":"Magic Online Theme Decks","rarities":["uncommon"],"releasedAt":"2010-11-08","iconPath":"assets/set-icons/td0.svg","previewCardUri":"https://scryfall.com/card/td0/A117/relic-of-progenitus?utm_source=api"},{"setCode":"HOP","setName":"Planechase","rarities":["common"],"releasedAt":"2009-09-04","iconPath":"assets/set-icons/hop.svg","previewCardUri":"https://scryfall.com/card/hop/124/relic-of-progenitus?utm_source=api"},{"setCode":"ALA","setName":"Shards of Alara","rarities":["common"],"releasedAt":"2008-10-03","iconPath":"assets/set-icons/ala.svg","previewCardUri":"https://scryfall.com/card/ala/218/relic-of-progenitus?utm_source=api"}],"isNew":false},{"name":"Secure the Wastes","cubeCount":"28948","imagePath":"assets/card-images/bca35012-ecfa-475f-b405-d3143ce99eef.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/b/c/bca35012-ecfa-475f-b405-d3143ce99eef.jpg?1682208579","scryfallUri":"https://scryfall.com/card/moc/203/secure-the-wastes?utm_source=api","typeLine":"Instant","manaCost":"{X}{W}","manaValue":1,"colorIdentity":["W"],"setPrintings":[{"setCode":"PIO","setName":"Pioneer Masters","rarities":["rare"],"releasedAt":"2024-12-10","iconPath":"assets/set-icons/pio.svg","previewCardUri":"https://scryfall.com/card/pio/30/secure-the-wastes?utm_source=api"},{"setCode":"PIP","setName":"Fallout","rarities":["rare"],"releasedAt":"2024-03-08","iconPath":"assets/set-icons/pip.svg","previewCardUri":"https://scryfall.com/card/pip/985/secure-the-wastes?utm_source=api"},{"setCode":"MOC","setName":"March of the Machine Commander","rarities":["rare"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/moc.svg","previewCardUri":"https://scryfall.com/card/moc/203/secure-the-wastes?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["rare"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/1748/secure-the-wastes?utm_source=api"},{"setCode":"DTK","setName":"Dragons of Tarkir","rarities":["rare"],"releasedAt":"2015-03-27","iconPath":"assets/set-icons/dtk.svg","previewCardUri":"https://scryfall.com/card/dtk/36/secure-the-wastes?utm_source=api"}],"isNew":false},{"name":"Siren Stormtamer","cubeCount":"13398","imagePath":"assets/card-images/073c301e-5bb6-49fa-bf61-2f662030540f.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/0/7/073c301e-5bb6-49fa-bf61-2f662030540f.jpg?1698988187","scryfallUri":"https://scryfall.com/card/lcc/171/siren-stormtamer?utm_source=api","typeLine":"Creature — Siren Pirate Wizard","manaCost":"{U}","manaValue":1,"colorIdentity":["U"],"setPrintings":[{"setCode":"LCC","setName":"The Lost Caverns of Ixalan Commander","rarities":["uncommon"],"releasedAt":"2023-11-17","iconPath":"assets/set-icons/lcc.svg","previewCardUri":"https://scryfall.com/card/lcc/171/siren-stormtamer?utm_source=api"},{"setCode":"CMR","setName":"Commander Legends","rarities":["uncommon"],"releasedAt":"2020-11-20","iconPath":"assets/set-icons/cmr.svg","previewCardUri":"https://scryfall.com/card/cmr/96/siren-stormtamer?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["uncommon"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/XLN-79/siren-stormtamer?utm_source=api"},{"setCode":"XLN","setName":"Ixalan","rarities":["uncommon"],"releasedAt":"2017-09-29","iconPath":"assets/set-icons/xln.svg","previewCardUri":"https://scryfall.com/card/xln/79/siren-stormtamer?utm_source=api"}],"isNew":false},{"name":"Sleight of Hand","cubeCount":"19563","imagePath":"assets/card-images/80dea5c0-ada3-488a-9f2b-f895b92c762f.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/8/0/80dea5c0-ada3-488a-9f2b-f895b92c762f.jpg?1692937263","scryfallUri":"https://scryfall.com/card/woe/67/sleight-of-hand?utm_source=api","typeLine":"Sorcery","manaCost":"{U}","manaValue":1,"colorIdentity":["U"],"setPrintings":[{"setCode":"PLG24","setName":"Love Your LGS 2024","rarities":["rare"],"releasedAt":"2024-08-06","iconPath":"assets/set-icons/plg24.svg","previewCardUri":"https://scryfall.com/card/plg24/2J/ja/sleight-of-hand?utm_source=api"},{"setCode":"WOE","setName":"Wilds of Eldraine","rarities":["common"],"releasedAt":"2023-09-08","iconPath":"assets/set-icons/woe.svg","previewCardUri":"https://scryfall.com/card/woe/376/sleight-of-hand?utm_source=api"},{"setCode":"SLP","setName":"Secret Lair Showdown","rarities":["rare"],"releasedAt":"2023-02-17","iconPath":"assets/set-icons/slp.svg","previewCardUri":"https://scryfall.com/card/slp/25/sleight-of-hand?utm_source=api"},{"setCode":"UMA","setName":"Ultimate Masters","rarities":["uncommon"],"releasedAt":"2018-12-07","iconPath":"assets/set-icons/uma.svg","previewCardUri":"https://scryfall.com/card/uma/70/sleight-of-hand?utm_source=api"},{"setCode":"ME4","setName":"Masters Edition IV","rarities":["common"],"releasedAt":"2011-01-10","iconPath":"assets/set-icons/me4.svg","previewCardUri":"https://scryfall.com/card/me4/62/sleight-of-hand?utm_source=api"},{"setCode":"9ED","setName":"Ninth Edition","rarities":["common"],"releasedAt":"2005-07-29","iconPath":"assets/set-icons/9ed.svg","previewCardUri":"https://scryfall.com/card/9ed/99%E2%98%85/sleight-of-hand?utm_source=api"}],"isNew":false},{"name":"Worldly Tutor","cubeCount":"22020","imagePath":"assets/card-images/f39aa2e9-e294-4ce6-bf5e-e1f579101a7a.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/f/3/f39aa2e9-e294-4ce6-bf5e-e1f579101a7a.jpg?1745319949","scryfallUri":"https://scryfall.com/card/dmr/185/worldly-tutor?utm_source=api","typeLine":"Instant","manaCost":"{G}","manaValue":1,"colorIdentity":["G"],"setPrintings":[{"setCode":"DMR","setName":"Dominaria Remastered","rarities":["rare"],"releasedAt":"2023-01-13","iconPath":"assets/set-icons/dmr.svg","previewCardUri":"https://scryfall.com/card/dmr/442/worldly-tutor?utm_source=api"},{"setCode":"CC1","setName":"Commander Collection: Green","rarities":["rare"],"releasedAt":"2020-12-04","iconPath":"assets/set-icons/cc1.svg","previewCardUri":"https://scryfall.com/card/cc1/6/worldly-tutor?utm_source=api"}],"isNew":false},{"name":"All That Glitters","cubeCount":"13887","imagePath":"assets/card-images/5fc0b82a-f943-4330-b9e7-bb4527354bfd.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/5/f/5fc0b82a-f943-4330-b9e7-bb4527354bfd.jpg?1715600785","scryfallUri":"https://scryfall.com/card/cmm/9/all-that-glitters?utm_source=api","typeLine":"Enchantment — Aura","manaCost":"{1}{W}","manaValue":2,"colorIdentity":["W"],"setPrintings":[{"setCode":"PIP","setName":"Fallout","rarities":["common"],"releasedAt":"2024-03-08","iconPath":"assets/set-icons/pip.svg","previewCardUri":"https://scryfall.com/card/pip/683/all-that-glitters?utm_source=api"},{"setCode":"CMM","setName":"Commander Masters","rarities":["common"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/622/all-that-glitters?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["uncommon"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/ELD-2/all-that-glitters?utm_source=api"},{"setCode":"ELD","setName":"Throne of Eldraine","rarities":["uncommon"],"releasedAt":"2019-10-04","iconPath":"assets/set-icons/eld.svg","previewCardUri":"https://scryfall.com/card/eld/2/all-that-glitters?utm_source=api"}],"isNew":false},{"name":"Anafenza, Kin-Tree Spirit","cubeCount":"22496","imagePath":"assets/card-images/1717da7b-9e87-4694-873b-abd4e3bcd5e2.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/1/7/1717da7b-9e87-4694-873b-abd4e3bcd5e2.jpg?1690016650","scryfallUri":"https://scryfall.com/card/cmm/11/anafenza-kin-tree-spirit?utm_source=api","typeLine":"Legendary Creature — Spirit Soldier","manaCost":"{W}{W}","manaValue":2,"colorIdentity":["W"],"setPrintings":[{"setCode":"CMM","setName":"Commander Masters","rarities":["uncommon"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/11/anafenza-kin-tree-spirit?utm_source=api"},{"setCode":"MUL","setName":"Multiverse Legends","rarities":["rare"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/mul.svg","previewCardUri":"https://scryfall.com/card/mul/131z/anafenza-kin-tree-spirit?utm_source=api"},{"setCode":"DMC","setName":"Dominaria United Commander","rarities":["rare"],"releasedAt":"2022-09-09","iconPath":"assets/set-icons/dmc.svg","previewCardUri":"https://scryfall.com/card/dmc/97/anafenza-kin-tree-spirit?utm_source=api"},{"setCode":"DTK","setName":"Dragons of Tarkir","rarities":["rare"],"releasedAt":"2015-03-27","iconPath":"assets/set-icons/dtk.svg","previewCardUri":"https://scryfall.com/card/dtk/2/anafenza-kin-tree-spirit?utm_source=api"},{"setCode":"PDTK","setName":"Dragons of Tarkir Promos","rarities":["rare"],"releasedAt":"2015-03-27","iconPath":"assets/set-icons/pdtk.svg","previewCardUri":"https://scryfall.com/card/pdtk/2s/anafenza-kin-tree-spirit?utm_source=api"}],"isNew":false},{"name":"Arc Trail","cubeCount":"40993","imagePath":"assets/card-images/56306d90-7f58-4559-954c-f8ca43d04be8.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/5/6/56306d90-7f58-4559-954c-f8ca43d04be8.jpg?1562910835","scryfallUri":"https://scryfall.com/card/pca/39/arc-trail?utm_source=api","typeLine":"Sorcery","manaCost":"{1}{R}","manaValue":2,"colorIdentity":["R"],"setPrintings":[{"setCode":"PLST","setName":"The List","rarities":["uncommon"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/PCA-39/arc-trail?utm_source=api"},{"setCode":"PCA","setName":"Planechase Anthology","rarities":["uncommon"],"releasedAt":"2016-11-25","iconPath":"assets/set-icons/pca.svg","previewCardUri":"https://scryfall.com/card/pca/39/arc-trail?utm_source=api"},{"setCode":"DDN","setName":"Duel Decks: Speed vs. Cunning","rarities":["uncommon"],"releasedAt":"2014-09-05","iconPath":"assets/set-icons/ddn.svg","previewCardUri":"https://scryfall.com/card/ddn/23/arc-trail?utm_source=api"},{"setCode":"PC2","setName":"Planechase 2012","rarities":["uncommon"],"releasedAt":"2012-06-01","iconPath":"assets/set-icons/pc2.svg","previewCardUri":"https://scryfall.com/card/pc2/39/arc-trail?utm_source=api"},{"setCode":"SOM","setName":"Scars of Mirrodin","rarities":["uncommon"],"releasedAt":"2010-10-01","iconPath":"assets/set-icons/som.svg","previewCardUri":"https://scryfall.com/card/som/81/arc-trail?utm_source=api"}],"isNew":false},{"name":"Bitter Triumph","cubeCount":"31301","imagePath":"assets/card-images/c5333556-eea2-41ae-833e-007b9d540700.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/c/5/c5333556-eea2-41ae-833e-007b9d540700.jpg?1743206444","scryfallUri":"https://scryfall.com/card/tdc/173/bitter-triumph?utm_source=api","typeLine":"Instant","manaCost":"{1}{B}","manaValue":2,"colorIdentity":["B"],"setPrintings":[{"setCode":"TDC","setName":"Tarkir: Dragonstorm Commander","rarities":["uncommon"],"releasedAt":"2025-04-11","iconPath":"assets/set-icons/tdc.svg","previewCardUri":"https://scryfall.com/card/tdc/173/bitter-triumph?utm_source=api"},{"setCode":"LCI","setName":"The Lost Caverns of Ixalan","rarities":["uncommon"],"releasedAt":"2023-11-17","iconPath":"assets/set-icons/lci.svg","previewCardUri":"https://scryfall.com/card/lci/91/bitter-triumph?utm_source=api"},{"setCode":"SCH","setName":"Store Championships","rarities":["rare"],"releasedAt":"2022-07-09","iconPath":"assets/set-icons/sch.svg","previewCardUri":"https://scryfall.com/card/sch/42/bitter-triumph?utm_source=api"}],"isNew":false},{"name":"Cathartic Reunion","cubeCount":"13974","imagePath":"assets/card-images/b36fa6f3-29e8-4788-bfcd-59576187c399.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/b/3/b36fa6f3-29e8-4788-bfcd-59576187c399.jpg?1599706266","scryfallUri":"https://scryfall.com/card/2xm/121/cathartic-reunion?utm_source=api","typeLine":"Sorcery","manaCost":"{1}{R}","manaValue":2,"colorIdentity":["R"],"setPrintings":[{"setCode":"ACR","setName":"Assassin's Creed","rarities":["uncommon"],"releasedAt":"2024-07-05","iconPath":"assets/set-icons/acr.svg","previewCardUri":"https://scryfall.com/card/acr/215/cathartic-reunion?utm_source=api"},{"setCode":"KLR","setName":"Kaladesh Remastered","rarities":["common"],"releasedAt":"2020-11-12","iconPath":"assets/set-icons/klr.svg","previewCardUri":"https://scryfall.com/card/klr/116/cathartic-reunion?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["common"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/KLD-109/cathartic-reunion?utm_source=api"},{"setCode":"2XM","setName":"Double Masters","rarities":["common"],"releasedAt":"2020-08-07","iconPath":"assets/set-icons/2xm.svg","previewCardUri":"https://scryfall.com/card/2xm/121/cathartic-reunion?utm_source=api"},{"setCode":"SS3","setName":"Signature Spellbook: Chandra","rarities":["rare"],"releasedAt":"2020-06-26","iconPath":"assets/set-icons/ss3.svg","previewCardUri":"https://scryfall.com/card/ss3/2/cathartic-reunion?utm_source=api"},{"setCode":"IKO","setName":"Ikoria: Lair of Behemoths","rarities":["common"],"releasedAt":"2020-04-24","iconPath":"assets/set-icons/iko.svg","previewCardUri":"https://scryfall.com/card/iko/110/cathartic-reunion?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["rare"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/1465%E2%98%85/cathartic-reunion?utm_source=api"},{"setCode":"KLD","setName":"Kaladesh","rarities":["common"],"releasedAt":"2016-09-30","iconPath":"assets/set-icons/kld.svg","previewCardUri":"https://scryfall.com/card/kld/109/cathartic-reunion?utm_source=api"}],"isNew":false},{"name":"Censor","cubeCount":"24093","imagePath":"assets/card-images/4cb4e315-1a77-479a-9f15-fb23575de805.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/c/4cb4e315-1a77-479a-9f15-fb23575de805.jpg?1543674908","scryfallUri":"https://scryfall.com/card/akh/46/censor?utm_source=api","typeLine":"Instant","manaCost":"{1}{U}","manaValue":2,"colorIdentity":["U"],"setPrintings":[{"setCode":"AKR","setName":"Amonkhet Remastered","rarities":["uncommon"],"releasedAt":"2020-08-13","iconPath":"assets/set-icons/akr.svg","previewCardUri":"https://scryfall.com/card/akr/52/censor?utm_source=api"},{"setCode":"AKH","setName":"Amonkhet","rarities":["uncommon"],"releasedAt":"2017-04-28","iconPath":"assets/set-icons/akh.svg","previewCardUri":"https://scryfall.com/card/akh/46/censor?utm_source=api"}],"isNew":false},{"name":"Drown in the Loch","cubeCount":"15206","imagePath":"assets/card-images/eb7b9762-740b-4c1c-a411-20dbf023aea5.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/e/b/eb7b9762-740b-4c1c-a411-20dbf023aea5.jpg?1674142433","scryfallUri":"https://scryfall.com/card/clb/842/drown-in-the-loch?utm_source=api","typeLine":"Instant","manaCost":"{U}{B}","manaValue":2,"colorIdentity":["B","U"],"setPrintings":[{"setCode":"SPG","setName":"Special Guests","rarities":["mythic"],"releasedAt":"2023-11-17","iconPath":"assets/set-icons/spg.svg","previewCardUri":"https://scryfall.com/card/spg/27/drown-in-the-loch?utm_source=api"},{"setCode":"PW23","setName":"Wizards Play Network 2023","rarities":["rare"],"releasedAt":"2023-01-01","iconPath":"assets/set-icons/pw23.svg","previewCardUri":"https://scryfall.com/card/pw23/4/drown-in-the-loch?utm_source=api"},{"setCode":"CLB","setName":"Commander Legends: Battle for Baldur's Gate","rarities":["uncommon"],"releasedAt":"2022-06-10","iconPath":"assets/set-icons/clb.svg","previewCardUri":"https://scryfall.com/card/clb/842/drown-in-the-loch?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["rare"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/1790/drown-in-the-loch?utm_source=api"},{"setCode":"ELD","setName":"Throne of Eldraine","rarities":["uncommon"],"releasedAt":"2019-10-04","iconPath":"assets/set-icons/eld.svg","previewCardUri":"https://scryfall.com/card/eld/188/drown-in-the-loch?utm_source=api"}],"isNew":false},{"name":"Duskwatch Recruiter","cubeCount":"20077","imagePath":"assets/card-images/4ef68479-ab2e-4a60-886c-ad007b64f185.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/e/4ef68479-ab2e-4a60-886c-ad007b64f185.jpg?1739519198","scryfallUri":"https://scryfall.com/card/inr/193/duskwatch-recruiter-krallenhorde-howler?utm_source=api","typeLine":"Creature — Human Warrior Werewolf // Creature — Werewolf","manaCost":"","manaValue":2,"colorIdentity":["G"],"setPrintings":[{"setCode":"INR","setName":"Innistrad Remastered","rarities":["uncommon"],"releasedAt":"2025-01-24","iconPath":"assets/set-icons/inr.svg","previewCardUri":"https://scryfall.com/card/inr/467/duskwatch-recruiter-krallenhorde-howler?utm_source=api"},{"setCode":"SIR","setName":"Shadows over Innistrad Remastered","rarities":["uncommon"],"releasedAt":"2023-03-21","iconPath":"assets/set-icons/sir.svg","previewCardUri":"https://scryfall.com/card/sir/194/duskwatch-recruiter-krallenhorde-howler?utm_source=api"},{"setCode":"SOI","setName":"Shadows over Innistrad","rarities":["uncommon"],"releasedAt":"2016-04-08","iconPath":"assets/set-icons/soi.svg","previewCardUri":"https://scryfall.com/card/soi/203/duskwatch-recruiter-krallenhorde-howler?utm_source=api"}],"isNew":false},{"name":"Ichor Wellspring","cubeCount":"15228","imagePath":"assets/card-images/1ccdb407-ac8f-4736-89d3-ab0d086096ea.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/1/c/1ccdb407-ac8f-4736-89d3-ab0d086096ea.jpg?1625978684","scryfallUri":"https://scryfall.com/card/c21/245/ichor-wellspring?utm_source=api","typeLine":"Artifact","manaCost":"{2}","manaValue":2,"colorIdentity":[],"setPrintings":[{"setCode":"BRC","setName":"The Brothers' War Commander","rarities":["uncommon"],"releasedAt":"2022-11-18","iconPath":"assets/set-icons/brc.svg","previewCardUri":"https://scryfall.com/card/brc/143/ichor-wellspring?utm_source=api"},{"setCode":"BRR","setName":"The Brothers' War Retro Artifacts","rarities":["uncommon"],"releasedAt":"2022-11-18","iconPath":"assets/set-icons/brr.svg","previewCardUri":"https://scryfall.com/card/brr/84z/ichor-wellspring?utm_source=api"},{"setCode":"J21","setName":"Jumpstart: Historic Horizons","rarities":["common"],"releasedAt":"2021-08-26","iconPath":"assets/set-icons/j21.svg","previewCardUri":"https://scryfall.com/card/j21/763/ichor-wellspring?utm_source=api"},{"setCode":"HA5","setName":"Historic Anthology 5","rarities":["common"],"releasedAt":"2021-05-27","iconPath":"assets/set-icons/ha5.svg","previewCardUri":"https://scryfall.com/card/ha5/24/ichor-wellspring?utm_source=api"},{"setCode":"C21","setName":"Commander 2021","rarities":["common"],"releasedAt":"2021-04-23","iconPath":"assets/set-icons/c21.svg","previewCardUri":"https://scryfall.com/card/c21/245/ichor-wellspring?utm_source=api"},{"setCode":"2XM","setName":"Double Masters","rarities":["common"],"releasedAt":"2020-08-07","iconPath":"assets/set-icons/2xm.svg","previewCardUri":"https://scryfall.com/card/2xm/261/ichor-wellspring?utm_source=api"},{"setCode":"CM2","setName":"Commander Anthology Volume II","rarities":["common"],"releasedAt":"2018-06-08","iconPath":"assets/set-icons/cm2.svg","previewCardUri":"https://scryfall.com/card/cm2/193/ichor-wellspring?utm_source=api"},{"setCode":"DDU","setName":"Duel Decks: Elves vs. Inventors","rarities":["common"],"releasedAt":"2018-04-06","iconPath":"assets/set-icons/ddu.svg","previewCardUri":"https://scryfall.com/card/ddu/54/ichor-wellspring?utm_source=api"},{"setCode":"C16","setName":"Commander 2016","rarities":["common"],"releasedAt":"2016-11-11","iconPath":"assets/set-icons/c16.svg","previewCardUri":"https://scryfall.com/card/c16/258/ichor-wellspring?utm_source=api"},{"setCode":"C14","setName":"Commander 2014","rarities":["common"],"releasedAt":"2014-11-07","iconPath":"assets/set-icons/c14.svg","previewCardUri":"https://scryfall.com/card/c14/241/ichor-wellspring?utm_source=api"},{"setCode":"MBS","setName":"Mirrodin Besieged","rarities":["common"],"releasedAt":"2011-02-04","iconPath":"assets/set-icons/mbs.svg","previewCardUri":"https://scryfall.com/card/mbs/110/ichor-wellspring?utm_source=api"}],"isNew":false},{"name":"Intrepid Adversary","cubeCount":"47375","imagePath":"assets/card-images/773199f9-c83b-4a77-8342-9f1552ecf595.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/7/7/773199f9-c83b-4a77-8342-9f1552ecf595.jpg?1634348280","scryfallUri":"https://scryfall.com/card/mid/25/intrepid-adversary?utm_source=api","typeLine":"Creature — Human Scout","manaCost":"{1}{W}","manaValue":2,"colorIdentity":["W"],"setPrintings":[{"setCode":"DBL","setName":"Innistrad: Double Feature","rarities":["mythic"],"releasedAt":"2022-01-28","iconPath":"assets/set-icons/dbl.svg","previewCardUri":"https://scryfall.com/card/dbl/25/intrepid-adversary?utm_source=api"},{"setCode":"MID","setName":"Innistrad: Midnight Hunt","rarities":["mythic"],"releasedAt":"2021-09-24","iconPath":"assets/set-icons/mid.svg","previewCardUri":"https://scryfall.com/card/mid/329/intrepid-adversary?utm_source=api"},{"setCode":"PMID","setName":"Innistrad: Midnight Hunt Promos","rarities":["mythic"],"releasedAt":"2021-09-24","iconPath":"assets/set-icons/pmid.svg","previewCardUri":"https://scryfall.com/card/pmid/25s/intrepid-adversary?utm_source=api"}],"isNew":false},{"name":"Krallenhorde Howler","cubeCount":"20077","imagePath":"assets/card-images/4ef68479-ab2e-4a60-886c-ad007b64f185.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/e/4ef68479-ab2e-4a60-886c-ad007b64f185.jpg?1739519198","scryfallUri":"https://scryfall.com/card/inr/193/duskwatch-recruiter-krallenhorde-howler?utm_source=api","typeLine":"Creature — Human Warrior Werewolf // Creature — Werewolf","manaCost":"","manaValue":2,"colorIdentity":["G"],"setPrintings":[{"setCode":"INR","setName":"Innistrad Remastered","rarities":["uncommon"],"releasedAt":"2025-01-24","iconPath":"assets/set-icons/inr.svg","previewCardUri":"https://scryfall.com/card/inr/467/duskwatch-recruiter-krallenhorde-howler?utm_source=api"},{"setCode":"SIR","setName":"Shadows over Innistrad Remastered","rarities":["uncommon"],"releasedAt":"2023-03-21","iconPath":"assets/set-icons/sir.svg","previewCardUri":"https://scryfall.com/card/sir/194/duskwatch-recruiter-krallenhorde-howler?utm_source=api"},{"setCode":"SOI","setName":"Shadows over Innistrad","rarities":["uncommon"],"releasedAt":"2016-04-08","iconPath":"assets/set-icons/soi.svg","previewCardUri":"https://scryfall.com/card/soi/203/duskwatch-recruiter-krallenhorde-howler?utm_source=api"}],"isNew":false},{"name":"Magda, Brazen Outlaw","cubeCount":"42503","imagePath":"assets/card-images/079e6263-e54c-4899-a336-5315909b9322.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/0/7/079e6263-e54c-4899-a336-5315909b9322.jpg?1631049453","scryfallUri":"https://scryfall.com/card/khm/142/magda-brazen-outlaw?utm_source=api","typeLine":"Legendary Creature — Dwarf Berserker","manaCost":"{1}{R}","manaValue":2,"colorIdentity":["R"],"setPrintings":[{"setCode":"KHM","setName":"Kaldheim","rarities":["rare"],"releasedAt":"2021-02-05","iconPath":"assets/set-icons/khm.svg","previewCardUri":"https://scryfall.com/card/khm/312/magda-brazen-outlaw?utm_source=api"},{"setCode":"PKHM","setName":"Kaldheim Promos","rarities":["rare"],"releasedAt":"2021-02-05","iconPath":"assets/set-icons/pkhm.svg","previewCardUri":"https://scryfall.com/card/pkhm/142s/magda-brazen-outlaw?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["rare"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/KHM-142/magda-brazen-outlaw?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["rare"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/1688/magda-brazen-outlaw?utm_source=api"}],"isNew":false},{"name":"Mesmeric Fiend","cubeCount":"30039","imagePath":"assets/card-images/864930ce-7c56-4ad2-9b90-57b10e5a0842.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/8/6/864930ce-7c56-4ad2-9b90-57b10e5a0842.jpg?1562437620","scryfallUri":"https://scryfall.com/card/a25/97/mesmeric-fiend?utm_source=api","typeLine":"Creature — Nightmare Horror","manaCost":"{1}{B}","manaValue":2,"colorIdentity":["B"],"setPrintings":[{"setCode":"PLST","setName":"The List","rarities":["common"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/TOR-69/mesmeric-fiend?utm_source=api"},{"setCode":"A25","setName":"Masters 25","rarities":["uncommon"],"releasedAt":"2018-03-16","iconPath":"assets/set-icons/a25.svg","previewCardUri":"https://scryfall.com/card/a25/97/mesmeric-fiend?utm_source=api"},{"setCode":"VMA","setName":"Vintage Masters","rarities":["common"],"releasedAt":"2014-06-16","iconPath":"assets/set-icons/vma.svg","previewCardUri":"https://scryfall.com/card/vma/128/mesmeric-fiend?utm_source=api"},{"setCode":"DDK","setName":"Duel Decks: Sorin vs. Tibalt","rarities":["common"],"releasedAt":"2013-03-15","iconPath":"assets/set-icons/ddk.svg","previewCardUri":"https://scryfall.com/card/ddk/7/mesmeric-fiend?utm_source=api"}],"isNew":false},{"name":"Persist","cubeCount":"30918","imagePath":"assets/card-images/90f390c3-af1c-424f-9721-e26e9321e5a3.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/9/0/90f390c3-af1c-424f-9721-e26e9321e5a3.jpg?1626095831","scryfallUri":"https://scryfall.com/card/mh2/96/persist?utm_source=api","typeLine":"Sorcery","manaCost":"{1}{B}","manaValue":2,"colorIdentity":["B"],"setPrintings":[{"setCode":"SPG","setName":"Special Guests","rarities":["mythic"],"releasedAt":"2023-11-17","iconPath":"assets/set-icons/spg.svg","previewCardUri":"https://scryfall.com/card/spg/42/persist?utm_source=api"},{"setCode":"MH2","setName":"Modern Horizons 2","rarities":["rare"],"releasedAt":"2021-06-18","iconPath":"assets/set-icons/mh2.svg","previewCardUri":"https://scryfall.com/card/mh2/400/persist?utm_source=api"},{"setCode":"PMH2","setName":"Modern Horizons 2 Promos","rarities":["rare"],"releasedAt":"2021-06-18","iconPath":"assets/set-icons/pmh2.svg","previewCardUri":"https://scryfall.com/card/pmh2/96s/persist?utm_source=api"}],"isNew":false},{"name":"Runaway Steam-Kin","cubeCount":"24988","imagePath":"assets/card-images/d8c9c111-fbc7-44e1-94bd-1ca164370623.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/d/8/d8c9c111-fbc7-44e1-94bd-1ca164370623.jpg?1572893254","scryfallUri":"https://scryfall.com/card/grn/115/runaway-steam-kin?utm_source=api","typeLine":"Creature — Elemental","manaCost":"{1}{R}","manaValue":2,"colorIdentity":["R"],"setPrintings":[{"setCode":"GRN","setName":"Guilds of Ravnica","rarities":["rare"],"releasedAt":"2018-10-05","iconPath":"assets/set-icons/grn.svg","previewCardUri":"https://scryfall.com/card/grn/115/runaway-steam-kin?utm_source=api"},{"setCode":"PGRN","setName":"Guilds of Ravnica Promos","rarities":["rare"],"releasedAt":"2018-10-05","iconPath":"assets/set-icons/pgrn.svg","previewCardUri":"https://scryfall.com/card/pgrn/115s/runaway-steam-kin?utm_source=api"}],"isNew":false},{"name":"Scrapwork Mutt","cubeCount":"28263","imagePath":"assets/card-images/4742800a-4872-4c2d-b884-01e0ba16950c.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/7/4742800a-4872-4c2d-b884-01e0ba16950c.jpg?1674421370","scryfallUri":"https://scryfall.com/card/bro/164/scrapwork-mutt?utm_source=api","typeLine":"Artifact Creature — Dog","manaCost":"{2}","manaValue":2,"colorIdentity":["R"],"setPrintings":[{"setCode":"BRO","setName":"The Brothers' War","rarities":["common"],"releasedAt":"2022-11-18","iconPath":"assets/set-icons/bro.svg","previewCardUri":"https://scryfall.com/card/bro/164/scrapwork-mutt?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["common"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/BRO-164/scrapwork-mutt?utm_source=api"}],"isNew":false},{"name":"Searing Spear","cubeCount":"30008","imagePath":"assets/card-images/44c5f884-d071-40c2-bb2c-925dc2197ea3.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/4/44c5f884-d071-40c2-bb2c-925dc2197ea3.jpg?1592765729","scryfallUri":"https://scryfall.com/card/e01/56/searing-spear?utm_source=api","typeLine":"Instant","manaCost":"{1}{R}","manaValue":2,"colorIdentity":["R"],"setPrintings":[{"setCode":"J22","setName":"Jumpstart 2022","rarities":["common"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/j22.svg","previewCardUri":"https://scryfall.com/card/j22/597/searing-spear?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["common"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/M13-147/searing-spear?utm_source=api"},{"setCode":"E01","setName":"Archenemy: Nicol Bolas","rarities":["common"],"releasedAt":"2017-06-16","iconPath":"assets/set-icons/e01.svg","previewCardUri":"https://scryfall.com/card/e01/56/searing-spear?utm_source=api"},{"setCode":"F13","setName":"Friday Night Magic 2013","rarities":["rare"],"releasedAt":"2013-01-01","iconPath":"assets/set-icons/f13.svg","previewCardUri":"https://scryfall.com/card/f13/1/searing-spear?utm_source=api"},{"setCode":"M13","setName":"Magic 2013","rarities":["common"],"releasedAt":"2012-07-13","iconPath":"assets/set-icons/m13.svg","previewCardUri":"https://scryfall.com/card/m13/147/searing-spear?utm_source=api"}],"isNew":false},{"name":"Talisman of Unity","cubeCount":"20093","imagePath":"assets/card-images/89e8443d-daf4-4cef-9080-d7568b5c540e.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/8/9/89e8443d-daf4-4cef-9080-d7568b5c540e.jpg?1706241103","scryfallUri":"https://scryfall.com/card/mkc/244/talisman-of-unity?utm_source=api","typeLine":"Artifact","manaCost":"{2}","manaValue":2,"colorIdentity":["G","W"],"setPrintings":[{"setCode":"AA1","setName":"Arena Anthology 1","rarities":["uncommon"],"releasedAt":"2025-08-19","iconPath":"assets/set-icons/aa1.svg","previewCardUri":"https://scryfall.com/card/aa1/26/talisman-of-unity?utm_source=api"},{"setCode":"MKC","setName":"Murders at Karlov Manor Commander","rarities":["uncommon"],"releasedAt":"2024-02-09","iconPath":"assets/set-icons/mkc.svg","previewCardUri":"https://scryfall.com/card/mkc/244/talisman-of-unity?utm_source=api"},{"setCode":"WHO","setName":"Doctor Who","rarities":["uncommon"],"releasedAt":"2023-10-13","iconPath":"assets/set-icons/who.svg","previewCardUri":"https://scryfall.com/card/who/845/talisman-of-unity?utm_source=api"},{"setCode":"SCD","setName":"Starter Commander Decks","rarities":["uncommon"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/scd.svg","previewCardUri":"https://scryfall.com/card/scd/284/talisman-of-unity?utm_source=api"},{"setCode":"MIC","setName":"Midnight Hunt Commander","rarities":["uncommon"],"releasedAt":"2021-09-24","iconPath":"assets/set-icons/mic.svg","previewCardUri":"https://scryfall.com/card/mic/165/talisman-of-unity?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["rare"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/1056/talisman-of-unity?utm_source=api"}],"isNew":false},{"name":"Champion of Wits","cubeCount":"20170","imagePath":"assets/card-images/489e339b-3bc6-4221-9734-d796b65910d2.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/8/489e339b-3bc6-4221-9734-d796b65910d2.jpg?1673483823","scryfallUri":"https://scryfall.com/card/ncc/213/champion-of-wits?utm_source=api","typeLine":"Creature — Snake Wizard","manaCost":"{2}{U}","manaValue":3,"colorIdentity":["U"],"setPrintings":[{"setCode":"DRC","setName":"Aetherdrift Commander","rarities":["rare"],"releasedAt":"2025-02-14","iconPath":"assets/set-icons/drc.svg","previewCardUri":"https://scryfall.com/card/drc/72/champion-of-wits?utm_source=api"},{"setCode":"NCC","setName":"New Capenna Commander","rarities":["rare"],"releasedAt":"2022-04-29","iconPath":"assets/set-icons/ncc.svg","previewCardUri":"https://scryfall.com/card/ncc/213/champion-of-wits?utm_source=api"},{"setCode":"AFC","setName":"Forgotten Realms Commander","rarities":["rare"],"releasedAt":"2021-07-23","iconPath":"assets/set-icons/afc.svg","previewCardUri":"https://scryfall.com/card/afc/80/champion-of-wits?utm_source=api"},{"setCode":"C21","setName":"Commander 2021","rarities":["rare"],"releasedAt":"2021-04-23","iconPath":"assets/set-icons/c21.svg","previewCardUri":"https://scryfall.com/card/c21/116/champion-of-wits?utm_source=api"},{"setCode":"AKR","setName":"Amonkhet Remastered","rarities":["rare"],"releasedAt":"2020-08-13","iconPath":"assets/set-icons/akr.svg","previewCardUri":"https://scryfall.com/card/akr/53/champion-of-wits?utm_source=api"},{"setCode":"HOU","setName":"Hour of Devastation","rarities":["rare"],"releasedAt":"2017-07-14","iconPath":"assets/set-icons/hou.svg","previewCardUri":"https://scryfall.com/card/hou/31/champion-of-wits?utm_source=api"},{"setCode":"PHOU","setName":"Hour of Devastation Promos","rarities":["rare"],"releasedAt":"2017-07-14","iconPath":"assets/set-icons/phou.svg","previewCardUri":"https://scryfall.com/card/phou/31s/champion-of-wits?utm_source=api"}],"isNew":false},{"name":"Char","cubeCount":"29915","imagePath":"assets/card-images/ff3a24af-e995-4d05-ac2c-e9676048675d.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/f/f/ff3a24af-e995-4d05-ac2c-e9676048675d.jpg?1598915384","scryfallUri":"https://scryfall.com/card/rav/117/char?utm_source=api","typeLine":"Instant","manaCost":"{2}{R}","manaValue":3,"colorIdentity":["R"],"setPrintings":[{"setCode":"GK1","setName":"GRN Guild Kit","rarities":["rare"],"releasedAt":"2018-11-02","iconPath":"assets/set-icons/gk1.svg","previewCardUri":"https://scryfall.com/card/gk1/28/char?utm_source=api"},{"setCode":"V13","setName":"From the Vault: Twenty","rarities":["mythic"],"releasedAt":"2013-08-23","iconPath":"assets/set-icons/v13.svg","previewCardUri":"https://scryfall.com/card/v13/14/char?utm_source=api"},{"setCode":"P15A","setName":"15th Anniversary Cards","rarities":["rare"],"releasedAt":"2008-04-01","iconPath":"assets/set-icons/p15a.svg","previewCardUri":"https://scryfall.com/card/p15a/1/char?utm_source=api"},{"setCode":"RAV","setName":"Ravnica: City of Guilds","rarities":["rare"],"releasedAt":"2005-10-07","iconPath":"assets/set-icons/rav.svg","previewCardUri":"https://scryfall.com/card/rav/117/char?utm_source=api"}],"isNew":false},{"name":"Evolution Sage","cubeCount":"13645","imagePath":"assets/card-images/d089c2c1-e304-4f28-8700-5b9b3029bdbc.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/d/0/d089c2c1-e304-4f28-8700-5b9b3029bdbc.jpg?1698988362","scryfallUri":"https://scryfall.com/card/lcc/240/evolution-sage?utm_source=api","typeLine":"Creature — Elf Druid","manaCost":"{2}{G}","manaValue":3,"colorIdentity":["G"],"setPrintings":[{"setCode":"LCC","setName":"The Lost Caverns of Ixalan Commander","rarities":["uncommon"],"releasedAt":"2023-11-17","iconPath":"assets/set-icons/lcc.svg","previewCardUri":"https://scryfall.com/card/lcc/240/evolution-sage?utm_source=api"},{"setCode":"ONC","setName":"Phyrexia: All Will Be One Commander","rarities":["uncommon"],"releasedAt":"2023-02-10","iconPath":"assets/set-icons/onc.svg","previewCardUri":"https://scryfall.com/card/onc/108/evolution-sage?utm_source=api"},{"setCode":"NCC","setName":"New Capenna Commander","rarities":["uncommon"],"releasedAt":"2022-04-29","iconPath":"assets/set-icons/ncc.svg","previewCardUri":"https://scryfall.com/card/ncc/287/evolution-sage?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["uncommon"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/WAR-159/evolution-sage?utm_source=api"},{"setCode":"ZNC","setName":"Zendikar Rising Commander","rarities":["uncommon"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/znc.svg","previewCardUri":"https://scryfall.com/card/znc/65/evolution-sage?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["rare"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/765/evolution-sage?utm_source=api"},{"setCode":"WAR","setName":"War of the Spark","rarities":["uncommon"],"releasedAt":"2019-05-03","iconPath":"assets/set-icons/war.svg","previewCardUri":"https://scryfall.com/card/war/159/evolution-sage?utm_source=api"}],"isNew":false},{"name":"Feldon of the Third Path","cubeCount":"19370","imagePath":"assets/card-images/0360f1ff-15c9-48e3-89eb-fbc4bf140c55.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/0/3/0360f1ff-15c9-48e3-89eb-fbc4bf140c55.jpg?1690023788","scryfallUri":"https://scryfall.com/card/moc/277/feldon-of-the-third-path?utm_source=api","typeLine":"Legendary Creature — Human Artificer","manaCost":"{1}{R}{R}","manaValue":3,"colorIdentity":["R"],"setPrintings":[{"setCode":"MOC","setName":"March of the Machine Commander","rarities":["mythic"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/moc.svg","previewCardUri":"https://scryfall.com/card/moc/277/feldon-of-the-third-path?utm_source=api"},{"setCode":"C21","setName":"Commander 2021","rarities":["mythic"],"releasedAt":"2021-04-23","iconPath":"assets/set-icons/c21.svg","previewCardUri":"https://scryfall.com/card/c21/169/feldon-of-the-third-path?utm_source=api"},{"setCode":"TSR","setName":"Time Spiral Remastered","rarities":["special"],"releasedAt":"2021-03-19","iconPath":"assets/set-icons/tsr.svg","previewCardUri":"https://scryfall.com/card/tsr/344/feldon-of-the-third-path?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["mythic"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/C21-169/feldon-of-the-third-path?utm_source=api"},{"setCode":"C19","setName":"Commander 2019","rarities":["mythic"],"releasedAt":"2019-08-23","iconPath":"assets/set-icons/c19.svg","previewCardUri":"https://scryfall.com/card/c19/141/feldon-of-the-third-path?utm_source=api"},{"setCode":"CM2","setName":"Commander Anthology Volume II","rarities":["mythic"],"releasedAt":"2018-06-08","iconPath":"assets/set-icons/cm2.svg","previewCardUri":"https://scryfall.com/card/cm2/6/feldon-of-the-third-path?utm_source=api"},{"setCode":"J15","setName":"Judge Gift Cards 2015","rarities":["mythic"],"releasedAt":"2015-01-01","iconPath":"assets/set-icons/j15.svg","previewCardUri":"https://scryfall.com/card/j15/7/feldon-of-the-third-path?utm_source=api"},{"setCode":"C14","setName":"Commander 2014","rarities":["mythic"],"releasedAt":"2014-11-07","iconPath":"assets/set-icons/c14.svg","previewCardUri":"https://scryfall.com/card/c14/35/feldon-of-the-third-path?utm_source=api"}],"isNew":false},{"name":"Maul of the Skyclaves","cubeCount":"21586","imagePath":"assets/card-images/3213c1f9-bff5-4629-a0b6-0c81ccf6c80d.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/3/2/3213c1f9-bff5-4629-a0b6-0c81ccf6c80d.jpg?1682208507","scryfallUri":"https://scryfall.com/card/moc/195/maul-of-the-skyclaves?utm_source=api","typeLine":"Artifact — Equipment","manaCost":"{2}{W}","manaValue":3,"colorIdentity":["W"],"setPrintings":[{"setCode":"J25","setName":"Foundations Jumpstart","rarities":["rare"],"releasedAt":"2024-11-15","iconPath":"assets/set-icons/j25.svg","previewCardUri":"https://scryfall.com/card/j25/223/maul-of-the-skyclaves?utm_source=api"},{"setCode":"MOC","setName":"March of the Machine Commander","rarities":["rare"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/moc.svg","previewCardUri":"https://scryfall.com/card/moc/195/maul-of-the-skyclaves?utm_source=api"},{"setCode":"ONC","setName":"Phyrexia: All Will Be One Commander","rarities":["rare"],"releasedAt":"2023-02-10","iconPath":"assets/set-icons/onc.svg","previewCardUri":"https://scryfall.com/card/onc/80/maul-of-the-skyclaves?utm_source=api"},{"setCode":"PZNR","setName":"Zendikar Rising Promos","rarities":["rare"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/pznr.svg","previewCardUri":"https://scryfall.com/card/pznr/27s/maul-of-the-skyclaves?utm_source=api"},{"setCode":"ZNR","setName":"Zendikar Rising","rarities":["rare"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/znr.svg","previewCardUri":"https://scryfall.com/card/znr/320/maul-of-the-skyclaves?utm_source=api"}],"isNew":false},{"name":"Nettlecyst","cubeCount":"29571","imagePath":"assets/card-images/0a7cb0f8-2946-4b00-a192-0b31c8e1ec5c.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/0/a/0a7cb0f8-2946-4b00-a192-0b31c8e1ec5c.jpg?1706241070","scryfallUri":"https://scryfall.com/card/mkc/233/nettlecyst?utm_source=api","typeLine":"Artifact — Equipment","manaCost":"{3}","manaValue":3,"colorIdentity":[],"setPrintings":[{"setCode":"MKC","setName":"Murders at Karlov Manor Commander","rarities":["rare"],"releasedAt":"2024-02-09","iconPath":"assets/set-icons/mkc.svg","previewCardUri":"https://scryfall.com/card/mkc/233/nettlecyst?utm_source=api"},{"setCode":"MOC","setName":"March of the Machine Commander","rarities":["rare"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/moc.svg","previewCardUri":"https://scryfall.com/card/moc/367/nettlecyst?utm_source=api"},{"setCode":"J21","setName":"Jumpstart: Historic Horizons","rarities":["rare"],"releasedAt":"2021-08-26","iconPath":"assets/set-icons/j21.svg","previewCardUri":"https://scryfall.com/card/j21/752/nettlecyst?utm_source=api"},{"setCode":"MH2","setName":"Modern Horizons 2","rarities":["rare"],"releasedAt":"2021-06-18","iconPath":"assets/set-icons/mh2.svg","previewCardUri":"https://scryfall.com/card/mh2/471/nettlecyst?utm_source=api"},{"setCode":"PMH2","setName":"Modern Horizons 2 Promos","rarities":["rare"],"releasedAt":"2021-06-18","iconPath":"assets/set-icons/pmh2.svg","previewCardUri":"https://scryfall.com/card/pmh2/231s/nettlecyst?utm_source=api"}],"isNew":false},{"name":"Sai, Master Thopterist","cubeCount":"17537","imagePath":"assets/card-images/ad0b5c09-5075-408e-84c5-1095354ac53e.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/a/d/ad0b5c09-5075-408e-84c5-1095354ac53e.jpg?1689996602","scryfallUri":"https://scryfall.com/card/cmm/118/sai-master-thopterist?utm_source=api","typeLine":"Legendary Creature — Human Artificer","manaCost":"{2}{U}","manaValue":3,"colorIdentity":["U"],"setPrintings":[{"setCode":"DRC","setName":"Aetherdrift Commander","rarities":["rare"],"releasedAt":"2025-02-14","iconPath":"assets/set-icons/drc.svg","previewCardUri":"https://scryfall.com/card/drc/82/sai-master-thopterist?utm_source=api"},{"setCode":"J25","setName":"Foundations Jumpstart","rarities":["rare"],"releasedAt":"2024-11-15","iconPath":"assets/set-icons/j25.svg","previewCardUri":"https://scryfall.com/card/j25/63/sai-master-thopterist?utm_source=api"},{"setCode":"CMM","setName":"Commander Masters","rarities":["rare"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/494/sai-master-thopterist?utm_source=api"},{"setCode":"BRC","setName":"The Brothers' War Commander","rarities":["rare"],"releasedAt":"2022-11-18","iconPath":"assets/set-icons/brc.svg","previewCardUri":"https://scryfall.com/card/brc/93/sai-master-thopterist?utm_source=api"},{"setCode":"NEC","setName":"Neon Dynasty Commander","rarities":["rare"],"releasedAt":"2022-02-18","iconPath":"assets/set-icons/nec.svg","previewCardUri":"https://scryfall.com/card/nec/97/sai-master-thopterist?utm_source=api"},{"setCode":"M19","setName":"Core Set 2019","rarities":["rare"],"releasedAt":"2018-07-13","iconPath":"assets/set-icons/m19.svg","previewCardUri":"https://scryfall.com/card/m19/69/sai-master-thopterist?utm_source=api"},{"setCode":"PM19","setName":"Core Set 2019 Promos","rarities":["rare"],"releasedAt":"2018-07-13","iconPath":"assets/set-icons/pm19.svg","previewCardUri":"https://scryfall.com/card/pm19/69s/sai-master-thopterist?utm_source=api"}],"isNew":false},{"name":"Shardless Agent","cubeCount":"19101","imagePath":"assets/card-images/b0824e77-c84b-464a-aa0c-44af5f6faa50.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/b/0/b0824e77-c84b-464a-aa0c-44af5f6faa50.jpg?1626100788","scryfallUri":"https://scryfall.com/card/mh2/292/shardless-agent?utm_source=api","typeLine":"Artifact Creature — Human Rogue","manaCost":"{1}{G}{U}","manaValue":3,"colorIdentity":["G","U"],"setPrintings":[{"setCode":"MH2","setName":"Modern Horizons 2","rarities":["rare"],"releasedAt":"2021-06-18","iconPath":"assets/set-icons/mh2.svg","previewCardUri":"https://scryfall.com/card/mh2/423/shardless-agent?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["uncommon"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/PCA-104/shardless-agent?utm_source=api"},{"setCode":"PCA","setName":"Planechase Anthology","rarities":["uncommon"],"releasedAt":"2016-11-25","iconPath":"assets/set-icons/pca.svg","previewCardUri":"https://scryfall.com/card/pca/104/shardless-agent?utm_source=api"},{"setCode":"EMA","setName":"Eternal Masters","rarities":["rare"],"releasedAt":"2016-06-10","iconPath":"assets/set-icons/ema.svg","previewCardUri":"https://scryfall.com/card/ema/206/shardless-agent?utm_source=api"},{"setCode":"PZ1","setName":"Legendary Cube Prize Pack","rarities":["rare"],"releasedAt":"2015-11-18","iconPath":"assets/set-icons/pz1.svg","previewCardUri":"https://scryfall.com/card/pz1/117/shardless-agent?utm_source=api"},{"setCode":"J15","setName":"Judge Gift Cards 2015","rarities":["rare"],"releasedAt":"2015-01-01","iconPath":"assets/set-icons/j15.svg","previewCardUri":"https://scryfall.com/card/j15/2/shardless-agent?utm_source=api"},{"setCode":"PC2","setName":"Planechase 2012","rarities":["uncommon"],"releasedAt":"2012-06-01","iconPath":"assets/set-icons/pc2.svg","previewCardUri":"https://scryfall.com/card/pc2/104/shardless-agent?utm_source=api"}],"isNew":false},{"name":"Windfall","cubeCount":"12082","imagePath":"assets/card-images/9ce7113b-08f7-4584-b65f-a7b5caa90c2f.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/9/c/9ce7113b-08f7-4584-b65f-a7b5caa90c2f.jpg?1718379815","scryfallUri":"https://scryfall.com/card/otc/123/windfall?utm_source=api","typeLine":"Sorcery","manaCost":"{2}{U}","manaValue":3,"colorIdentity":["U"],"setPrintings":[{"setCode":"OTC","setName":"Outlaws of Thunder Junction Commander","rarities":["uncommon"],"releasedAt":"2024-04-19","iconPath":"assets/set-icons/otc.svg","previewCardUri":"https://scryfall.com/card/otc/123/windfall?utm_source=api"},{"setCode":"LCC","setName":"The Lost Caverns of Ixalan Commander","rarities":["uncommon"],"releasedAt":"2023-11-17","iconPath":"assets/set-icons/lcc.svg","previewCardUri":"https://scryfall.com/card/lcc/180/windfall?utm_source=api"},{"setCode":"CMM","setName":"Commander Masters","rarities":["uncommon"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/859/windfall?utm_source=api"},{"setCode":"P30A","setName":"30th Anniversary Play Promos","rarities":["rare"],"releasedAt":"2022-09-02","iconPath":"assets/set-icons/p30a.svg","previewCardUri":"https://scryfall.com/card/p30a/6/windfall?utm_source=api"},{"setCode":"KHC","setName":"Kaldheim Commander","rarities":["uncommon"],"releasedAt":"2021-02-05","iconPath":"assets/set-icons/khc.svg","previewCardUri":"https://scryfall.com/card/khc/46/windfall?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["uncommon"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/USG-111/windfall?utm_source=api"},{"setCode":"C20","setName":"Commander 2020","rarities":["uncommon"],"releasedAt":"2020-04-17","iconPath":"assets/set-icons/c20.svg","previewCardUri":"https://scryfall.com/card/c20/128/windfall?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["rare"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/2182/windfall?utm_source=api"},{"setCode":"CM2","setName":"Commander Anthology Volume II","rarities":["uncommon"],"releasedAt":"2018-06-08","iconPath":"assets/set-icons/cm2.svg","previewCardUri":"https://scryfall.com/card/cm2/55/windfall?utm_source=api"},{"setCode":"IMA","setName":"Iconic Masters","rarities":["uncommon"],"releasedAt":"2017-11-17","iconPath":"assets/set-icons/ima.svg","previewCardUri":"https://scryfall.com/card/ima/77/windfall?utm_source=api"},{"setCode":"C16","setName":"Commander 2016","rarities":["uncommon"],"releasedAt":"2016-11-11","iconPath":"assets/set-icons/c16.svg","previewCardUri":"https://scryfall.com/card/c16/104/windfall?utm_source=api"},{"setCode":"C15","setName":"Commander 2015","rarities":["uncommon"],"releasedAt":"2015-11-13","iconPath":"assets/set-icons/c15.svg","previewCardUri":"https://scryfall.com/card/c15/111/windfall?utm_source=api"},{"setCode":"CMD","setName":"Commander 2011","rarities":["uncommon"],"releasedAt":"2011-06-17","iconPath":"assets/set-icons/cmd.svg","previewCardUri":"https://scryfall.com/card/cmd/70/windfall?utm_source=api"}],"isNew":false},{"name":"Cogwork Librarian","cubeCount":"19670","imagePath":"assets/card-images/453de664-0f09-4772-a626-51d58d1173f3.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/5/453de664-0f09-4772-a626-51d58d1173f3.jpg?1562864968","scryfallUri":"https://scryfall.com/card/cns/58/cogwork-librarian?utm_source=api","typeLine":"Artifact Creature — Construct","manaCost":"{4}","manaValue":4,"colorIdentity":[],"setPrintings":[{"setCode":"PLST","setName":"The List","rarities":["common"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/CNS-58/cogwork-librarian?utm_source=api"},{"setCode":"CNS","setName":"Conspiracy","rarities":["common"],"releasedAt":"2014-06-06","iconPath":"assets/set-icons/cns.svg","previewCardUri":"https://scryfall.com/card/cns/58/cogwork-librarian?utm_source=api"}],"isNew":false},{"name":"Crackling Drake","cubeCount":"15149","imagePath":"assets/card-images/73957e3b-504d-4ac7-a69c-0b81cb9af402.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/7/3/73957e3b-504d-4ac7-a69c-0b81cb9af402.jpg?1702429614","scryfallUri":"https://scryfall.com/card/rvr/174/crackling-drake?utm_source=api","typeLine":"Creature — Drake","manaCost":"{U}{U}{R}{R}","manaValue":4,"colorIdentity":["R","U"],"setPrintings":[{"setCode":"RVR","setName":"Ravnica Remastered","rarities":["uncommon"],"releasedAt":"2024-01-12","iconPath":"assets/set-icons/rvr.svg","previewCardUri":"https://scryfall.com/card/rvr/362/crackling-drake?utm_source=api"},{"setCode":"C21","setName":"Commander 2021","rarities":["uncommon"],"releasedAt":"2021-04-23","iconPath":"assets/set-icons/c21.svg","previewCardUri":"https://scryfall.com/card/c21/213/crackling-drake?utm_source=api"},{"setCode":"C20","setName":"Commander 2020","rarities":["uncommon"],"releasedAt":"2020-04-17","iconPath":"assets/set-icons/c20.svg","previewCardUri":"https://scryfall.com/card/c20/206/crackling-drake?utm_source=api"},{"setCode":"C19","setName":"Commander 2019","rarities":["uncommon"],"releasedAt":"2019-08-23","iconPath":"assets/set-icons/c19.svg","previewCardUri":"https://scryfall.com/card/c19/190/crackling-drake?utm_source=api"},{"setCode":"GRN","setName":"Guilds of Ravnica","rarities":["uncommon"],"releasedAt":"2018-10-05","iconPath":"assets/set-icons/grn.svg","previewCardUri":"https://scryfall.com/card/grn/163/crackling-drake?utm_source=api"}],"isNew":false},{"name":"Felidar Retreat","cubeCount":"17408","imagePath":"assets/card-images/89e3cc09-5057-4c05-88fc-d6cda809fc74.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/8/9/89e3cc09-5057-4c05-88fc-d6cda809fc74.jpg?1730490783","scryfallUri":"https://scryfall.com/card/fdn/574/felidar-retreat?utm_source=api","typeLine":"Enchantment","manaCost":"{3}{W}","manaValue":4,"colorIdentity":["W"],"setPrintings":[{"setCode":"FDN","setName":"Foundations","rarities":["rare"],"releasedAt":"2024-11-15","iconPath":"assets/set-icons/fdn.svg","previewCardUri":"https://scryfall.com/card/fdn/574/felidar-retreat?utm_source=api"},{"setCode":"CMM","setName":"Commander Masters","rarities":["rare"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/821/felidar-retreat?utm_source=api"},{"setCode":"ONC","setName":"Phyrexia: All Will Be One Commander","rarities":["rare"],"releasedAt":"2023-02-10","iconPath":"assets/set-icons/onc.svg","previewCardUri":"https://scryfall.com/card/onc/66/felidar-retreat?utm_source=api"},{"setCode":"J22","setName":"Jumpstart 2022","rarities":["rare"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/j22.svg","previewCardUri":"https://scryfall.com/card/j22/184/felidar-retreat?utm_source=api"},{"setCode":"SCD","setName":"Starter Commander Decks","rarities":["rare"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/scd.svg","previewCardUri":"https://scryfall.com/card/scd/22/felidar-retreat?utm_source=api"},{"setCode":"NCC","setName":"New Capenna Commander","rarities":["rare"],"releasedAt":"2022-04-29","iconPath":"assets/set-icons/ncc.svg","previewCardUri":"https://scryfall.com/card/ncc/199/felidar-retreat?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["rare"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/ZNR-16/felidar-retreat?utm_source=api"},{"setCode":"PZNR","setName":"Zendikar Rising Promos","rarities":["rare"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/pznr.svg","previewCardUri":"https://scryfall.com/card/pznr/16s/felidar-retreat?utm_source=api"},{"setCode":"ZNR","setName":"Zendikar Rising","rarities":["rare"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/znr.svg","previewCardUri":"https://scryfall.com/card/znr/292/felidar-retreat?utm_source=api"}],"isNew":false},{"name":"Omnath, Locus of Creation","cubeCount":"46718","imagePath":"assets/card-images/4e4fb50c-a81f-44d3-93c5-fa9a0b37f617.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/e/4e4fb50c-a81f-44d3-93c5-fa9a0b37f617.jpg?1639436752","scryfallUri":"https://scryfall.com/card/znr/232/omnath-locus-of-creation?utm_source=api","typeLine":"Legendary Creature — Elemental","manaCost":"{R}{G}{W}{U}","manaValue":4,"colorIdentity":["G","R","U","W"],"setPrintings":[{"setCode":"SCH","setName":"Store Championships","rarities":["mythic"],"releasedAt":"2022-07-09","iconPath":"assets/set-icons/sch.svg","previewCardUri":"https://scryfall.com/card/sch/6/omnath-locus-of-creation?utm_source=api"},{"setCode":"PZNR","setName":"Zendikar Rising Promos","rarities":["mythic"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/pznr.svg","previewCardUri":"https://scryfall.com/card/pznr/232s/omnath-locus-of-creation?utm_source=api"},{"setCode":"ZNR","setName":"Zendikar Rising","rarities":["mythic"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/znr.svg","previewCardUri":"https://scryfall.com/card/znr/312/omnath-locus-of-creation?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["mythic"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/1686/omnath-locus-of-creation?utm_source=api"}],"isNew":false},{"name":"Deep Forest Hermit","cubeCount":"36457","imagePath":"assets/card-images/3287775f-7bec-4e8f-bb8d-daf5ce92e4a8.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/3/2/3287775f-7bec-4e8f-bb8d-daf5ce92e4a8.jpg?1562202056","scryfallUri":"https://scryfall.com/card/mh1/161/deep-forest-hermit?utm_source=api","typeLine":"Creature — Elf Druid","manaCost":"{3}{G}{G}","manaValue":5,"colorIdentity":["G"],"setPrintings":[{"setCode":"BLC","setName":"Bloomburrow Commander","rarities":["rare"],"releasedAt":"2024-08-02","iconPath":"assets/set-icons/blc.svg","previewCardUri":"https://scryfall.com/card/blc/213/deep-forest-hermit?utm_source=api"},{"setCode":"H1R","setName":"Modern Horizons 1 Timeshifts","rarities":["rare"],"releasedAt":"2021-06-18","iconPath":"assets/set-icons/h1r.svg","previewCardUri":"https://scryfall.com/card/h1r/20/deep-forest-hermit?utm_source=api"},{"setCode":"MH1","setName":"Modern Horizons","rarities":["rare"],"releasedAt":"2019-06-14","iconPath":"assets/set-icons/mh1.svg","previewCardUri":"https://scryfall.com/card/mh1/161/deep-forest-hermit?utm_source=api"}],"isNew":false},{"name":"Elder Gargaroth","cubeCount":"31875","imagePath":"assets/card-images/d51269cf-a333-4a64-94cd-245798d840d2.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/d/5/d51269cf-a333-4a64-94cd-245798d840d2.jpg?1594736944","scryfallUri":"https://scryfall.com/card/m21/179/elder-gargaroth?utm_source=api","typeLine":"Creature — Beast","manaCost":"{3}{G}{G}","manaValue":5,"colorIdentity":["G"],"setPrintings":[{"setCode":"DRC","setName":"Aetherdrift Commander","rarities":["mythic"],"releasedAt":"2025-02-14","iconPath":"assets/set-icons/drc.svg","previewCardUri":"https://scryfall.com/card/drc/111/elder-gargaroth?utm_source=api"},{"setCode":"M21","setName":"Core Set 2021","rarities":["mythic"],"releasedAt":"2020-07-03","iconPath":"assets/set-icons/m21.svg","previewCardUri":"https://scryfall.com/card/m21/373/elder-gargaroth?utm_source=api"},{"setCode":"PM21","setName":"Core Set 2021 Promos","rarities":["mythic"],"releasedAt":"2020-07-03","iconPath":"assets/set-icons/pm21.svg","previewCardUri":"https://scryfall.com/card/pm21/179s/elder-gargaroth?utm_source=api"}],"isNew":false},{"name":"Liliana, Death's Majesty","cubeCount":"23936","imagePath":"assets/card-images/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/b/6/b63ae119-f91e-4d0d-8bbd-65350a4d47c4.jpg?1637633118","scryfallUri":"https://scryfall.com/card/mic/121/liliana-deaths-majesty?utm_source=api","typeLine":"Legendary Planeswalker — Liliana","manaCost":"{3}{B}{B}","manaValue":5,"colorIdentity":["B"],"setPrintings":[{"setCode":"DRC","setName":"Aetherdrift Commander","rarities":["mythic"],"releasedAt":"2025-02-14","iconPath":"assets/set-icons/drc.svg","previewCardUri":"https://scryfall.com/card/drc/94/liliana-deaths-majesty?utm_source=api"},{"setCode":"J25","setName":"Foundations Jumpstart","rarities":["mythic"],"releasedAt":"2024-11-15","iconPath":"assets/set-icons/j25.svg","previewCardUri":"https://scryfall.com/card/j25/458/liliana-deaths-majesty?utm_source=api"},{"setCode":"M3C","setName":"Modern Horizons 3 Commander","rarities":["mythic"],"releasedAt":"2024-06-14","iconPath":"assets/set-icons/m3c.svg","previewCardUri":"https://scryfall.com/card/m3c/200/liliana-deaths-majesty?utm_source=api"},{"setCode":"J22","setName":"Jumpstart 2022","rarities":["mythic"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/j22.svg","previewCardUri":"https://scryfall.com/card/j22/433/liliana-deaths-majesty?utm_source=api"},{"setCode":"MIC","setName":"Midnight Hunt Commander","rarities":["mythic"],"releasedAt":"2021-09-24","iconPath":"assets/set-icons/mic.svg","previewCardUri":"https://scryfall.com/card/mic/121/liliana-deaths-majesty?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["mythic"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/AKH-97/liliana-deaths-majesty?utm_source=api"},{"setCode":"AKR","setName":"Amonkhet Remastered","rarities":["mythic"],"releasedAt":"2020-08-13","iconPath":"assets/set-icons/akr.svg","previewCardUri":"https://scryfall.com/card/akr/111/liliana-deaths-majesty?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["mythic"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/232/liliana-deaths-majesty?utm_source=api"},{"setCode":"PS17","setName":"San Diego Comic-Con 2017","rarities":["mythic"],"releasedAt":"2017-07-20","iconPath":"assets/set-icons/ps17.svg","previewCardUri":"https://scryfall.com/card/ps17/97/liliana-deaths-majesty?utm_source=api"},{"setCode":"AKH","setName":"Amonkhet","rarities":["mythic"],"releasedAt":"2017-04-28","iconPath":"assets/set-icons/akh.svg","previewCardUri":"https://scryfall.com/card/akh/97/liliana-deaths-majesty?utm_source=api"},{"setCode":"PAKH","setName":"Amonkhet Promos","rarities":["mythic"],"releasedAt":"2017-04-28","iconPath":"assets/set-icons/pakh.svg","previewCardUri":"https://scryfall.com/card/pakh/97s/liliana-deaths-majesty?utm_source=api"}],"isNew":false},{"name":"Spider Spawning","cubeCount":"14776","imagePath":"assets/card-images/c229cbde-f370-4fef-8765-9773d516324a.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/c/2/c229cbde-f370-4fef-8765-9773d516324a.jpg?1736468419","scryfallUri":"https://scryfall.com/card/inr/216/spider-spawning?utm_source=api","typeLine":"Sorcery","manaCost":"{4}{G}","manaValue":5,"colorIdentity":["B","G"],"setPrintings":[{"setCode":"INR","setName":"Innistrad Remastered","rarities":["uncommon"],"releasedAt":"2025-01-24","iconPath":"assets/set-icons/inr.svg","previewCardUri":"https://scryfall.com/card/inr/419/spider-spawning?utm_source=api"},{"setCode":"SIS","setName":"Shadows of the Past","rarities":["uncommon"],"releasedAt":"2023-03-21","iconPath":"assets/set-icons/sis.svg","previewCardUri":"https://scryfall.com/card/sis/56/spider-spawning?utm_source=api"},{"setCode":"2X2","setName":"Double Masters 2022","rarities":["uncommon"],"releasedAt":"2022-07-08","iconPath":"assets/set-icons/2x2.svg","previewCardUri":"https://scryfall.com/card/2x2/158/spider-spawning?utm_source=api"},{"setCode":"HA4","setName":"Historic Anthology 4","rarities":["uncommon"],"releasedAt":"2021-03-11","iconPath":"assets/set-icons/ha4.svg","previewCardUri":"https://scryfall.com/card/ha4/17/spider-spawning?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["uncommon"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/CMA-149/spider-spawning?utm_source=api"},{"setCode":"UMA","setName":"Ultimate Masters","rarities":["uncommon"],"releasedAt":"2018-12-07","iconPath":"assets/set-icons/uma.svg","previewCardUri":"https://scryfall.com/card/uma/183/spider-spawning?utm_source=api"},{"setCode":"CMA","setName":"Commander Anthology","rarities":["uncommon"],"releasedAt":"2017-06-09","iconPath":"assets/set-icons/cma.svg","previewCardUri":"https://scryfall.com/card/cma/149/spider-spawning?utm_source=api"},{"setCode":"C15","setName":"Commander 2015","rarities":["uncommon"],"releasedAt":"2015-11-13","iconPath":"assets/set-icons/c15.svg","previewCardUri":"https://scryfall.com/card/c15/202/spider-spawning?utm_source=api"},{"setCode":"ISD","setName":"Innistrad","rarities":["uncommon"],"releasedAt":"2011-09-30","iconPath":"assets/set-icons/isd.svg","previewCardUri":"https://scryfall.com/card/isd/203/spider-spawning?utm_source=api"}],"isNew":false},{"name":"Thundermaw Hellkite","cubeCount":"31342","imagePath":"assets/card-images/a75f6bb4-ab06-42ca-a0df-326d9a098a26.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/a/7/a75f6bb4-ab06-42ca-a0df-326d9a098a26.jpg?1562852516","scryfallUri":"https://scryfall.com/card/ima/149/thundermaw-hellkite?utm_source=api","typeLine":"Creature — Dragon","manaCost":"{3}{R}{R}","manaValue":5,"colorIdentity":["R"],"setPrintings":[{"setCode":"SCD","setName":"Starter Commander Decks","rarities":["mythic"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/scd.svg","previewCardUri":"https://scryfall.com/card/scd/164/thundermaw-hellkite?utm_source=api"},{"setCode":"IMA","setName":"Iconic Masters","rarities":["mythic"],"releasedAt":"2017-11-17","iconPath":"assets/set-icons/ima.svg","previewCardUri":"https://scryfall.com/card/ima/149/thundermaw-hellkite?utm_source=api"},{"setCode":"M13","setName":"Magic 2013","rarities":["mythic"],"releasedAt":"2012-07-13","iconPath":"assets/set-icons/m13.svg","previewCardUri":"https://scryfall.com/card/m13/150/thundermaw-hellkite?utm_source=api"}],"isNew":false},{"name":"Frost Titan","cubeCount":"15200","imagePath":"assets/card-images/bb9eec79-1926-46eb-b9e0-6ba12a441495.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/b/b/bb9eec79-1926-46eb-b9e0-6ba12a441495.jpg?1561956629","scryfallUri":"https://scryfall.com/card/c14/112/frost-titan?utm_source=api","typeLine":"Creature — Giant","manaCost":"{4}{U}{U}","manaValue":6,"colorIdentity":["U"],"setPrintings":[{"setCode":"HA7","setName":"Historic Anthology 7","rarities":["mythic"],"releasedAt":"2023-07-18","iconPath":"assets/set-icons/ha7.svg","previewCardUri":"https://scryfall.com/card/ha7/3/frost-titan?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["mythic"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/M11-55/frost-titan?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["mythic"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/220/frost-titan?utm_source=api"},{"setCode":"C14","setName":"Commander 2014","rarities":["mythic"],"releasedAt":"2014-11-07","iconPath":"assets/set-icons/c14.svg","previewCardUri":"https://scryfall.com/card/c14/112/frost-titan?utm_source=api"},{"setCode":"M12","setName":"Magic 2012","rarities":["mythic"],"releasedAt":"2011-07-15","iconPath":"assets/set-icons/m12.svg","previewCardUri":"https://scryfall.com/card/m12/55/frost-titan?utm_source=api"},{"setCode":"PDP12","setName":"Duels of the Planeswalkers 2012 Promos","rarities":["mythic"],"releasedAt":"2011-01-01","iconPath":"assets/set-icons/pdp12.svg","previewCardUri":"https://scryfall.com/card/pdp12/1/frost-titan?utm_source=api"},{"setCode":"M11","setName":"Magic 2011","rarities":["mythic"],"releasedAt":"2010-07-16","iconPath":"assets/set-icons/m11.svg","previewCardUri":"https://scryfall.com/card/m11/55/frost-titan?utm_source=api"}],"isNew":false},{"name":"Rampaging Baloths","cubeCount":"14166","imagePath":"assets/card-images/84aa18de-6acc-46cc-8e28-3046790a6751.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/8/4/84aa18de-6acc-46cc-8e28-3046790a6751.jpg?1755881175","scryfallUri":"https://scryfall.com/card/eoc/104/rampaging-baloths?utm_source=api","typeLine":"Creature — Beast","manaCost":"{4}{G}{G}","manaValue":6,"colorIdentity":["G"],"setPrintings":[{"setCode":"EOC","setName":"Edge of Eternities Commander","rarities":["rare"],"releasedAt":"2025-08-01","iconPath":"assets/set-icons/eoc.svg","previewCardUri":"https://scryfall.com/card/eoc/104/rampaging-baloths?utm_source=api"},{"setCode":"FDN","setName":"Foundations","rarities":["rare"],"releasedAt":"2024-11-15","iconPath":"assets/set-icons/fdn.svg","previewCardUri":"https://scryfall.com/card/fdn/645/rampaging-baloths?utm_source=api"},{"setCode":"BLC","setName":"Bloomburrow Commander","rarities":["mythic"],"releasedAt":"2024-08-02","iconPath":"assets/set-icons/blc.svg","previewCardUri":"https://scryfall.com/card/blc/233/rampaging-baloths?utm_source=api"},{"setCode":"M3C","setName":"Modern Horizons 3 Commander","rarities":["mythic"],"releasedAt":"2024-06-14","iconPath":"assets/set-icons/m3c.svg","previewCardUri":"https://scryfall.com/card/m3c/239/rampaging-baloths?utm_source=api"},{"setCode":"J22","setName":"Jumpstart 2022","rarities":["rare"],"releasedAt":"2022-12-02","iconPath":"assets/set-icons/j22.svg","previewCardUri":"https://scryfall.com/card/j22/715/rampaging-baloths?utm_source=api"},{"setCode":"C21","setName":"Commander 2021","rarities":["rare"],"releasedAt":"2021-04-23","iconPath":"assets/set-icons/c21.svg","previewCardUri":"https://scryfall.com/card/c21/203/rampaging-baloths?utm_source=api"},{"setCode":"CMR","setName":"Commander Legends","rarities":["rare"],"releasedAt":"2020-11-20","iconPath":"assets/set-icons/cmr.svg","previewCardUri":"https://scryfall.com/card/cmr/431/rampaging-baloths?utm_source=api"},{"setCode":"ZNC","setName":"Zendikar Rising Commander","rarities":["rare"],"releasedAt":"2020-09-25","iconPath":"assets/set-icons/znc.svg","previewCardUri":"https://scryfall.com/card/znc/77/rampaging-baloths?utm_source=api"},{"setCode":"C19","setName":"Commander 2019","rarities":["rare"],"releasedAt":"2019-08-23","iconPath":"assets/set-icons/c19.svg","previewCardUri":"https://scryfall.com/card/c19/176/rampaging-baloths?utm_source=api"},{"setCode":"C18","setName":"Commander 2018","rarities":["rare"],"releasedAt":"2018-08-10","iconPath":"assets/set-icons/c18.svg","previewCardUri":"https://scryfall.com/card/c18/158/rampaging-baloths?utm_source=api"},{"setCode":"IMA","setName":"Iconic Masters","rarities":["rare"],"releasedAt":"2017-11-17","iconPath":"assets/set-icons/ima.svg","previewCardUri":"https://scryfall.com/card/ima/184/rampaging-baloths?utm_source=api"},{"setCode":"E01","setName":"Archenemy: Nicol Bolas","rarities":["mythic"],"releasedAt":"2017-06-16","iconPath":"assets/set-icons/e01.svg","previewCardUri":"https://scryfall.com/card/e01/71/rampaging-baloths?utm_source=api"},{"setCode":"CMA","setName":"Commander Anthology","rarities":["mythic"],"releasedAt":"2017-06-09","iconPath":"assets/set-icons/cma.svg","previewCardUri":"https://scryfall.com/card/cma/139/rampaging-baloths?utm_source=api"},{"setCode":"C14","setName":"Commander 2014","rarities":["mythic"],"releasedAt":"2014-11-07","iconPath":"assets/set-icons/c14.svg","previewCardUri":"https://scryfall.com/card/c14/212/rampaging-baloths?utm_source=api"},{"setCode":"C13","setName":"Commander 2013","rarities":["mythic"],"releasedAt":"2013-11-01","iconPath":"assets/set-icons/c13.svg","previewCardUri":"https://scryfall.com/card/c13/164/rampaging-baloths?utm_source=api"},{"setCode":"PZEN","setName":"Zendikar Promos","rarities":["mythic"],"releasedAt":"2009-10-02","iconPath":"assets/set-icons/pzen.svg","previewCardUri":"https://scryfall.com/card/pzen/178%E2%98%85/rampaging-baloths?utm_source=api"},{"setCode":"ZEN","setName":"Zendikar","rarities":["mythic"],"releasedAt":"2009-10-02","iconPath":"assets/set-icons/zen.svg","previewCardUri":"https://scryfall.com/card/zen/178/rampaging-baloths?utm_source=api"},{"setCode":"P09","setName":"Magic Player Rewards 2009","rarities":["mythic"],"releasedAt":"2009-01-01","iconPath":"assets/set-icons/p09.svg","previewCardUri":"https://scryfall.com/card/p09/178/rampaging-baloths?utm_source=api"}],"isNew":false},{"name":"Kaldra Compleat","cubeCount":"36259","imagePath":"assets/card-images/572fb0dc-d876-4e1b-91d1-9c595f6f6f04.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/5/7/572fb0dc-d876-4e1b-91d1-9c595f6f6f04.jpg?1758104066","scryfallUri":"https://scryfall.com/card/cmm/958/kaldra-compleat?utm_source=api","typeLine":"Legendary Artifact — Equipment","manaCost":"{7}","manaValue":7,"colorIdentity":[],"setPrintings":[{"setCode":"AA3","setName":"Arena Anthology 3","rarities":["mythic"],"releasedAt":"2025-09-23","iconPath":"assets/set-icons/aa3.svg","previewCardUri":"https://scryfall.com/card/aa3/21/kaldra-compleat?utm_source=api"},{"setCode":"PSPL","setName":"Spotlight Series","rarities":["mythic"],"releasedAt":"2025-01-03","iconPath":"assets/set-icons/pspl.svg","previewCardUri":"https://scryfall.com/card/pspl/2/kaldra-compleat?utm_source=api"},{"setCode":"CMM","setName":"Commander Masters","rarities":["mythic"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/958/kaldra-compleat?utm_source=api"},{"setCode":"MH2","setName":"Modern Horizons 2","rarities":["mythic"],"releasedAt":"2021-06-18","iconPath":"assets/set-icons/mh2.svg","previewCardUri":"https://scryfall.com/card/mh2/379/kaldra-compleat?utm_source=api"},{"setCode":"PMH2","setName":"Modern Horizons 2 Promos","rarities":["mythic"],"releasedAt":"2021-06-18","iconPath":"assets/set-icons/pmh2.svg","previewCardUri":"https://scryfall.com/card/pmh2/227s/kaldra-compleat?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["mythic"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/MH2-227/kaldra-compleat?utm_source=api"}],"isNew":false},{"name":"Sheoldred, Whispering One","cubeCount":"17441","imagePath":"assets/card-images/8b207a4a-47d1-4905-81d3-455c59bfd7da.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/8/b/8b207a4a-47d1-4905-81d3-455c59bfd7da.jpg?1600714694","scryfallUri":"https://scryfall.com/card/jmp/278/sheoldred-whispering-one?utm_source=api","typeLine":"Legendary Creature — Phyrexian Praetor","manaCost":"{5}{B}{B}","manaValue":7,"colorIdentity":["B"],"setPrintings":[{"setCode":"MUL","setName":"Multiverse Legends","rarities":["mythic"],"releasedAt":"2023-04-21","iconPath":"assets/set-icons/mul.svg","previewCardUri":"https://scryfall.com/card/mul/146z/sheoldred-whispering-one?utm_source=api"},{"setCode":"HA5","setName":"Historic Anthology 5","rarities":["mythic"],"releasedAt":"2021-05-27","iconPath":"assets/set-icons/ha5.svg","previewCardUri":"https://scryfall.com/card/ha5/10/sheoldred-whispering-one?utm_source=api"},{"setCode":"PLST","setName":"The List","rarities":["mythic"],"releasedAt":"2020-09-26","iconPath":"assets/set-icons/plst.svg","previewCardUri":"https://scryfall.com/card/plst/NPH-73/sheoldred-whispering-one?utm_source=api"},{"setCode":"JMP","setName":"Jumpstart","rarities":["mythic"],"releasedAt":"2020-07-17","iconPath":"assets/set-icons/jmp.svg","previewCardUri":"https://scryfall.com/card/jmp/278/sheoldred-whispering-one?utm_source=api"},{"setCode":"SLD","setName":"Secret Lair Drop","rarities":["mythic"],"releasedAt":"2019-12-02","iconPath":"assets/set-icons/sld.svg","previewCardUri":"https://scryfall.com/card/sld/211/sheoldred-whispering-one?utm_source=api"},{"setCode":"IMA","setName":"Iconic Masters","rarities":["mythic"],"releasedAt":"2017-11-17","iconPath":"assets/set-icons/ima.svg","previewCardUri":"https://scryfall.com/card/ima/108/sheoldred-whispering-one?utm_source=api"},{"setCode":"NPH","setName":"New Phyrexia","rarities":["mythic"],"releasedAt":"2011-05-13","iconPath":"assets/set-icons/nph.svg","previewCardUri":"https://scryfall.com/card/nph/73/sheoldred-whispering-one?utm_source=api"},{"setCode":"PNPH","setName":"New Phyrexia Promos","rarities":["mythic"],"releasedAt":"2011-05-12","iconPath":"assets/set-icons/pnph.svg","previewCardUri":"https://scryfall.com/card/pnph/73%E2%98%85/sheoldred-whispering-one?utm_source=api"}],"isNew":false},{"name":"Bedlam Reveler","cubeCount":"15198","imagePath":"assets/card-images/4780d9d6-b5a2-4646-bd63-48ec58fea6b2.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/4/7/4780d9d6-b5a2-4646-bd63-48ec58fea6b2.jpg?1736468088","scryfallUri":"https://scryfall.com/card/inr/142/bedlam-reveler?utm_source=api","typeLine":"Creature — Devil Horror","manaCost":"{6}{R}{R}","manaValue":8,"colorIdentity":["R"],"setPrintings":[{"setCode":"INR","setName":"Innistrad Remastered","rarities":["rare"],"releasedAt":"2025-01-24","iconPath":"assets/set-icons/inr.svg","previewCardUri":"https://scryfall.com/card/inr/312/bedlam-reveler?utm_source=api"},{"setCode":"SIR","setName":"Shadows over Innistrad Remastered","rarities":["rare"],"releasedAt":"2023-03-21","iconPath":"assets/set-icons/sir.svg","previewCardUri":"https://scryfall.com/card/sir/143/bedlam-reveler?utm_source=api"},{"setCode":"2X2","setName":"Double Masters 2022","rarities":["rare"],"releasedAt":"2022-07-08","iconPath":"assets/set-icons/2x2.svg","previewCardUri":"https://scryfall.com/card/2x2/450/bedlam-reveler?utm_source=api"},{"setCode":"TSR","setName":"Time Spiral Remastered","rarities":["special"],"releasedAt":"2021-03-19","iconPath":"assets/set-icons/tsr.svg","previewCardUri":"https://scryfall.com/card/tsr/340/bedlam-reveler?utm_source=api"},{"setCode":"EMN","setName":"Eldritch Moon","rarities":["rare"],"releasedAt":"2016-07-22","iconPath":"assets/set-icons/emn.svg","previewCardUri":"https://scryfall.com/card/emn/118/bedlam-reveler?utm_source=api"},{"setCode":"PEMN","setName":"Eldritch Moon Promos","rarities":["rare"],"releasedAt":"2016-07-22","iconPath":"assets/set-icons/pemn.svg","previewCardUri":"https://scryfall.com/card/pemn/118s/bedlam-reveler?utm_source=api"}],"isNew":false},{"name":"The Great Henge","cubeCount":"23384","imagePath":"assets/card-images/6340e0f3-7f9c-4d71-8daf-e1be5505eb5b.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/6/3/6340e0f3-7f9c-4d71-8daf-e1be5505eb5b.jpg?1689998574","scryfallUri":"https://scryfall.com/card/cmm/294/the-great-henge?utm_source=api","typeLine":"Legendary Artifact","manaCost":"{7}{G}{G}","manaValue":9,"colorIdentity":["G"],"setPrintings":[{"setCode":"TLE","setName":"Avatar: The Last Airbender Eternal","rarities":["mythic"],"releasedAt":"2025-11-21","iconPath":"assets/set-icons/tle.svg","previewCardUri":"https://scryfall.com/card/tle/41/the-great-henge?utm_source=api"},{"setCode":"CMM","setName":"Commander Masters","rarities":["mythic"],"releasedAt":"2023-08-04","iconPath":"assets/set-icons/cmm.svg","previewCardUri":"https://scryfall.com/card/cmm/562/the-great-henge?utm_source=api"},{"setCode":"LTC","setName":"Tales of Middle-earth Commander","rarities":["mythic"],"releasedAt":"2023-06-23","iconPath":"assets/set-icons/ltc.svg","previewCardUri":"https://scryfall.com/card/ltc/378z/the-great-henge?utm_source=api"},{"setCode":"ELD","setName":"Throne of Eldraine","rarities":["mythic"],"releasedAt":"2019-10-04","iconPath":"assets/set-icons/eld.svg","previewCardUri":"https://scryfall.com/card/eld/370/the-great-henge?utm_source=api"},{"setCode":"PELD","setName":"Throne of Eldraine Promos","rarities":["mythic"],"releasedAt":"2019-10-04","iconPath":"assets/set-icons/peld.svg","previewCardUri":"https://scryfall.com/card/peld/161s/the-great-henge?utm_source=api"}],"isNew":false},{"name":"Ulamog, the Infinite Gyre","cubeCount":"32818","imagePath":"assets/card-images/9464a820-65de-44f2-9895-46a35e8621a0.jpg","remoteImageUri":"https://cards.scryfall.io/normal/front/9/4/9464a820-65de-44f2-9895-46a35e8621a0.jpg?1758104023","scryfallUri":"https://scryfall.com/card/2x2/3/ulamog-the-infinite-gyre?utm_source=api","typeLine":"Legendary Creature — Eldrazi","manaCost":"{11}","manaValue":11,"colorIdentity":[],"setPrintings":[{"setCode":"AA3","setName":"Arena Anthology 3","rarities":["mythic"],"releasedAt":"2025-09-23","iconPath":"assets/set-icons/aa3.svg","previewCardUri":"https://scryfall.com/card/aa3/2/ulamog-the-infinite-gyre?utm_source=api"},{"setCode":"2X2","setName":"Double Masters 2022","rarities":["mythic"],"releasedAt":"2022-07-08","iconPath":"assets/set-icons/2x2.svg","previewCardUri":"https://scryfall.com/card/2x2/577/ulamog-the-infinite-gyre?utm_source=api"},{"setCode":"PUMA","setName":"Ultimate Box Topper","rarities":["mythic"],"releasedAt":"2018-12-07","iconPath":"assets/set-icons/puma.svg","previewCardUri":"https://scryfall.com/card/puma/U4/ulamog-the-infinite-gyre?utm_source=api"},{"setCode":"UMA","setName":"Ultimate Masters","rarities":["mythic"],"releasedAt":"2018-12-07","iconPath":"assets/set-icons/uma.svg","previewCardUri":"https://scryfall.com/card/uma/7/ulamog-the-infinite-gyre?utm_source=api"},{"setCode":"MM2","setName":"Modern Masters 2015","rarities":["mythic"],"releasedAt":"2015-05-22","iconPath":"assets/set-icons/mm2.svg","previewCardUri":"https://scryfall.com/card/mm2/6/ulamog-the-infinite-gyre?utm_source=api"},{"setCode":"V11","setName":"From the Vault: Legends","rarities":["mythic"],"releasedAt":"2011-08-26","iconPath":"assets/set-icons/v11.svg","previewCardUri":"https://scryfall.com/card/v11/14/ulamog-the-infinite-gyre?utm_source=api"},{"setCode":"ROE","setName":"Rise of the Eldrazi","rarities":["mythic"],"releasedAt":"2010-04-23","iconPath":"assets/set-icons/roe.svg","previewCardUri":"https://scryfall.com/card/roe/12/ulamog-the-infinite-gyre?utm_source=api"}],"isNew":false}]}</script>
+    <script>
+      const DATASET_KEY = "sample";
+      const REMOTE_STORE = null;
+      const LOCAL_SELECTION_KEY = "card-gallery-selection:" + DATASET_KEY;
+      (() => {
+        const DATA_URL = "./sample.json";
+        const EARLIEST_YEAR = 2004;
+        const COLOR_ORDER = ["W", "U", "B", "R", "G"];
+        const FILTER_CODES = [...COLOR_ORDER, "C", "M"];
+        const COLOR_LABELS = {
+          W: "White",
+          U: "Blue",
+          B: "Black",
+          R: "Red",
+          G: "Green",
+          C: "Colorless",
+          M: "Multicoloured",
+        };
+
+        const grid = document.getElementById("cards-grid");
+        const recentList = document.getElementById("recent-list");
+        const emptyState = document.getElementById("empty-state");
+        const loadingState = document.getElementById("loading-state");
+        const sortSelect = document.getElementById("sort-select");
+        const colorInputs = Array.from(document.querySelectorAll(".color-filter input"));
+        const landsToggle = document.getElementById("lands-toggle");
+        const copyButton = document.getElementById("copy-selected");
+        const controlsSection = document.querySelector("[data-controls]");
+        const tabButtons = Array.from(document.querySelectorAll(".tab-button"));
+        const inlineDataEl = document.getElementById("card-data");
+        const inlineData = inlineDataEl ? JSON.parse(inlineDataEl.textContent) : null;
+
+        let allCards = [];
+        let activeColors = new Set(FILTER_CODES);
+        const selectedNames = new Set();
+        let saveTimeout = null;
+        let activeTab = "gallery";
+
+        Promise.all([loadData(), loadSelectionState()])
+          .then(([payload, storedSelection]) => {
+            allCards = Array.isArray(payload.cards) ? payload.cards : [];
+            (storedSelection || []).forEach((name) => selectedNames.add(name));
+            refreshCopyButton();
+            render();
+          })
+          .catch((error) => {
+            if (loadingState) {
+              loadingState.textContent = "Unable to load cards.";
+            } else {
+              grid.innerHTML = "<p>Unable to load cards.</p>";
+            }
+            console.error(error);
+          });
+
+        colorInputs.forEach((input) => {
+          input.addEventListener("change", () => {
+            if (input.checked) {
+              activeColors.add(input.value);
+            } else {
+              activeColors.delete(input.value);
+            }
+            renderActiveTab();
+          });
+        });
+
+        sortSelect.addEventListener("change", () => renderActiveTab());
+        if (landsToggle) {
+          landsToggle.addEventListener("change", () => renderActiveTab());
+        }
+        if (copyButton) {
+          copyButton.addEventListener("click", copySelected);
+          refreshCopyButton();
+        }
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const tab = button.dataset.tab;
+            if (!tab || tab === activeTab) return;
+            activeTab = tab;
+            tabButtons.forEach((btn) => btn.setAttribute("aria-selected", btn.dataset.tab === activeTab ? "true" : "false"));
+            renderActiveTab();
+          });
+        });
+
+        function renderActiveTab() {
+          if (activeTab === "gallery") {
+            if (controlsSection) controlsSection.hidden = false;
+            grid.hidden = false;
+            emptyState.hidden = true;
+            recentList.hidden = true;
+            const filtered = allCards.filter((card) => matchesColorFilter(card) && matchesLandFilter(card));
+            const sorted = sortCards(filtered, sortSelect.value);
+            renderCards(sorted);
+          } else if (activeTab === "recent") {
+            if (controlsSection) controlsSection.hidden = true;
+            grid.hidden = true;
+            emptyState.hidden = true;
+            renderRecentList();
+          }
+        }
+
+        function matchesColorFilter(card) {
+          const colors = cardColors(card);
+          if (!colors.length) {
+            return activeColors.has("C");
+          }
+          if (colors.length === 1) {
+            const color = colors[0];
+            if (color === "C") {
+              return activeColors.has("C");
+            }
+            return activeColors.has(color);
+          }
+          return activeColors.has("M");
+        }
+
+        function matchesLandFilter(card) {
+          if (landsToggle && !landsToggle.checked && isLand(card)) {
+            return false;
+          }
+          return true;
+        }
+
+        function isLand(card) {
+          return typeof card.typeLine === "string" && card.typeLine.toLowerCase().includes("land");
+        }
+
+        function sortCards(cards, mode) {
+          const arr = [...cards];
+          const compareMana = (a, b) => (a.manaValue ?? Infinity) - (b.manaValue ?? Infinity);
+          switch (mode) {
+            case "mv-desc":
+              return arr.sort((a, b) => {
+                const result = compareMana(b, a);
+                return result === 0 ? a.name.localeCompare(b.name) : result;
+              });
+            case "color":
+              return arr.sort(compareByColor);
+            case "mv-asc":
+            default:
+              return arr.sort((a, b) => {
+                const result = compareMana(a, b);
+                return result === 0 ? a.name.localeCompare(b.name) : result;
+              });
+          }
+        }
+
+        function cardColors(card) {
+          if (Array.isArray(card.colorIdentity) && card.colorIdentity.length) {
+            const unique = Array.from(new Set(card.colorIdentity));
+            return unique.sort((a, b) => colorIndex(a) - colorIndex(b));
+          }
+          return ["C"];
+        }
+
+        function colorIndex(color) {
+          if (color === "C") {
+            return COLOR_ORDER.length + 1;
+          }
+          const idx = COLOR_ORDER.indexOf(color);
+          return idx === -1 ? Number.MAX_SAFE_INTEGER : idx;
+        }
+
+        function compareByColor(a, b) {
+          const aKey = colorSortKey(a);
+          const bKey = colorSortKey(b);
+          if (aKey.group !== bKey.group) {
+            return aKey.group - bKey.group;
+          }
+          if (aKey.detail !== bKey.detail) {
+            return aKey.detail.localeCompare(bKey.detail);
+          }
+          const manaResult = (a.manaValue ?? Infinity) - (b.manaValue ?? Infinity);
+          return manaResult === 0 ? a.name.localeCompare(b.name) : manaResult;
+        }
+
+        function colorSortKey(card) {
+          const colors = cardColors(card);
+          if (colors.length === 1) {
+            if (colors[0] === "C") {
+              return { group: COLOR_ORDER.length + 2, detail: "C" };
+            }
+            return {
+              group: colorIndex(colors[0]),
+              detail: colors[0],
+            };
+          }
+          return {
+            group: COLOR_ORDER.length + 1,
+            detail: colors.join(""),
+          };
+        }
+
+        function renderCards(cards) {
+          if (loadingState) {
+            loadingState.hidden = true;
+          }
+          grid.innerHTML = "";
+          if (!cards.length) {
+            emptyState.hidden = false;
+            return;
+          }
+          emptyState.hidden = true;
+          const fragment = document.createDocumentFragment();
+          cards.forEach((card) => fragment.appendChild(createCardElement(card)));
+          grid.appendChild(fragment);
+          grid.hidden = false;
+        }
+
+        function renderRecentList() {
+          if (loadingState) {
+            loadingState.hidden = true;
+          }
+          const entries = allCards
+            .map((card) => {
+              const recentSet = latestRecentSet(card);
+              return recentSet ? { card, recentSet } : null;
+            })
+            .filter(Boolean)
+            .sort((a, b) => new Date(b.recentSet.releasedAt || 0) - new Date(a.recentSet.releasedAt || 0) || a.card.name.localeCompare(b.card.name));
+
+          recentList.innerHTML = "";
+          if (!entries.length) {
+            recentList.innerHTML = "<p class="empty-state">No cards found from 2024 or newer sets.</p>";
+          } else {
+            entries.forEach(({ card, recentSet }) => {
+              const item = document.createElement("article");
+              item.className = "recent-item";
+              const title = document.createElement("p");
+              title.className = "recent-item__title";
+              title.textContent = card.name;
+              const meta = document.createElement("div");
+              meta.className = "recent-item__meta";
+              const year = recentSet.releasedAt ? new Date(recentSet.releasedAt).getFullYear() : "Unknown";
+              meta.textContent = recentSet.setName + " (" + recentSet.setCode + ") • " + year;
+              item.appendChild(title);
+              item.appendChild(meta);
+              recentList.appendChild(item);
+            });
+          }
+          recentList.hidden = false;
+        }
+
+        function createCardElement(card) {
+          const article = document.createElement("article");
+          article.className = "card";
+
+          const link = document.createElement("a");
+          link.className = "card__image";
+          link.href = card.scryfallUri;
+          link.target = "_blank";
+          link.rel = "noopener";
+          const img = document.createElement("img");
+          img.loading = "lazy";
+          img.alt = `${card.name} card art`;
+          img.src = card.imagePath || card.remoteImageUri || "";
+          link.appendChild(img);
+          article.appendChild(link);
+
+          const body = document.createElement("div");
+          body.className = "card__body";
+          article.appendChild(body);
+
+          const nameRow = document.createElement("div");
+          nameRow.className = "card__name-row";
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.className = "card__select";
+          checkbox.checked = selectedNames.has(card.name);
+          checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+              selectedNames.add(card.name);
+            } else {
+              selectedNames.delete(card.name);
+            }
+            refreshCopyButton();
+            scheduleSaveSelection();
+          });
+          nameRow.appendChild(checkbox);
+          const name = document.createElement("h2");
+          name.className = "card__name";
+          name.textContent = card.name;
+          nameRow.appendChild(name);
+          if (card.isNew) {
+            const badge = document.createElement("span");
+            badge.className = "card__badge";
+            badge.textContent = "NEW";
+            nameRow.appendChild(badge);
+          }
+          body.appendChild(nameRow);
+
+          const manaLine = document.createElement("p");
+          manaLine.className = "card__mana-line";
+          if (card.manaCost) {
+            const manaSpan = document.createElement("span");
+            manaSpan.className = "card__mana";
+            manaSpan.textContent = card.manaCost;
+            manaLine.appendChild(manaSpan);
+          }
+          if (Number.isFinite(card.manaValue) && card.manaValue !== Infinity) {
+            const mvSpan = document.createElement("span");
+            mvSpan.className = "card__mv";
+            mvSpan.textContent = formatManaValue(card.manaValue);
+            manaLine.appendChild(mvSpan);
+          }
+          if (manaLine.children.length) {
+            body.appendChild(manaLine);
+          }
+
+          const cube = document.createElement("p");
+          cube.className = "card__meta";
+          cube.innerHTML = `Cube Count: <strong>${card.cubeCount}</strong>`;
+          body.appendChild(cube);
+
+          if (card.colorIdentity) {
+            const colors = document.createElement("p");
+            colors.className = "card__meta";
+            colors.textContent = colorIdentityLabel(card);
+            body.appendChild(colors);
+          }
+
+          if (card.typeLine) {
+            const type = document.createElement("p");
+            type.className = "card__typeline";
+            type.textContent = card.typeLine;
+            body.appendChild(type);
+          }
+
+          const setsWrapper = document.createElement("div");
+          setsWrapper.className = "card__sets";
+          const setsTitle = document.createElement("h3");
+          setsTitle.className = "card__sets-title";
+          setsTitle.textContent = "Set Printings";
+          setsWrapper.appendChild(setsTitle);
+          const list = document.createElement("ul");
+          list.className = "sets-list";
+          appendSetItems(list, card.setPrintings || []);
+          setsWrapper.appendChild(list);
+          body.appendChild(setsWrapper);
+
+          return article;
+        }
+
+        function appendSetItems(listEl, sets) {
+          if (!sets.length) {
+            const li = document.createElement("li");
+            li.className = "set-item set-item--empty";
+            const span = document.createElement("span");
+            span.className = "set-item__text";
+            span.textContent = `No sets from ${EARLIEST_YEAR} onward`;
+            li.appendChild(span);
+            listEl.appendChild(li);
+            return;
+          }
+          sets.forEach((set) => {
+            const li = document.createElement("li");
+            li.className = "set-item";
+
+            const icon = document.createElement("span");
+            icon.className = "set-item__icon";
+            if (set.iconPath) {
+              const img = document.createElement("img");
+              img.src = set.iconPath;
+              img.alt = `${set.setCode} symbol`;
+              img.loading = "lazy";
+              icon.appendChild(img);
+            }
+            li.appendChild(icon);
+
+            const text = document.createElement("span");
+            text.className = "set-item__text";
+            const title = document.createElement("span");
+            title.textContent = `${set.setName} (${set.setCode})`;
+            text.appendChild(title);
+
+            const rarities = document.createElement("span");
+            rarities.className = "set-item__rarities";
+            if (Array.isArray(set.rarities) && set.rarities.length) {
+              set.rarities.forEach((rarity) => {
+                const badge = document.createElement("span");
+                badge.className = `set-item__rarity ${rarityClassName(rarity)}`;
+                badge.textContent = capitalize(rarity);
+                rarities.appendChild(badge);
+              });
+            } else {
+              const badge = document.createElement("span");
+              badge.className = "set-item__rarity rarity--unknown";
+              badge.textContent = "Unknown rarity";
+              rarities.appendChild(badge);
+            }
+            text.appendChild(rarities);
+            li.appendChild(text);
+
+            listEl.appendChild(li);
+          });
+        }
+
+        function rarityClassName(rarity) {
+          const key = String(rarity || "").toLowerCase();
+          return ["common", "uncommon", "rare", "mythic"].includes(key)
+            ? `rarity--${key}`
+            : "rarity--unknown";
+        }
+
+        function capitalize(value) {
+          return String(value).charAt(0).toUpperCase() + String(value).slice(1);
+        }
+
+        function formatManaValue(value) {
+          if (!Number.isFinite(value) || value === Infinity) {
+            return "";
+          }
+          return Number.isInteger(value) ? `MV ${value}` : `MV ${value.toFixed(2).replace(/\.0+$/, "")}`;
+        }
+
+        function colorIdentityLabel(card) {
+          const colors = cardColors(card);
+          return colors.map((code) => COLOR_LABELS[code] ?? code).join(", ");
+        }
+
+        function refreshCopyButton() {
+          if (!copyButton) return;
+          const count = selectedNames.size;
+          copyButton.textContent = count ? "Copy Selected (" + count + ")" : "Copy Selected";
+          copyButton.disabled = count === 0;
+        }
+
+        function scheduleSaveSelection() {
+          if (saveTimeout) {
+            clearTimeout(saveTimeout);
+          }
+          saveTimeout = setTimeout(() => {
+            persistSelectionState().catch((error) => console.warn("Failed to persist selections", error));
+          }, 400);
+        }
+
+        async function loadSelectionState() {
+          if (REMOTE_STORE) {
+            const remoteData = await loadRemoteSelection();
+            if (remoteData && remoteData.length) {
+              saveLocalSelection(remoteData);
+              return remoteData;
+            }
+          }
+          return loadLocalSelection();
+        }
+
+        function loadLocalSelection() {
+          try {
+            const raw = localStorage.getItem(LOCAL_SELECTION_KEY);
+            if (!raw) return [];
+            const parsed = JSON.parse(raw);
+            return Array.isArray(parsed) ? parsed : [];
+          } catch (error) {
+            console.warn("Failed to read local selections", error);
+            return [];
+          }
+        }
+
+        function saveLocalSelection(list) {
+          try {
+            localStorage.setItem(LOCAL_SELECTION_KEY, JSON.stringify(list));
+          } catch (error) {
+            console.warn("Failed to save selections locally", error);
+          }
+        }
+
+        async function loadRemoteSelection() {
+          if (!REMOTE_STORE) return [];
+          const baseUrl = REMOTE_STORE.baseUrl.replace(//$/, "");
+          const url =
+            baseUrl +
+            "/rest/v1/" +
+            REMOTE_STORE.table +
+            "?profile_id=eq." +
+            encodeURIComponent(REMOTE_STORE.profile) +
+            "&select=card_name";
+          try {
+            const resp = await fetch(url, { headers: remoteHeaders() });
+            if (!resp.ok) {
+              throw new Error("HTTP " + resp.status);
+            }
+            const data = await resp.json();
+            return Array.isArray(data) ? data.map((row) => row.card_name).filter(Boolean) : [];
+          } catch (error) {
+            console.warn("Remote selection fetch failed", error);
+            return [];
+          }
+        }
+
+        async function saveRemoteSelection(list) {
+          if (!REMOTE_STORE) return;
+          const baseUrl = REMOTE_STORE.baseUrl.replace(//$/, "");
+          const tableUrl = baseUrl + "/rest/v1/" + REMOTE_STORE.table;
+          const query = "?profile_id=eq." + encodeURIComponent(REMOTE_STORE.profile);
+          try {
+            await fetch(tableUrl + query, {
+              method: "DELETE",
+              headers: remoteHeaders(),
+            });
+            if (!list.length) {
+              return;
+            }
+            const payload = list.map((name) => ({
+              profile_id: REMOTE_STORE.profile,
+              card_name: name,
+            }));
+            await fetch(tableUrl, {
+              method: "POST",
+              headers: { ...remoteHeaders(), "Content-Type": "application/json", Prefer: "resolution=merge-duplicates" },
+              body: JSON.stringify(payload),
+            });
+          } catch (error) {
+            console.warn("Remote selection save failed", error);
+          }
+        }
+
+        async function persistSelectionState() {
+          const list = Array.from(selectedNames);
+          saveLocalSelection(list);
+          if (REMOTE_STORE) {
+            await saveRemoteSelection(list);
+          }
+        }
+
+        async function copySelected() {
+          if (!copyButton || !selectedNames.size) {
+            return;
+          }
+          const text = Array.from(selectedNames).join("\n");
+          try {
+            await navigator.clipboard.writeText(text);
+            flashCopyState("Copied!");
+          } catch (error) {
+            fallbackCopy(text);
+          }
+        }
+
+        function cardHasRecentSet(card) {
+          return Array.isArray(card.setPrintings) && card.setPrintings.some((set) => isRecentSet(set));
+        }
+
+        function isRecentSet(set) {
+          if (!set || !set.releasedAt) return false;
+          const year = new Date(set.releasedAt).getFullYear();
+          return Number.isFinite(year) && year >= 2024;
+        }
+
+        function latestRecentSet(card) {
+          if (!Array.isArray(card.setPrintings)) return null;
+          const recentSets = card.setPrintings.filter((set) => isRecentSet(set));
+          if (!recentSets.length) return null;
+          return recentSets.sort((a, b) => new Date(b.releasedAt || 0) - new Date(a.releasedAt || 0))[0];
+        }
+
+        function fallbackCopy(text) {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "absolute";
+          textarea.style.left = "-9999px";
+          document.body.appendChild(textarea);
+          textarea.select();
+          try {
+            document.execCommand("copy");
+            flashCopyState("Copied!");
+          } catch (error) {
+            flashCopyState("Copy failed");
+          } finally {
+            document.body.removeChild(textarea);
+          }
+        }
+
+        function flashCopyState(message) {
+          if (!copyButton) return;
+          copyButton.textContent = message;
+          copyButton.disabled = true;
+          setTimeout(() => {
+            refreshCopyButton();
+          }, 1200);
+        }
+
+        function remoteHeaders() {
+          if (!REMOTE_STORE) return {};
+          return {
+            apikey: REMOTE_STORE.apiKey,
+            Authorization: "Bearer " + REMOTE_STORE.apiKey,
+          };
+        }
+        function loadData() {
+          if (location.protocol === "file:" && inlineData) {
+            return Promise.resolve(inlineData);
+          }
+          return fetch(DATA_URL)
+            .then((resp) => {
+              if (!resp.ok) {
+                throw new Error("Failed to load card data");
+              }
+              return resp.json();
+            })
+            .catch((error) => {
+              if (inlineData) {
+                console.warn("Falling back to inline data:", error);
+                return inlineData;
+              }
+              throw error;
+            });
+        }
+      })();
+    </script>
+  </body>
+</html>

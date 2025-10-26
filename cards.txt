@@ -1,0 +1,1632 @@
+Thrum of the Vestige	1569	167751	81102
+Vivi's Thunder Magic	1569	167751	81102
+Hadoken	1569	167751	81102
+Lightning Bolt	1569	167751	81102
+Wild Rose Rebellion	1547	138025	73890
+Counterspell	1547	138025	73890
+Llanowar Elves	1425	119895	70927
+Faithless Looting	1339	129973	69349
+Swords to Plowshares	1658	153625	67662
+You're Gonna Need a Bigger Boat	1390	140037	64259
+Abrade	1390	140037	64259
+Path to Exile	1461	134336	59787
+Endwalker	1444	107254	59370
+Brainstorm	1444	107254	59370
+Prophetic Beginning	1457	114380	56562
+Preordain	1457	114380	56562
+Ponder	1491	110535	56454
+Young Pyromancer	1253	99434	55337
+Thraben Inspector	1352	121576	55321
+Eternal Witness	1318	109642	54100
+Paradise Chocobo	1572	108361	54086
+Blood Crypt	1401	128780	53120
+Mana Leak	1544	122375	53091
+Mulldrifter	1412	78438	52847
+Watery Grave	1410	121637	52773
+Godless Shrine	1326	129546	52737
+Steam Vents	1422	119867	52731
+Monastery Swiftspear	1323	94322	52654
+Overgrown Tomb	1351	124629	52639
+Hallowed Fountain	1348	114389	52512
+Stomping Ground	1340	124675	52457
+Breeding Pool	1405	119798	52297
+Sacred Foundry	1349	133747	52110
+Temple Garden	1333	120785	51964
+Duress	1411	108881	49848
+Evolving Wilds	1340	77656	49349
+Bloodstained Mire	1574	144647	48548
+Polluted Delta	1658	140929	48367
+Flooded Strand	1632	143409	48278
+Elvish Mystic	1374	87683	48205
+Windswept Heath	1560	151328	47732
+Mind Stone	1284	68075	47682
+Wooded Foothills	1553	142031	47638
+Opt	1315	62498	47340
+Fact or Fiction	1380	69854	46425
+Scalding Tarn	1638	137882	46370
+Verdant Catacombs	1579	139396	46278
+Misty Rainforest	1600	137671	46277
+Marsh Flats	1552	144636	46192
+Arid Mesa	1602	144654	46164
+Reclamation Sage	1203	84042	45919
+Solemn Simulacrum	1380	67716	44974
+Ephemerate	1249	93363	44716
+Treasure Cruise	1355	72367	44567
+Encore Electromancer	1510	94642	43787
+Snapcaster Mage	1510	94642	43787
+Flickerwisp	1219	98452	43575
+Baleful Strix	1375	115847	43217
+Sakura-Tribe Elder	1269	80405	43078
+Lingering Souls	1312	107818	42722
+Scavenging Ooze	1292	86833	42598
+Reanimate	1587	103079	42012
+Restoration Angel	1235	82448	41721
+Animate Dead	1563	109043	41503
+Darkness of Eternity	1465	77706	41421
+Dark Ritual	1465	77706	41421
+Shrinking Storm	1294	92289	41408
+Wrath of God	1294	92289	41408
+Mina Harker	1333	92944	41263
+Thalia, Guardian of Thraben	1333	92944	41263
+Mother of Runes	1439	105468	40842
+Thoughtseize	1653	113087	40434
+Battle at the Big Bridge	1359	98103	40002
+Fatal Push	1359	98103	40002
+Carrion Feeder	1239	66014	39927
+Chain Lightning	1453	108672	39596
+Skullclamp	1607	100600	39203
+Blood Artist	1290	56612	38881
+Cultivate	1323	47412	38519
+Remand	1569	107391	38281
+Frantic Search	1395	75613	37621
+Inquisition of Kozilek	1466	103047	37039
+Firebolt	1275	95651	36998
+Chart a Course	1335	80838	36923
+Lightning Helix	1312	82247	36908
+'Tis But a Scratch!	1531	114538	36602
+Dismember	1531	114538	36602
+Sun Titan	1289	56359	36596
+Burst Lightning	1329	102213	36522
+Unearth	1255	66456	36364
+Ravenous Chupacabra	1369	74366	36276
+Sol Ring	14470	107448	36102
+Negate	1301	33365	36027
+Grim Lavamancer	1199	86590	35451
+Rancor	1248	51605	35109
+Lightning Strike	1398	66922	34955
+Oblivion Ring	1316	64939	34839
+Bonecrusher Giant	1450	101672	34677
+The Imperial City of Archades	1247	71388	34534
+Wall of Omens	1247	71388	34534
+The Strahl	1420	96957	34503
+Smuggler's Copter	1420	96957	34503
+Battle Bus	1420	96957	34503
+Consider	1345	65808	34233
+Spell Pierce	1436	78682	33934
+Terramorphic Expanse	1325	46572	33813
+Dark Confidant	1393	79036	33795
+Arbor Elf	1376	67879	33498
+Blade Splicer	1287	83238	33493
+Dig Through Time	1307	68533	33327
+Assaultron Invader	1429	85073	33288
+Walking Ballista	1429	85073	33288
+Acidic Slime	1164	52498	33018
+Shriekmaw	1399	64105	32988
+Phyrexian Metamorph	1382	76004	32812
+Bloodbraid Elf	1313	66677	32776
+Nightfeeder's Visitation	1312	75417	32691
+Night's Whisper	1312	75417	32691
+Fyndhorn Elves	1405	60875	32537
+Courser of Kruphix	1337	78014	32324
+Kolaghan's Command	1293	104496	32269
+Chandra, Torch of Defiance	1364	84751	32137
+Stoneforge Mystic	1415	82980	32125
+Guttersnipe	1274	30920	32081
+Egg Hammer	1339	63735	32012
+Myr Battlesphere	1339	63735	32012
+Liliana of the Veil	1409	80797	31960
+Go for the Throat	1440	51594	31906
+Noble Hierarch	1483	89152	31879
+Demonic Tutor	1727	84192	31710
+Lotus Cobra	1315	69476	31677
+Murderous Rider	1297	97107	31495
+Flametongue Kavu	1391	68599	31473
+Dragon's Rage Channeler	1302	87368	31452
+Brazen Borrower	1412	98393	31393
+West Tek Tyrant	1272	69723	31325
+Grave Titan	1272	69723	31325
+Miscalculation	1491	88595	31319
+Rampant Growth	1312	34101	31236
+Monastery Mentor	1377	68542	31163
+Badlands	1492	84836	30982
+Zulaport Cutthroat	1251	41616	30936
+Soulherder	1226	53832	30842
+Prismatic Vista	1618	112953	30790
+Underground Sea	1579	80967	30774
+Bayou	1418	81593	30664
+Tundra	1480	78956	30652
+Volcanic Island	1565	84587	30585
+Tropical Island	1448	81962	30507
+Scrubland	1354	84446	30488
+Taiga	1411	81773	30477
+Beast Within	1221	37321	30465
+Plateau	1453	88126	30349
+Savannah	1348	80804	30333
+Wurmcoil Engine	1436	60421	30222
+Force of Will	1712	88185	30038
+Hymn to Tourach	1427	77235	30028
+Mechagodzilla, Battle Fortress	1364	68611	30004
+Hangarback Walker	1364	68611	30004
+Bitterblossom	1435	64630	29950
+Porcelain Legionnaire	1329	74414	29931
+Mana Tithe	1287	67740	29875
+Cow-tapult	1303	62321	29861
+Goblin Bombardment	1303	62321	29861
+Astral Titan	1390	65813	29797
+Primeval Titan	1390	65813	29797
+Gitaxian Probe	1471	76949	29645
+Selfless Spirit	1224	75279	29507
+Damnation	1302	64413	29372
+Goblin Guide	1281	61287	29212
+Man-o'-War	1322	35818	29180
+La abundancia de Yucahú	1403	67747	29166
+Sylvan Library	1403	67747	29166
+Fabled Passage	1431	76414	29131
+Goblin Rabblemaster	1288	73787	29119
+Banishing Light	1255	46499	29079
+Merciless Poisoning	1365	75724	29022
+Toxic Deluge	1365	75724	29022
+Exhume	1326	69295	28981
+Vindicate	1271	85279	28943
+Thragtusk	1312	55114	28845
+Skyclave Apparition	1351	83003	28810
+Bonesplitter	1339	51246	28806
+Valley of Gorgoroth	1545	87898	28726
+Wasteland	1545	87898	28726
+Incinerate	1375	71301	28696
+Cathar Commando	1276	66295	28591
+Inferno Titan	1311	62457	28540
+Jace, the Mind Sculptor	1561	78321	28466
+Saheeli, Sublime Artificer	1384	60972	28278
+Deep Analysis	1343	31149	28187
+To the Crystal Tower	1377	71552	28121
+Cryptic Command	1377	71552	28121
+Siege-Gang Commander	1214	47768	28068
+Vendilion Clique	1325	67360	28041
+Deathrite Shaman	1426	59865	28029
+Entomb	1526	72761	28023
+Daze	1396	72345	28004
+Everflowing Chalice	1256	50680	27970
+Dimir Signet	1342	42609	27920
+Strip Mine	1643	79220	27827
+Izzet Signet	1299	41923	27817
+Regrowth	1288	55534	27745
+Narset, Parter of Veils	1495	69019	27550
+Gray Merchant of Asphodel	1284	30323	27535
+Ancient Tomb	1519	64854	27418
+Balin's Tomb	1519	64854	27418
+Azorius Signet	1343	40972	27406
+Master Xande	1318	53696	27396
+Venser, Shaper Savant	1318	53696	27396
+Batterskull	1267	64284	27383
+Thrill of Possibility	1239	31252	27358
+Terminate	1296	38416	27336
+Knight of Autumn	1132	72908	27258
+Mystic Confluence	1489	82929	27243
+Kitchen Finks	1283	70879	27192
+Bhujerba, Floating City	1451	53371	27099
+City of Brass	1451	53371	27099
+Collective Brutality	1331	81619	27092
+Jace, Vryn's Prodigy	1487	73643	27073
+Jace, Telepath Unbound	1487	73643	27073
+Newfound Adventure	1350	38008	26981
+Farseek	1350	38008	26981
+Ramunap Excavator	1349	66968	26734
+Memory Lapse	1522	74837	26633
+Sensei's Divining Top	1450	62252	26621
+Figure of Destiny	1255	75935	26596
+Avacyn's Pilgrim	1294	59747	26543
+Luminarch Aspirant	1349	74728	26455
+Torrential Gearhulk	1298	52413	26447
+Bomat Courier	1226	63794	26404
+Serum Visions	1378	42632	26398
+A Promise Fulfilled	1301	46227	26368
+Light Up the Stage	1301	46227	26368
+Griselbrand	1460	72542	26303
+Ash Barrens	1378	51927	26285
+Orzhov Signet	1185	37529	26238
+Expressive Iteration	1275	69600	26175
+La danza del pueblo	1275	69600	26175
+Giver of Runes	1384	75712	26078
+Rakdos Signet	1235	38838	26069
+Lurrus of the Dream-Den	1431	83076	26010
+Disenchant	1289	33079	25958
+Sneak Attack	1482	73348	25941
+Crucible of Worlds	1375	61599	25916
+Dread Return	1297	33680	25890
+Boros Signet	1214	36620	25840
+Growth Spiral	1235	32459	25776
+Phyrexian Revoker	1283	66385	25769
+Zealous Conscripts	1335	47704	25757
+Green Sun's Zenith	1374	63891	25743
+Charming Prince	1266	49174	25731
+Mayhem Devil	1273	39190	25719
+Unburial Rites	1245	42779	25704
+Whirler Rogue	1280	41406	25620
+Impulse	1352	34531	25578
+Mishra's Factory	1265	51108	25453
+Mystical Tutor	1476	64440	25437
+Esper Sentinel	1455	72085	25416
+Simic Signet	1277	37401	25369
+Umezawa's Jitte	1482	63859	25265
+Cloud's Buster Sword	1482	63859	25265
+Doom Blade	1382	30722	25259
+Ketria Triome	1334	69525	25201
+Satyr Wayfinder	1257	45071	25167
+Fireblast	1223	60327	25163
+Goblin Electromancer	1204	30022	25163
+Ghostbuster's Patch	1203	32998	25108
+Boros Charm	1203	32998	25108
+Craterhoof Behemoth	1304	53496	25069
+Emry, Lurker of the Loch	1389	45338	25010
+Adanto Vanguard	1275	59908	25007
+Izzet Charm	1220	37876	24963
+Gonti, Lord of Luxury	1301	44747	24947
+Zagoth Triome	1367	70037	24936
+Indatha Triome	1257	71245	24912
+Vampiric Tutor	1631	68936	24912
+Savai Triome	1335	74420	24871
+Raugrin Triome	1394	72024	24871
+Glorybringer	1386	65805	24815
+Power Sneakers	1337	41666	24753
+Chancla relámpagos	1337	41666	24753
+Lightning Greaves	1337	41666	24753
+Assassin's Trophy	1214	57877	24721
+Palace Jailer	1508	76282	24694
+Hellrider	1200	58975	24693
+Delver of Secrets	1278	24369	24680
+Insectile Aberration	1278	24369	24680
+Terra Branford	1584	77086	24677
+Urza, Lord High Artificer	1584	77086	24677
+Seasoned Pyromancer	1389	83562	24655
+Kiki-Jiki, Mirror Breaker	1334	48777	24582
+Golgari Signet	1261	35064	24568
+Ignoble Hierarch	1407	97134	24519
+Elspeth, Sun's Champion	1333	52691	24513
+Bloodghast	1278	53465	24502
+Gruul Signet	1259	36073	24489
+Usher of the Fallen	1264	65876	24306
+Mana Confluence	1428	52332	24284
+Tireless Tracker	1316	97196	24284
+Dauntless Bodyguard	1241	54264	24280
+Celestial Colonnade	1330	60962	24275
+Utopia Sprawl	1314	45413	24256
+Phantasmal Image	1293	58593	24214
+Shock	1351	24330	24194
+Tinker	1579	73655	24175
+Stitcher's Supplier	1290	38204	24171
+Oracle of Mul Daya	1341	53474	24087
+Balance	1398	67567	24082
+Viscera Seer	1204	27019	24078
+Selesnya Signet	1234	34721	24044
+Pacifism	1217	26521	23963
+Gingerbrute	1256	37163	23945
+Zidane Tribal	1708	105600	23907
+Ragavan, Nimble Pilferer	1708	105600	23907
+Village Rites	1220	29178	23806
+Wheel of Fortune	1591	68248	23718
+Hero of Bladehold	1219	63130	23675
+Creeping Tar Pit	1364	59762	23543
+Mentor of the Meek	1291	23361	23539
+Thought Scour	1311	39028	23489
+Flame Slash	1426	56225	23431
+The Hexcore	1300	41790	23403
+Thran Dynamo	1300	41790	23403
+Garruk Wildspeaker	1320	58753	23390
+Infernal Grasp	1389	61652	23364
+Pia and Kiran Nalaar	1267	57291	23325
+Bone Shards	1321	67368	23293
+Mana Drain	1775	72206	23263
+Uro, Titan of Nature's Wrath	1377	71645	23224
+Kitesail Freebooter	1355	52852	23196
+Bloodsoaked Champion	1278	45224	23186
+Doomed Traveler	1227	27113	23136
+Baron Rivalry	1291	24163	23079
+Deadly Dispute	1291	24163	23079
+Mishra's Bauble	1412	58756	23061
+Coiling Oracle	1135	29269	23044
+Harmonize	1260	28593	22989
+Wall of Roots	1279	47315	22920
+Questing Beast	1279	71930	22916
+Worn Powerstone	1331	38582	22843
+Fiery Confluence	1359	82080	22798
+Lion Sash	1261	51780	22771
+Elesh Norn, Grand Cenobite	1240	44397	22714
+Necromancy	1448	71587	22694
+Pestermite	1364	42883	22689
+Karn, Scion of Urza	1396	62234	22577
+Lotus Petal	1550	59985	22529
+Chaos Emerald	1550	59985	22529
+Archaeomancer	1367	20981	22501
+Life from the Loam	1377	47252	22492
+Scrounging Deathclaw	1320	48673	22392
+Tarmogoyf	1320	48673	22392
+Murmuring Mystic	1356	24126	22378
+Ophiomancer	1333	59184	22373
+Hero's Downfall	1331	44306	22359
+Raise the Alarm	1200	28205	22292
+Control Magic	1417	38846	22286
+Coalition Relic	1372	62656	22283
+Kari Zev, Skyship Raider	1266	54635	22218
+Post's Citadel	1259	51065	22197
+Kefka's Tower	1259	51065	22197
+Bolas's Citadel	1259	51065	22197
+Goblin Welder	1262	45426	22158
+Adeline, Resplendent Cathar	1337	56683	22149
+Hero of Light	1337	56683	22149
+Shark Typhoon	1347	52628	22122
+Prophetic Prism	1331	23582	22108
+Chrome Mox	1652	66278	22061
+Vampire Nighthawk	1342	26552	22012
+Teferi, Hero of Dominaria	1421	67602	22010
+Recurring Nightmare	1429	62916	21998
+Kodama's Reach	1275	23913	21989
+Council's Judgment	1264	71821	21973
+Enlightened Tutor	1377	48019	21931
+Natural Order	1426	58526	21909
+Phyrexian Arena	1285	25820	21891
+Magma Jet	1315	36937	21820
+Electrolyze	1242	33024	21816
+Gravecrawler	1288	38760	21806
+Looter il-Kor	1325	33402	21728
+Wrenn and Six	1434	85173	21718
+Hydroid Krasis	1260	56363	21669
+魔女の予見	1572	77155	21641
+Force of Negation	1572	77155	21641
+Nissa, Who Shakes the World	1309	57994	21634
+Faith's Fetters	1275	33886	21567
+Stonecoil Serpent	1320	43057	21537
+Cast Down	1381	30386	21528
+Golos, Tireless Pilgrim	1291	68366	21510
+Ugin, the Spirit Dragon	1299	41376	21456
+Sulfur Falls	1252	26415	21446
+Sylvan Caryatid	1323	60313	21428
+Primogenesis	1320	23404	21413
+Feed the Swarm	1320	23404	21413
+Joraga Treespeaker	1326	51192	21393
+Simic Growth Chamber	1197	26634	21352
+Thunderjaw	1221	20524	21339
+Meteor Golem	1221	20524	21339
+Isolated Chapel	1260	27716	21279
+Basalt Monolith	1448	50406	21256
+Woe Strider	1271	44726	21247
+Gurmag Angler	1310	25340	21236
+Reassembling Skeleton	1306	22887	21215
+Mana Vault	1825	63741	21201
+Merfolk Looter	1264	23533	21197
+Gilded Goose	1363	49333	21184
+Judith, the Scourge Diva	1319	43245	21157
+Supreme Verdict	1294	38069	21156
+Spira's Punishment	1256	42170	21113
+Day of Judgment	1256	42170	21113
+Victimize	1310	23786	21107
+Mox Diamond	1764	70596	21096
+Armageddon	1247	48327	21057
+Hinterland Harbor	1222	25473	21032
+Goblin Cratermaker	1206	44163	20999
+Woodland Cemetery	1241	26905	20988
+Sword of Fire and Ice	1377	41873	20974
+Clifftop Retreat	1311	26847	20950
+Teferi, Time Raveler	1520	68609	20939
+Avenger of Zendikar	1293	30814	20928
+Vizzini, Criminal Mastermind	1288	30887	20838
+Baral, Chief of Compliance	1288	30887	20838
+Dwight, Assistant (to the) King	1288	30887	20838
+Gilded Lotus	1298	31752	20784
+Beholder's Death Ray	1484	62760	20771
+Snuff Out	1484	62760	20771
+Tidehollow Sculler	1223	59582	20696
+Rankle, Master of Pranks	1269	47045	20695
+Plaguecrafter	1275	23813	20632
+Oko, Thief of Crowns	1628	77495	20629
+Reflector Mage	1212	36654	20623
+Bloodchief's Thirst	1348	60049	20612
+Black Lotus	29561	85732	20587
+Crystal of Altar Cave	1337	23498	20552
+Chromatic Lantern	1337	23498	20552
+Midnight Reaper	1252	32319	20541
+Qasali Pridemage	1116	36547	20510
+Dragonskull Summit	1245	28152	20489
+Gruul Turf	1243	25464	20479
+Totec's Spear	1316	48228	20476
+Shadowspear	1316	48228	20476
+Morgul-Knife	1316	48228	20476
+The Emperor, Hell Tyrant	1391	43660	20449
+Yawgmoth, Thran Physician	1391	43660	20449
+Raging Ravine	1222	51773	20424
+Hades Grip	1256	47024	20420
+Sulfuric Vortex	1256	47024	20420
+Golgari Rot Farm	1245	24397	20320
+Embereth Shieldbreaker	1221	63414	20309
+Ororo Borealis	1328	50036	20304
+Manamorphose	1328	50036	20304
+Mana Crypt	9869	75317	20265
+Woodfall Primus	1314	64637	20258
+Gaea's Cradle	1490	52761	20240
+Explore	1271	25285	20203
+Izzet Boilerworks	1254	19111	20177
+Abrupt Decay	1266	36552	20141
+Spectral Sailor	1280	22894	20137
+Journey to Nowhere	1357	33779	20130
+Ian, Convalescent Charmer	1250	32401	20106
+Tasigur, the Golden Fang	1250	32401	20106
+Battlefield Forge	1258	27504	20079
+Grafted Wargear	1356	45769	20074
+Giant Growth	1135	16055	20008
+Into the Roil	1298	22998	19974
+Kytheon, Hero of Akros	1279	47605	19957
+Gideon, Battle-Forged	1279	47605	19957
+Dorat, the Perfect Pet	1235	37239	19905
+Sprite Dragon	1235	37239	19905
+Unholy Heat	1347	50676	19901
+Dack Fayden	1425	62828	19900
+Dimir Aqueduct	1230	17844	19821
+Glacial Fortress	1291	24074	19814
+Knight of the Reliquary	1240	56249	19792
+Solitude	1540	84998	19762
+Yojimbo	1540	84998	19762
+Fauna Shaman	1290	40510	19749
+Azorius Chancery	1182	18126	19741
+Caves of Koilos	1202	26934	19697
+Emrakul, the Aeons Torn	1453	53291	19681
+Channel	1424	53246	19651
+Ghostly Flicker	1295	21167	19648
+Battle Screech	1300	30647	19637
+Ornithopter of Paradise	1362	44436	19631
+Scoured Barrens	1232	17101	19620
+Wild Growth	1353	27843	19602
+Selesnya Sanctuary	1204	25298	19591
+Thirst for Knowledge	1295	25096	19552
+Drowned Catacomb	1280	22591	19523
+Elite Spellbinder	1303	73979	19488
+Mutavault	1274	38160	19473
+Thalia, Heretic Cathar	1272	37889	19440
+Chromatic Star	1376	42980	19426
+Urza's Saga	1656	90782	19422
+Upheaval	1368	51986	19415
+Orzhov Basilica	1224	20531	19382
+Talrand, Sky Summoner	1331	16946	19331
+Rodents of Unusual Size	1314	44192	19278
+Pack Rat	1314	44192	19278
+Mogg War Marshal	1273	28280	19272
+Boros Garrison	1189	19905	19260
+Birthing Pod	1256	32075	19256
+Murder	1325	11793	19249
+Tragic Slip	1291	19411	19231
+Scrapheap Scrounger	1286	44054	19224
+Rootbound Crag	1265	25724	19205
+Shivan Reef	1252	22821	19184
+Imperial Recruiter	1303	37635	19184
+Dreadhorde Arcanist	1265	34413	19172
+Fable of the Mirror-Breaker	1665	65227	19120
+Reflection of Kiki-Jiki	1665	65227	19120
+Raffine's Tower	1373	60601	19114
+Golbez, Clad In Darkness	1376	20811	19108
+Syr Konrad, the Grim	1376	20811	19108
+Xander's Lounge	1428	60777	19101
+Hexdrinker	1411	66292	19067
+Talisman of Creativity	1335	34053	19057
+Rakdos Carnarium	1260	19977	19019
+Mox Sapphire	14672	81874	19015
+Read the Bones	1233	21126	19001
+Spara's Headquarters	1364	54306	18940
+Karmic Guide	1223	27646	18937
+Llanowar Wastes	1229	24299	18914
+Third Path Iconoclast	1295	34067	18884
+Jetmir's Garden	1309	57457	18883
+Ziatora's Proving Ground	1335	56633	18846
+Seeker of the Way	1208	25104	18841
+Show and Tell	1408	52916	18839
+Glen Elendra Archmage	1363	40935	18837
+Laelia, the Blade Reforged	1484	70164	18826
+Hornet Queen	1217	34737	18824
+Specimen 73	1217	34737	18824
+Fractured Identity	1474	64058	18821
+Experiment One	1196	25614	18819
+Sunpetal Grove	1251	24508	18814
+Tranquil Cove	1145	14999	18762
+Mox Jet	14441	80310	18756
+Grist, the Hunger Tide	1362	73515	18743
+Talisman of Dominance	1317	33682	18725
+Crop Rotation	1258	35300	18705
+Mox Ruby	14235	76992	18699
+Yavimaya Coast	1191	21990	18661
+Jungle Hollow	1252	14350	18661
+Dismal Backwater	1215	14005	18646
+Wall of Blossoms	1300	26515	18642
+Legion Warboss	1249	31445	18601
+Grim Monolith	1569	52458	18575
+Hedron Archive	1251	22884	18568
+Thornwood Falls	1199	12929	18568
+Cast Out	1258	29863	18564
+Gideon, Ally of Zendikar	1290	48226	18533
+Pteramander	1236	24499	18525
+Mox Pearl	14278	79571	18516
+Paradise Druid	1314	37444	18502
+Survival of the Fittest	1340	48882	18481
+Pyroclasm	1220	27152	18471
+Rishkar, Peema Renegade	1327	29851	18460
+Mox Emerald	13527	76525	18454
+Sulfurous Springs	1255	26296	18445
+Elves of Deep Shadow	1263	30625	18441
+Momentary Blink	1173	22952	18435
+Living Death	1374	31997	18431
+Reveillark	1222	26537	18405
+Blossoming Sands	1165	15618	18395
+Swiftwater Cliffs	1203	12874	18358
+Kroxa, Titan of Death's Hunger	1306	47888	18334
+Dauthi Voidwalker	1373	63580	18331
+Phyrexian Rager	1279	18019	18325
+Noctis's Death Magic	1246	61303	18309
+Damn	1246	61303	18309
+Boseiju, Who Endures	1326	48137	18295
+Ninja of the Deep Hours	1271	20744	18282
+Wayfarer's Bauble	1326	18390	18253
+Murderous Redcap	1319	35614	18244
+Essence Scatter	1346	16720	18237
+Recruiter of the Guard	1270	40087	18227
+Wind-Scarred Crag	1174	13926	18209
+Condemn	1274	27450	18197
+Icy Manipulator	1332	21420	18142
+Tatyova, Benthic Druid	1277	18741	18136
+Sundering Titan	1330	38823	18131
+Rhythm of the Wild	1203	25576	18117
+Dire Fleet Daredevil	1283	42215	18110
+Hostage Taker	1251	30159	18053
+Repeal	1295	32699	18008
+Terastodon	1230	30607	18005
+Soul-Scar Mage	1240	39942	17934
+Talisman of Progress	1383	35667	17933
+Bloodfell Caves	1149	14560	17921
+Fiend Hunter	1309	23076	17919
+Student of Warfare	1202	45897	17915
+Rugged Highlands	1153	14625	17907
+Sign in Blood	1219	16650	17897
+Once Upon a Time	1399	54146	17877
+Time Warp	1373	47573	17853
+Angel of Invention	1285	37915	17850
+Yuna's Holy Magic	1282	60010	17791
+Prismatic Ending	1282	60010	17791
+Thief of Sanity	1259	35913	17750
+Sword of Feast and Famine	1363	29297	17740
+Murderous Cut	1269	23339	17722
+Tolarian Academy	1672	56728	17721
+Giant Killer	1274	39869	17714
+Fallen Shinobi	1294	52056	17668
+Abbot of Keral Keep	1253	32428	17615
+The Scarab God	1364	38691	17504
+Thrashing Brontodon	1195	23767	17503
+Ulamog, the Ceaseless Hunger	1373	38373	17495
+Underworld Breach	1539	48485	17495
+Touch the Spirit Realm	1240	42152	17488
+Talisman of Conviction	1283	34213	17450
+Timetwister	1677	55417	17427
+Thing in the Ice	1308	24742	17384
+Awoken Horror	1308	24742	17384
+Ancestral Recall	14522	79631	17376
+Bastion of Remembrance	1312	25975	17332
+Daretti, Scrap Savant	1228	34908	17323
+Elvish Visionary	1302	21014	17312
+Kor Skyfisher	1330	26207	17291
+Think Twice	1292	14193	17279
+Legion's Landing	1303	34251	17278
+Adanto, the First Fort	1303	34251	17278
+The Eldest Reborn	1319	21668	17269
+Seething Song	1278	38129	17255
+Zurgo Bellstriker	1197	39301	17254
+Goldspan Dragon	1294	43674	17247
+Ledger Shredder	1427	36994	17230
+Through the Breach	1370	57820	17211
+Brimaz, King of Oreskos	1304	36794	17208
+Ifrit	1535	75919	17189
+Fury	1535	75919	17189
+Sower of Temptation	1347	33098	17167
+Burning-Tree Emissary	1262	24211	17167
+Elspeth, Knight-Errant	1310	50855	17146
+Devoted Druid	1284	38711	17132
+Anax, Hardened in the Forge	1231	29956	17110
+Karplusan Forest	1230	22305	17110
+Unexpectedly Absent	1241	62349	17083
+Makari the Lucky Grot	1313	27439	17069
+Chaos Theory	1285	12381	17069
+Krenko, Tin Street Kingpin	1313	27439	17069
+Chaos Warp	1285	12381	17069
+Massacre Wurm	1293	28870	16989
+Perilous Myr	1281	26471	16961
+Thermo-Alchemist	1267	17071	16960
+Time Walk	15469	79990	16926
+Elspeth Conquers Death	1279	36393	16922
+Rabbit Battery	1291	27480	16915
+Sevinne's Reclamation	1247	34705	16915
+Anguished Unmaking	1329	22065	16877
+Dryad of the Ilysian Grove	1374	36117	16874
+Archon of Cruelty	1536	76562	16852
+Hope's Aero Magic	1388	19265	16850
+Cyclonic Rift	1388	19265	16850
+Splinter Twin	1423	39866	16842
+Talisman of Indulgence	1329	26476	16842
+Karakas	1620	63111	16832
+White Tower of Ecthelion	1620	63111	16832
+Spirited Companion	1323	20330	16823
+Nevinyrral's Disk	1266	16795	16819
+Portable Hole	1307	45632	16806
+Esika's Chariot	1289	51895	16798
+Cryptbreaker	1335	31571	16791
+Compulsive Research	1304	18893	16766
+Mirari's Wake	1313	30544	16762
+Noxious Gearhulk	1339	23103	16747
+Brain Freeze	1538	48221	16744
+Underground River	1306	18297	16726
+Snakeskin Veil	1193	22277	16726
+Inspiring Vantage	1309	45017	16700
+Blackcleave Cliffs	1294	43726	16679
+Cloudblazer	1239	19766	16674
+Consecrated Sphinx	1459	31576	16609
+Hard Evidence	1328	38451	16607
+Talisman of Curiosity	1285	34006	16550
+Rofellos, Llanowar Emissary	1302	47138	16519
+Yorion, Sky Nomad	1285	29204	16505
+Trinket Mage	1377	35266	16471
+Land Tax	1328	30129	16463
+Soul Warden	1286	15980	16442
+Hordeling Outburst	1273	22248	16423
+Fastbond	1537	54784	16406
+Serra Angel	1272	13593	16387
+Intangible Virtue	1217	16089	16376
+Llanowar Visionary	1372	27690	16333
+Anima	1458	67374	16309
+Grief	1458	67374	16309
+Mind Twist	1574	43854	16283
+Faerie Seer	1193	20440	16270
+Exploration	1349	37774	16249
+Adarkar Wastes	1293	18838	16236
+The Ball	1416	16229	16227
+Fellwar Stone	1416	16229	16227
+Mizzium Mortars	1342	26062	16203
+Brushland	1232	19236	16203
+The Wandering Emperor	1370	43152	16186
+Mortify	1200	15639	16176
+Spellseeker	1418	48419	16162
+FAS-BOR7 Horus	1364	39197	16158
+Blightsteel Colossus	1364	39197	16158
+Cruel Celebrant	1142	23559	16154
+Opposition	1340	38654	16154
+Spectral Procession	1287	27202	16117
+フェイタリズム	1391	19303	16086
+Arcane Denial	1391	19303	16086
+Blasphemous Act	1296	10582	16069
+Retrofitter Foundry	1478	61425	16052
+Yavimaya Elder	1249	20740	16024
+Voice of Resurgence	1230	30017	16016
+Titania, Protector of Argoth	1394	46523	15992
+Thieving Skydiver	1368	51010	15987
+Gutterbones	1215	34888	15944
+Dead Weight	1265	19318	15919
+Air Shoes	1330	10750	15886
+Swiftfoot Boots	1330	10750	15886
+Robber of the Rich	1269	50147	15864
+Prismari Command	1334	37221	15822
+Supreme Will	1327	26822	15817
+Lórien Revealed	1485	37843	15752
+Harrow	1269	17038	15697
+Yawgmoth's Will	1350	38543	15695
+Talisman of Hierarchy	1222	23396	15686
+Temple of Mystery	1283	13410	15684
+Deceiver Exarch	1314	30872	15680
+Elvish Reclaimer	1288	39885	15676
+Temple of Epiphany	1282	12567	15666
+Search for Azcanta	1310	27323	15646
+Azcanta, the Sunken Ruin	1310	27323	15646
+Reprieve	1427	41557	15600
+Voldaren Epicure	1283	28370	15568
+Time Spiral	1516	54943	15567
+Concealed Courtyard	1211	38070	15559
+Cloudkin Seer	1274	22356	15557
+Maelstrom Pulse	1206	36746	15550
+Liliana, the Last Hope	1321	42705	15546
+Rift Bolt	1238	20239	15535
+Ghal Maraz, the Great Shatterer	1323	17096	15530
+Loxodon Warhammer	1323	17096	15530
+Fiery Temper	1263	19395	15498
+Thassa's Oracle	1400	44080	15426
+Dragon Fodder	1292	15282	15424
+Hypnotic Specter	1325	21602	15383
+Snap	1312	21282	15371
+Spirebluff Canal	1346	37014	15365
+Priest of Forgotten Gods	1241	24486	15344
+Mire Triton	1247	22599	15319
+Condescend	1310	29180	15288
+Karn Liberated	1289	25238	15272
+Thriving Heath	1261	17508	15256
+Containment Priest	1319	48465	15253
+Emrakul, the Promised End	1352	29900	15251
+Gravedigger	1248	12547	15239
+Throw Team-Mate	1158	11553	15206
+Beholder's Telekinetic Ray	1158	11553	15206
+Fling	1158	11553	15206
+Expedition Map	1328	19680	15189
+Languish	1323	27413	15180
+Maze of Ith	1322	22451	15176
+Ultimate Price	1364	21718	15159
+Thriving Isle	1234	16808	15154
+High Tide	1320	26855	15150
+Grisly Salvage	1126	18139	15145
+Augur of Bolas	1257	13646	15139
+Knight of the Ebon Legion	1290	31081	15127
+Thriving Bluff	1275	17833	15107
+Putrefy	1191	13530	15105
+Troll of Khazad-dûm	1468	42574	15094
+Nahiri, the Harbinger	1204	39915	15060
+Shelldock Isle	1395	52997	15041
+Ajani's Pridemate	1171	12578	15035
+Oath of Druids	1294	40793	15023
+Temple of Enlightenment	1240	13006	15017
+Thriving Grove	1299	18009	14994
+Eidolon of the Great Revel	1189	30068	14988
+Temple of Deceit	1257	12747	14986
+Parallax Wave	1392	63036	14942
+Winds of Abandon	1253	46738	14936
+Temple of Silence	1163	13615	14932
+Blooming Marsh	1218	35592	14917
+Dragonlord Atarka	1276	36452	14914
+Chainer's Edict	1253	18963	14899
+Filigree Familiar	1256	16315	14886
+Bring Out Your Dead!	1272	17391	14871
+Buried Alive	1272	17391	14871
+Fire // Ice	1298	58648	14860
+Garnet Til Alexandros 17th	1299	35631	14856
+Loran of the Third Path	1299	35631	14856
+Ornithopter	1253	33723	14844
+Verdurous Gearhulk	1262	27819	14842
+Isamaru, Hound of Konda	1261	26969	14837
+Beanstalk Giant	1271	18563	14831
+Spell Queller	1249	26974	14795
+Daretti, Ingenious Iconoclast	1254	52216	14794
+Mox Opal	1531	30303	14783
+Temple of Malady	1217	12818	14769
+Skewer the Critics	1335	17591	14767
+Thriving Moor	1316	16873	14741
+Riftwing Cloudskate	1343	27631	14698
+Search for Tomorrow	1264	21149	14675
+Incubation Druid	1358	21187	14674
+Shambling Vent	1215	26943	14671
+Botanical Sanctum	1313	33714	14663
+Winter Orb	1298	34584	14647
+Rotting Regisaur	1304	34419	14629
+Pilgrim's Eye	1244	16384	14626
+Treachery	1393	40637	14624
+Finale of Devastation	1252	34905	14620
+Fireball	1292	15715	14612
+Return to Nature	1151	13400	14587
+Copperline Gorge	1239	34562	14573
+Hazoret the Fervent	1288	30569	14548
+Memory Jar	1371	46020	14535
+Gush	1317	25487	14526
+Sheoldred, the Apocalypse	1634	41689	14441
+Nature's Lore	1319	17976	14427
+Tendrils of Agony	1292	34264	14420
+Grapple with the Past	1210	21036	14415
+Nomad Outpost	1201	16313	14405
+Ancestral Blade	1263	20555	14394
+Rimrock Knight	1225	26902	14370
+Huntmaster of the Fells	1265	26552	14369
+Ravager of the Fells	1265	26552	14369
+Sunbaked Canyon	1305	51658	14357
+Earthshaker Khenra	1283	35908	14351
+Sandsteppe Citadel	1255	18069	14347
+Mystic Monastery	1295	15690	14345
+Temple of Triumph	1197	11658	14331
+Sedgemoor Witch	1263	41460	14322
+Wildfire	1225	28214	14315
+Frontier Bivouac	1268	15457	14311
+Order of Midnight	1308	25060	14276
+Goblin Engineer	1262	25882	14271
+Mystic Snake	1218	20419	14261
+Geist of Saint Traft	1303	22850	14241
+Baneslayer Angel	1250	22951	14241
+Disfigure	1333	19027	14238
+Krosan Tusker	1264	18458	14231
+Darkslick Shores	1380	32697	14215
+Field of the Dead	1286	34785	14211
+Endurance	1191	38609	14211
+Cabin of the Dead	1286	34785	14211
+Magus Sisters	1191	38609	14211
+Conclave Tribunal	1274	19929	14205
+Lodestone Golem	1254	25871	14205
+Lavaclaw Reaches	1168	29168	14202
+Gods Willing	1160	16334	14198
+Empty the Warrens	1246	18728	14188
+Rishadan Port	1306	36222	14177
+Vampire Hexmage	1192	31450	14166
+Talisman of Resilience	1256	20746	14106
+Opulent Palace	1255	15463	14106
+Oust	1353	48671	14093
+Sir Bedivere's Scales	1279	12982	14080
+Ashnod's Altar	1279	12982	14080
+Heartless Act	1372	30340	14078
+Rakdos Cackler	1240	26481	14077
+Cordyceps Excision	1296	32193	14076
+Cabal Ritual	1296	32193	14076
+Falkenrath Noble	1309	14647	14068
+Dreadbore	1229	27382	14061
+Lion's Eye Diamond	1564	43060	14050
+Generous Gift	1300	10368	14048
+Beast Whisperer	1273	14204	14045
+Fleshbag Marauder	1228	10573	14044
+Cut Down	1382	29622	14019
+Burnished Hart	1304	9752	14017
+Aether Spellbomb	1356	25952	13991
+Nurturing Peatland	1247	47360	13984
+Unsummon	1240	9325	13981
+Inspiring Overseer	1366	19764	13964
+Fiery Islet	1290	45724	13961
+Sphinx's Revelation	1220	22431	13952
+Archangel Avacyn	1259	32571	13951
+Avacyn, the Purifier	1259	32571	13951
+Library of Alexandria	1680	50191	13937
+Temur Battle Rage	1259	14761	13928
+Stirring Wildwood	1190	25314	13913
+Crumbling Necropolis	1233	15607	13900
+Seachrome Coast	1311	32911	13896
+Galvanic Blast	1322	21850	13880
+Talisman of Impulse	1262	20952	13878
+Search for the Frozen Esper	1209	18005	13867
+Nature's Claim	1209	18005	13867
+Secure the Wastes	1232	28948	13864
+Temple of Abandon	1219	11797	13863
+Thundermaw Hellkite	1254	31342	13849
+Evolution Sage	1298	13645	13839
+Abundant Harvest	1252	44199	13813
+Thespian's Stage	1297	30859	13799
+Shardless Agent	1216	19101	13756
+Temple of Malice	1176	11772	13739
+Lumbering Falls	1201	22832	13723
+Waterlogged Grove	1280	42585	13711
+Temple of Plenty	1192	12552	13708
+Ancestral Vision	1397	23392	13697
+Razorverge Thicket	1142	32303	13693
+Sheoldred, Whispering One	1348	17441	13681
+Castle of Aaargh	1333	32655	13637
+Dark Depths	1333	32655	13637
+Felidar Retreat	1315	17408	13634
+Anafenza, Kin-Tree Spirit	1236	22496	13623
+Slimer's Feast	1295	12082	13622
+Windfall	1295	12082	13622
+Otawara, Soaring City	1347	29001	13614
+Magda, Brazen Outlaw	1348	42503	13591
+Pelt Collector	1249	20667	13588
+Putrid Imp	1242	32868	13559
+All That Glitters	1275	13887	13549
+Spider Spawning	1218	14776	13518
+Arc Trail	1310	40993	13489
+Deep Forest Hermit	1227	36457	13472
+Beholder's Fear Ray	1200	15206	13469
+Drown in the Loch	1200	15206	13469
+Sai, Master Thopterist	1356	17537	13461
+Runaway Steam-Kin	1271	24988	13457
+Champion of Wits	1294	20170	13454
+Omnath, Locus of Creation	1309	46718	13428
+Scrapwork Mutt	1277	28263	13421
+Liliana, Death's Majesty	1334	23936	13402
+Relic of Progenitus	1292	28568	13402
+Intrepid Adversary	1237	47375	13401
+Cathartic Reunion	1285	13974	13400
+Searing Spear	1393	30008	13377
+Bitter Triumph	1409	31301	13370
+Feldon of the Third Path	1253	19370	13329
+Hardened Scales	1299	12748	13301
+Talisman of Unity	1222	20093	13298
+Mesmeric Fiend	1315	30039	13295
+The Banyan Tree	1456	23384	13288
+The Great Henge	1456	23384	13288
+The Party Tree	1456	23384	13288
+Arcane Sanctum	1311	15524	13284
+Frost Titan	1321	15200	13263
+Silent Clearing	1257	46688	13258
+Ulamog, the Infinite Gyre	1315	32818	13234
+Nettlecyst	1305	29571	13226
+Crackling Drake	1272	15149	13225
+Censor	1326	24093	13224
+Mikaeus, the Lunarch	1300	16900	13223
+Jungle Shrine	1231	16661	13207
+Maul of the Skyclaves	1220	21586	13205
+Lightning Axe	1322	17355	13189
+Duskwatch Recruiter	1244	20077	13187
+Krallenhorde Howler	1244	20077	13187
+Bag End	1206	39152	13152
+Horizon Canopy	1206	39152	13152
+Cogwork Librarian	1182	19670	13137
+Char	1309	29915	13133
+Wandering Fumarole	1222	23387	13104
+Siren Stormtamer	1224	13398	13073
+Persist	1361	30918	13070
+Rampaging Baloths	1316	14166	13070
+Elder Gargaroth	1310	31875	13068
+Worldly Tutor	1351	22020	13059
+Sleight of Hand	1354	19563	13054
+Goblin Bushwhacker	1224	17302	13037
+Bedlam Reveler	1190	15198	13026
+Kaldra Compleat	1318	36259	12988
+Ichor Wellspring	1300	15228	12971
+Savannah Lions	1218	14905	12955
+Kiln Fiend	1245	14168	12946
+Escape to the Wilds	1242	27694	12940
+Field of Ruin	1226	13833	12938
+The Gitrog Monster	1320	22150	12901
+Dread Wanderer	1219	30510	12900
+Tangle Wire	1335	28690	12895
+Oliphaunt	1336	34350	12883
+Force Spike	1282	20430	12878
+Seaside Citadel	1235	15508	12875
+Cranial Plating	1382	17222	12865
+Shiva	1412	46085	12836
+Subtlety	1412	46085	12836
+Coldsteel Heart	1427	19164	12836
+History of Benalia	1357	25583	12834
+Heroic Reinforcements	1199	20381	12825
+Alesha, Who Smiles at Death	1218	15374	12820
+Boogie Bomb	1286	25719	12819
+Pyrite Spellbomb	1286	25719	12819
+Savage Lands	1287	15462	12805
+Hissing Quagmire	1154	22469	12754
+The Dead Marshes	1335	19870	12742
+Urborg, Tomb of Yawgmoth	1335	19870	12742
+Pernicious Deed	1223	22215	12732
+Orcish Bowmasters	1789	52198	12683
+Trygon Predator	1128	17350	12681
+Spellskite	1360	18824	12671
+Mindslaver	1296	22958	12665
+Chord of Calling	1240	17506	12658
+Past in Flames	1206	16671	12651
+Prey Upon	1189	11066	12642
+Gifts Ungiven	1313	17368	12638
+Earth's Mightiest Emblem	1609	8639	12603
+Arcane Signet	1609	8639	12603
+Edric, Spymaster of Trest	1192	21618	12602
+Hullbreacher	1683	45037	12582
+Neave Blacktalon	1298	10716	12558
+Squall Leonhart	1298	10716	12558
+Danitha Capashen, Paragon	1298	10716	12558
+Miku, Queen Electric	1195	11715	12549
+Brago, King Eternal	1195	11715	12549
+Mishra's Workshop	1484	32390	12547
+Duplicant	1265	13488	12538
+Oona's Prowler	1195	31464	12524
+Aether Channeler	1313	20147	12491
+Treetop Village	1207	21847	12483
+Izzet Guildgate	1228	9302	12481
+Boros Guildgate	1242	10320	12457
+Arc Lightning	1299	16956	12452
+Valorous Stance	1270	13012	12442
+Faerie Vandal	1228	12562	12442
+Azorius Guildgate	1231	10270	12419
+Champion of the Parish	1293	17253	12416
+Sheoldred's Edict	1360	30059	12415
+Golgari Guildgate	1218	10088	12414
+Tithe Taker	1223	24171	12409
+Seasoned Hallowblade	1253	31843	12402
+Sea Gate Oracle	1279	12976	12399
+Croft Manor	1549	11483	12362
+Cybertron	1549	11483	12362
+The Spire	1549	11483	12362
+Master Emerald Shrine	1549	11483	12362
+Summoner's Rift	1549	11483	12362
+Command Tower	1549	11483	12362
+Jadar, Ghoulcaller of Nephalia	1305	25370	12353
+Mimic Vat	1272	16637	12352
+Hooting Mandrills	1196	14679	12334
+Vault Skirge	1267	19424	12333
+Mirror Entity	1265	16012	12306
+Dimir Guildgate	1271	10033	12298
+Exclude	1419	13397	12286
+Vraska, Golgari Queen	1229	27831	12285
+Simic Guildgate	1251	9186	12268
+Inkwell Leviathan	1285	27182	12242
+Smokestack	1264	26232	12231
+Naturalize	1138	8294	12209
+Beholder's Charm Ray	1429	27849	12200
+Bribery	1429	27849	12200
+Fanatical Firebrand	1162	13581	12198
+Rakdos Guildgate	1249	9779	12194
+Fateful Absence	1381	31764	12191
+Leovold, Emissary of Trest	1237	49123	12190
+Renata, Called to the Hunt	1304	17439	12173
+Disdainful Stroke	1269	9519	12162
+Orzhov Guildgate	1191	10915	12161
+Gruul Guildgate	1218	9663	12149
+Diregraf Ghoul	1153	13536	12138
+Needle Spires	1140	19838	12132
+Mystic Sanctuary	1247	10766	12122
+Echo of Eons	1485	44405	12104
+Anger	1319	14673	12100
+Inti, Seneschal of the Sun	1432	51430	12097
+Kozilek, Butcher of Truth	1312	20901	12091
+Bloodtithe Harvester	1271	28215	12076
+Selesnya Guildgate	1160	10207	12075
+Winding Way	1239	20054	12071
+Foundry Inspector	1265	8485	12069
+Pest Infestation	1420	62549	12064
+Elas il-Kor, Sadistic Pilgrim	1246	12974	12064
+Ajani Vengeant	1230	29576	12061
+Grumgully, the Generous	1259	16128	12042
+Ghost Trap	1335	20838	12033
+Soul-Guide Lantern	1335	20838	12033
+Kefka Palazzo	1308	14499	12025
+Purphoros, God of the Forge	1308	14499	12025
+Dwight Schrute, Hay King	1288	16129	11975
+Heliod, Sun-Crowned	1288	16129	11975
+Falkenrath Aristocrat	1202	24119	11966
+Hidden Stockpile	1244	19670	11959
+Felidar Guardian	1277	15020	11953
+Dualcaster Mage	1143	10244	11953
+Gamble	1259	11954	11948
+Signal Pest	1251	19023	11941
+Pelakka Wurm	1235	15045	11939
+Rogue's Passage	1252	6958	11927
+Watcher for Tomorrow	1255	20115	11908
+Impact Tremors	1349	10077	11895
+Steel Overseer	1274	15779	11890
+Isochron Scepter	1456	13819	11887
+Generous Ent	1320	28567	11875
+Nissa, Voice of Zendikar	1285	25430	11875
+Tyrannosaurus Rex	1356	8549	11873
+Etali, Primal Storm	1356	8549	11873
+Blink of an Eye	1344	14567	11836
+Garruk Relentless	1253	25469	11827
+Garruk, the Veil-Cursed	1253	25469	11827
+Good-Fortune Unicorn	1242	20132	11768
+Dryad Militant	1240	20920	11768
+Treasure Map	1326	18004	11753
+Treasure Cove	1326	18004	11753
+Cankerbloom	1182	15369	11751
+Imperial Seal	1514	36078	11746
+Conclave Mentor	1183	15541	11715
+Tormenting Voice	1124	8190	11712
+Ashiok, Nightmare Weaver	1379	34564	11702
+Overrun	1203	11861	11701
+Omen of the Sea	1213	15360	11700
+Deep-Cavern Bat	1474	40967	11675
+Lose Focus	1400	43079	11665
+Syncopate	1227	11095	11646
+Beetleback Chief	1274	14922	11631
+Fertile Ground	1250	13970	11630
+Velociraptor	1229	23475	11627
+Rampaging Ferocidon	1229	23475	11627
+Palladium Myr	1280	9749	11611
+Nekrataal	1416	15712	11598
+Liliana, Dreadhorde General	1358	12241	11594
+Niv-Mizzet, Parun	1173	13108	11590
+Forbidden Alchemy	1208	9915	11584
+The Meathook Massacre	1417	23465	11584
+Ancient Grudge	1156	14726	11574
+Curiosity	1203	8439	11566
+Myr Retriever	1250	12655	11555
+Ram Through	1161	17197	11527
+Koth of the Hammer	1225	23389	11505
+Grim Flayer	1224	19206	11502
+Basilisk Collar	1366	12490	11501
+Deranged Hermit	1314	25825	11488
+Fiend Artisan	1299	26079	11486
+Faerie Guidemother	1172	19226	11458
+Minsc & Boo, Timeless Heroes	1671	48407	11456
+Gideon Blackblade	1256	28644	11448
+Reckless Charge	1259	15047	11404
+Brineborn Cutthroat	1237	12062	11404
+Stinkweed Imp	1288	13191	11379
+Kiora, Behemoth Beckoner	1241	15352	11376
+Zuran Orb	1303	30134	11368
+Storm-Kiln Artist	1225	9446	11348
+Sword of Body and Mind	1289	18227	11304
+Faerie Mastermind	1323	26759	11297
+Experimental Synthesizer	1281	15170	11297
+Yahenni, Undying Partisan	1233	12734	11297
+Polukranos, World Eater	1248	21377	11294
+Heartfire Immolator	1302	18084	11294
+Morbid Opportunist	1338	16260	11291
+Wood Elves	1314	9825	11287
+Gideon Jura	1202	22613	11286
+Dusk Legion Zealot	1293	16013	11284
+Lutri, the Spellchaser	1482	24135	11261
+Prismatic Lens	1325	12127	11255
+The One Ring	2193	38661	11216
+Stoke the Flames	1313	17935	11207
+Nullpriest of Oblivion	1317	16535	11207
+Ashen Rider	1199	36212	11204
+Goblin Anarchomancer	1212	12931	11197
+Voracious Hydra	1280	26093	11196
+Wishclaw Talisman	1277	25448	11195
+Exotic Orchard	1357	7465	11185
+Clarion Spirit	1318	20103	11174
+Mind's Desire	1294	21583	11169
+Murktide Regent	1340	28539	11168
+Thassa, Deep-Dwelling	1322	12446	11164
+Greater Gargadon	1194	21936	11164
+Healer's Hawk	1229	11781	11144
+Undercity Sewers	1379	67332	11130
+Augur of Autumn	1280	32433	11118
+Thought Monitor	1371	16362	11107
+Springbloom Druid	1287	13262	11106
+Grapeshot	1293	8443	11098
+Skinrender	1306	16462	11087
+Sword of Light and Shadow	1269	13303	11076
+Plow Under	1232	25494	11075
+Ransack the Lab	1189	21600	11047
+Kogla, the Titan Ape	1221	23845	11045
+Tolarian Terror	1282	8720	11041
+Act of Treason	1101	9642	11022
+Storms of Yamatai	1272	14258	11013
+Anger of the Gods	1272	14258	11013
+Blightning	1228	15775	11001
+Underground Mortuary	1286	55070	11001
+True-Name Nemesis	1405	25908	10989
+Kitezh, Sunken City	1217	14988	10988
+Academy Ruins	1217	14988	10988
+Rip Apart	1187	23906	10987
+Welcoming Vampire	1311	17246	10966
+Timeless Dragon	1314	29538	10940
+Avalanche Riders	1313	22146	10910
+Steel Hellkite	1299	10608	10908
+Jace Beleren	1313	11992	10902
+Jadelight Ranger	1280	21148	10898
+Birgi, God of Storytelling	1285	22170	10894
+Displacer Kitten	1369	29095	10889
+Raucous Theater	1305	61557	10867
+Gifted Aetherborn	1196	13009	10866
+Ugin, the Ineffable	1327	15096	10857
+Banefire	1238	20571	10846
+Jackal Pup	1207	15846	10843
+Forgotten Cave	1194	11275	10842
+Trostani Discordant	1188	21687	10841
+Cloudgoat Ranger	1337	17888	10839
+Showdown of the Skalds	1254	31725	10835
+Springleaf Drum	1325	12272	10833
+La abuela, siempre generosa	1317	27251	10829
+Tireless Provisioner	1317	27251	10829
+Nissa, Vastwood Seer	1304	19344	10819
+Nissa, Sage Animist	1304	19344	10819
+Shrine of Burning Rage	1152	19190	10817
+Whip of Erebos	1342	13563	10816
+El Dorado Sarcophagus	1342	13563	10816
+Thundering Falls	1360	59904	10815
+Peregrine Drake	1347	8672	10809
+Sublime Epiphany	1347	20098	10809
+Moon-Circuit Hacker	1157	11755	10808
+Dragonmaster Outcast	1278	11428	10796
+Hogaak, Arisen Necropolis	1244	20653	10776
+Austere Command	1310	7097	10753
+Hedge Maze	1320	57586	10753
+Ghor-Clan Rampager	1213	12965	10752
+Sephiroth, the Savior	1581	38053	10745
+Atraxa, Grand Unifier	1581	38053	10745
+Engineered Explosives	1251	21333	10738
+Shadowy Backstreet	1255	48637	10736
+Juri, Master of the Revue	1262	10950	10727
+Collected Company	1354	18452	10699
+Meticulous Archive	1345	59354	10689
+Skyclave Shade	1257	24665	10682
+Mardu Woe-Reaper	1240	23688	10681
+Doomed Dissenter	1236	8933	10681
+Rise from the Tides	1222	11317	10669
+Spear of Heliod	1213	18147	10666
+Staggershock	1306	17458	10658
+Blast Zone	1236	16211	10654
+Firebrand Archer	1299	11103	10630
+Commercial District	1336	47070	10624
+Gut, True Soul Zealot	1427	50725	10601
+Werebear	1234	11789	10598
+Changeling Outcast	1235	10394	10595
+Kalitas, Traitor of Ghet	1301	16573	10586
+Supply Llama	1273	7144	10582
+Etherium Sculptor	1273	7144	10582
+Aerith's Curaga Magic	1307	7680	10577
+Ulamog's Crusher	1177	11833	10577
+Heroic Intervention	1307	7680	10577
+Abzan Falconer	1228	11257	10552
+Jace, Wielder of Mysteries	1324	24196	10546
+Search the Count's Castle	1275	30394	10541
+Thirst for Discovery	1275	30394	10541
+Lava Dart	1248	18363	10522
+Unbreakable Formation	1268	11786	10517
+Siege Rhino	1250	16122	10507
+Diabolic Edict	1228	10189	10497
+Lush Portico	1202	44951	10448
+Big Score	1289	9814	10435
+Venerated Loxodon	1288	13459	10425
+Prime Mirelurk Queen	1307	19168	10414
+Hullbreaker Horror	1307	19168	10414
+Leonin Relic-Warder	1208	23769	10399
+Magmatic Channeler	1266	16495	10396
+Pithing Needle	1235	12101	10387
+Wild Mongrel	1316	13347	10379
+Da Vulcha	1354	16864	10375
+Skysovereign, Consul Flagship	1354	16864	10375
+Touchdown!	1251	12556	10367
+Approach of the Second Sun	1251	12556	10367
+Dinrova Horror	1257	12409	10367
+Nighthawk Scavenger	1256	17403	10364
+Vengevine	1336	19667	10358
+Knight of the White Orchid	1249	10683	10350
+Hypnotic Sprite	1302	16108	10337
+Ring of Barahir	1357	9615	10323
+Sword of the Animist	1357	9615	10323
+Careful Study	1303	16306	10313
+Squee, Goblin Nabob	1296	15114	10308
+Ahn-Crop Crasher	1303	15377	10306
+Lyra Dawnbringer	1427	17029	10302
+Stromkirk Noble	1252	16144	10301
+Vana'diel Adventurers	1296	9162	10294
+Laboratory Maniac	1296	9162	10294
+Chaotic Chaotician	1296	9162	10294
+Desperate Ritual	1265	18683	10282
+Capsize	1348	11902	10280
+Witching Well	1243	16050	10268
+Lonely Sandbar	1154	9982	10268
+Rally the Peasants	1130	14111	10263
+Sandy Cheeks, Martial Astronaut	1276	18128	10256
+Toski, Bearer of Secrets	1276	18128	10256
+Tezzeret the Seeker	1382	20170	10252
+Ghalta, Primal Hunger	1361	10043	10247
+Cloudfin Raptor	1045	9161	10244
+Altar of Dementia	1256	14502	10243
+Terror	1369	10286	10239
+Chemister's Insight	1282	10169	10238
+Doom Whisperer	1312	15662	10237
+Combustible Gearhulk	1307	10001	10234
+Reality Shift	1296	7088	10229
+Bone Shredder	1397	18059	10228
+Domri, Anarch of Bolas	1246	19880	10224
+Turnabout	1288	22649	10224
+Barren Moor	1256	10406	10217
+Ardenvale Tactician	1211	16209	10214
+Beholder's Disintegration Ray	1350	44024	10210
+Fire Covenant	1350	44024	10210
+Haywire Mite	1210	20784	10196
+Delighted Halfling	1414	30844	10190
+Militia Bugler	1285	13651	10185
+March of Otherworldly Light	1242	19577	10177
+Lovestruck Beast	1273	17783	10168
+Elegant Parlor	1273	51718	10157
+Sram, Senior Edificer	1294	6207	10147
+Firion, Swordmaster	1294	6207	10147
+Chromatic Sphere	1300	15006	10133
+Ethereal Armor	1239	9081	10131
+Panharmonicon	1273	7580	10120
+Pitiless Plunderer	1312	9530	10112
+Primal Command	1227	14577	10110
+Kird Ape	1179	10138	10108
+Kess, Dissident Mage	1209	12994	10100
+Goblin Dark-Dwellers	1213	14010	10085
+Thoughtcast	1311	7141	10085
+Bedevil	1125	9720	10080
+Goreclaw, Terror of Qal Sisma	1284	10984	10075
+Caras Galadhon	1187	10606	10066
+Tranquil Thicket	1187	10606	10066
+Scrap Trawler	1355	13279	10062
+Call of the Herd	1256	15080	10056
+Frenzied Goblin	1139	11451	10039
+Pia Nalaar	1267	12349	10033
+Shadowbringers	1256	6959	10032
+Dovin's Veto	1256	6959	10032
+Lava Coil	1380	12134	10026
+Bazaar of Baghdad	1289	24476	10022
+Thalia's Lieutenant	1264	14195	10017
+Scute Swarm	1400	11520	10017
+Ambush Viper	1214	9536	10014
+Reflecting Pool	1362	11632	10007
+Henneth Annûn	1362	11632	10007
+Witch's Oven	1292	10676	10004
+Garruk's Uprising	1262	7054	9995
+Chandra, Acolyte of Flame	1246	25218	9993
+Nightpack Ambusher	1221	19936	9992
+Gideon's Lawkeeper	1214	13979	9972
+Chainer, Nightmare Adept	1270	9700	9967
+Den Protector	1230	10567	9961
+Flametongue Yearling	1317	35324	9961
+Basking Rootwalla	1253	14348	9956
+Skymarcher Aspirant	1202	21913	9949
+Accorder Paladin	1185	16836	9947
+Fire Diamond	1276	6211	9947
+Necropotence	1272	10015	9937
+Nykthos, Shrine to Nyx	1204	10145	9932
+Circuit Mender	1252	16484	9922
+Shambling Ghast	1275	13046	9898
+Serra Paragon	1278	29113	9898
+Brimstone Volley	1295	11501	9887
+Drana, Liberator of Malakir	1283	12379	9887
+Mnemonic Wall	1318	7994	9877
+Memory Deluge	1347	25959	9875
+Searing Blaze	1226	13370	9875
+Bloodthirsty Adversary	1276	28845	9867
+Princess Sarah	1319	6880	9857
+Miku, Lost but Singing	1319	6880	9857
+Azusa, Lost but Seeking	1319	6880	9857
+Declaration in Stone	1327	15752	9842
+Secluded Steppe	1158	10484	9834
+Dreadhorde Invasion	1308	12185	9832
+Knights of San d'Oria	1287	20822	9827
+Ranger-Captain of Eos	1287	20822	9827
+Metalworker	1357	16388	9820
+Ghost Quarter	1239	7910	9815
+Liliana, Heretical Healer	1319	12705	9808
+Liliana, Defiant Necromancer	1319	12705	9808
+Teshar, Ancestor's Apostle	1302	10642	9787
+Alseid of Life's Bounty	1232	10353	9786
+Myriad Landscape	1321	8095	9782
+Cloudshift	1175	7440	9781
+Blazing Rootwalla	1270	17434	9780
+Irrigated Farmland	1229	15675	9770
+Silverblade Paladin	1261	17405	9768
+Sky Diamond	1259	5967	9762
+Eiganjo, Seat of the Empire	1299	15024	9757
+Evolved Sleeper	1146	24235	9752
+Daxos, Blessed by the Sun	1222	10425	9751
+Thopter Foundry	1443	28151	9741
+Arcbound Ravager	1390	12335	9739
+Krenko's Command	1289	10943	9731
+Hieroglyphic Illumination	1177	11975	9711
+Eagles of the North	1307	22408	9710
+Reckless Impulse	1251	14549	9707
+Bala Ged Recovery	1247	16910	9703
+Shadowmage Infiltrator	1253	10846	9694
+Heirloom Blade	1245	19016	9677
+Imperious Perfect	1251	9055	9669
+Gemstone Mine	1329	18930	9668
+Armadillo Cloak	1179	12431	9656
+Vines of Vastwood	1178	12131	9656
+Charcoal Diamond	1251	6028	9638
+Foulmire Knight	1265	13012	9631
+Pestilence	1278	10556	9627
+Meren of Clan Nel Toth	1304	15439	9624
+Archangel of Thune	1330	12699	9596
+Managorger Hydra	1351	11605	9592
+Settle the Wreckage	1262	19112	9585
+Den of the Bugbear	1305	28335	9571
+Shatterskull Smashing	1245	25925	9559
+Fumigate	1268	11945	9541
+Kappa Cannoneer	1433	24876	9534
+Life // Death	1308	45504	9527
+Thought Vessel	1314	5297	9525
+Wild Nacatl	1211	14655	9524
+Blood Fountain	1350	12268	9515
+Marble Diamond	1270	6123	9515
+Chrome Host Seedshark	1384	19888	9514
+Suture Priest	1233	9966	9508
+Grim Haruspex	1298	7315	9503
+Carnage Tyrant	1358	17756	9499
+Rakdos Charm	1148	5680	9493
+Pongify	1330	5812	9486
+Sphinx of the Steel Wind	1242	32517	9484
+Dawn Warriors' Legacy	1231	10505	9484
+Mizzix's Mastery	1231	10505	9484
+Malcolm, Alluring Scoundrel	1418	31819	9483
+Soulfire Grand Master	1168	18011	9475
+Embercleave	1376	38961	9470
+Thousand-Year Storm	1263	14300	9464
+Orphan, Cocoon fal'Cie	1258	8568	9463
+Muldrotha, the Gravetide	1258	8568	9463
+Dracula's Tomb	1222	11402	9461
+Phyrexian Tower	1222	11402	9461
+Cloud of Faeries	1271	8734	9460
+Colossal Skyturtle	1202	11641	9458
+Ravenous Squirrel	1295	11502	9456
+Golgari Grave-Troll	1206	9671	9443
+Reckoner Bankbuster	1300	17855	9441
+Champion of Lambholt	1244	8694	9426
+Boros Reckoner	1193	11453	9422
+Dromoka's Command	1148	13766	9416
+Leyline Binding	1217	25370	9412
+Aetherize	1244	7452	9403
+Terror of the Peaks	1388	13301	9399
+Torbran, Thane of Red Fell	1250	14953	9399
+Professional Face-Breaker	1383	10415	9394
+End-Raze Forerunners	1237	12877	9392
+Takenuma, Abandoned Mire	1314	14484	9388
+Manifold Key	1374	15013	9383
+Priest of Fell Rites	1231	15692	9363
+Claim the Firstborn	1224	12330	9362
+Judge's Familiar	1275	9030	9362
+Trading Post	1266	9054	9324
+Tear Asunder	1232	22790	9319
+Mothra, Supersonic Queen	1267	15759	9308
+Luminous Broodmoth	1267	15759	9308
+Brain Maggot	1248	14656	9303
+Dungeon Geists	1229	8325	9290
+Emeria Angel	1171	12774	9279
+Custodi Lich	1292	20000	9255
+Three Visits	1373	9847	9249
+We Want . . . A SHRUBBERY!	1373	9847	9249
+Putrid Goblin	1296	16347	9246
+Ghostly Prison	1260	8784	9243
+Metallic Mimic	1308	16499	9239
+Orcish Lumberjack	1214	21625	9234
+Valki, God of Lies	1206	26266	9222
+Breya's Apprentice	1289	20929	9217
+Tooth and Nail	1253	13316	9208
+Baleful Mastery	1270	32373	9207
+Massacre Girl	1259	14556	9199
+Crystal Shard	1342	11474	9197
+Falkenrath Gorger	1259	16200	9191
+Masked Vandal	1181	10352	9183
+Lizard Blades	1309	10532	9182
+Bygone Bishop	1299	11070	9180
+Ob Nixilis Reignited	1381	12434	9174
+Ilharg, the Raze-Boar	1221	13051	9172
+Thrun, the Last Troll	1299	16613	9162
+Twinshot Sniper	1335	16965	9162
+Territorial Kavu	1177	26951	9143
+Shallow Grave	1332	35654	9136
+Viashino Pyromancer	1260	11795	9134
+Skyknight Legionnaire	1188	9163	9119
+Pyretic Ritual	1288	16607	9110
+Urza's Bauble	1411	24784	9108
+Young Wolf	1232	9470	9103
+Balmor, Battlemage Captain	1264	6539	9101
+Answer the Call	1227	13808	9098
+Eladamri's Call	1227	13808	9098
+Krenko, Mob Boss	1362	7317	9098
+Ainok Bond-Kin	1211	9269	9095
+Vandalblast	1244	5090	9095
+Vapor Snag	1276	10693	9093
+Doubling Season	1291	6187	9091
+Traveler's Amulet	1167	6630	9089
+Artisan of Kozilek	1199	8944	9084
+Agent of Treachery	1312	10785	9076
+Recruitment Officer	1287	14985	9039
+Terminus	1205	13064	9027
+Ghitu Lavarunner	1170	9699	9024
+Fetid Pools	1309	15636	9019
+Gather the Townsfolk	1177	11606	9017
+Tenacious Underdog	1311	20418	9010
+Biogenic Ooze	1221	19013	9005
+Portal to Phyrexia	1345	23860	8990
+Sinister Sabotage	1280	10054	8985
+Crypt Rats	1299	10134	8976
+Rekindling Phoenix	1246	17080	8976
+Sheltered Thicket	1266	16601	8969
+Triplicate Titan	1363	35937	8954
+Empyrean Eagle	1152	8643	8953
+Currency Converter	1437	42949	8945
+Cancel	1203	3141	8943
+Sword of the Meek	1419	27076	8940
+Nimble Obstructionist	1189	9055	8939
+Silverbluff Bridge	1293	11576	8936
+Pulse of Murasa	1188	10349	8934
+Inscription of Abundance	1210	13074	8923
+Play with Fire	1318	16043	8920
+City of Traitors	1279	22231	8918
+Aetherflux Reservoir	1288	11306	8917
+Mazemind Tome	1238	15148	8884
+Mutagenic Growth	1238	14382	8883
+Whitemane Lion	1210	9795	8879
+Nadir Kraken	1285	11892	8875
+Elite Guardmage	1232	11733	8868
+Makeshift Munitions	1218	10981	8854
+Rhys the Redeemed	1343	9242	8853
+Razortide Bridge	1307	10042	8850
+Goblin Instigator	1243	9870	8839
+Kings Bay Clock Tower	1312	8251	8836
+Midnight Clock	1312	8251	8836
+Rapid Hybridization	1340	5651	8835
+Chasm Skulker	1195	7072	8832
+Soul Manipulation	1255	9196	8816
+Corpse Knight	1188	12220	8814
+Oni-Cult Anvil	1305	8431	8811
+Swan Song	1337	5072	8803
+Cathartic Pyre	1292	16564	8796
+Smothering Tithe	1491	5425	8796
+Master Splicer	1280	10798	8796
+Flash	1608	48477	8793
+Weathered Wayfarer	1247	12641	8785
+Earthquake	1228	9223	8774
+Meduseld, Golden Hall of Edoras	1216	12142	8759
+Castle Ardenvale	1216	12142	8759
+Fertilid	1225	4951	8757
+Eliminate	1329	17338	8756
+Teysa Karlov	1226	5730	8748
+Forked Bolt	1278	18785	8747
+Insolent Neonate	1250	10679	8743
+Zirda, the Dawnwaker	1203	20829	8742
+Oblivion Stone	1199	10829	8739
+Etali, Primal Conqueror	1414	28854	8729
+Etali, Primal Sickness	1414	28854	8729
+Canyon Slough	1269	15275	8718
+Bushwhack	1288	9146	8706
+Darksteel Citadel	1167	6081	8701
+Electrostatic Infantry	1307	9461	8686
+Blossoming Defense	1198	11643	8681
+The Reality Chip	1267	10679	8678
+Resolute Reinforcements	1282	10563	8665
+Aether Vial	1305	10270	8659
+Arboreal Grazer	1290	12473	8645
+Neutralize	1242	14747	8642
+Glass Casket	1255	10155	8642
+Lotus Bloom	1351	15838	8637
+Triskelion	1370	9346	8637
+Shipwreck Dowser	1293	10458	8631
+Dance of the Dead	1346	17254	8609
+Bone Picker	1265	9043	8606
+Glorious Anthem	1254	11466	8599
+Commander's Sphere	1343	7707	8598
+Mulch	1212	6924	8598
+Firedrinker Satyr	1140	16556	8588
+Corpse Dance	1281	30300	8585
+Blackblade Reforged	1289	5743	8580
+Niv-Mizzet Reborn	1240	21248	8571
+Sorcerous Spyglass	1178	13357	8571
+Island	1286	9181	8567
+Malevolent Rumble	1416	34809	8564
+Azorius Charm	1196	6314	8559
+Pollenbright Druid	1239	7564	8558
+Forgotten Ancient	1221	6396	8540
+Castle Locthwain	1278	8878	8538
+Mistvault Bridge	1275	9594	8537
+Spellgorger Weird	1202	7684	8534
+Asylum Visitor	1238	8821	8531
+Mask of Memory	1249	8914	8526
+Mirrorshell Crab	1266	10556	8522
+Korvold, Fae-Cursed King	1232	11996	8521
+Seat of the Synod	1304	8902	8509
+Travel Preparations	1127	10616	8505
+Phoenix of Ash	1231	22145	8504
+Sylvan Safekeeper	1273	19562	8494
+Burning Prophet	1212	9132	8491
+Pristine Talisman	1256	8218	8489
+Thorn of the Black Rose	1423	8105	8488
+Vito, Thorn of the Dusk Rose	1228	7423	8487
+Faerie Conclave	1185	10645	8485
+Kessig Wolf Run	1140	7347	8470
+Tezzeret's Gambit	1330	7323	8469
+Noctis Lucis Caelum	1182	13039	8468
+Kenrith, the Returned King	1182	13039	8468
+Théoden, Strength Restored	1182	13039	8468
+Cauldron Familiar	1349	8529	8461
+Gala Greeters	1303	12264	8460
+Nested Shambler	1269	13990	8459
+Mist Raven	1315	9738	8453
+Curious Obsession	1235	9489	8444
+Lotleth Troll	1178	11756	8439
+Plains	1218	12815	8438
+Barrow-Downs	1296	4610	8434
+Bojuka Bog	1296	4610	8434
+Devil's Play	1301	11662	8427
+Kumano Faces Kakkazan	1262	13864	8422
+Etching of Kumano	1262	13864	8422
+Containment Construct	1229	14188	8420
+Charging Monstrosaur	1215	12039	8415
+Swamp	1285	9349	8414
+Novice Inspector	1369	16634	8407
+Drossforge Bridge	1276	10265	8405
+Scattered Groves	1263	14280	8398
+Braids, Arisen Nightmare	1282	8882	8391
+Scroll Rack	1352	10329	8382
+Shivan Dragon	1253	5521	8382
+Strangleroot Geist	1175	8670	8376
+Sorin, Lord of Innistrad	1198	15867	8350
+Aven Mindcensor	1184	7338	8349
+Merfolk Branchwalker	1284	12209	8343
+Behold the Multiverse	1322	11406	8334
+Rustvale Bridge	1236	9788	8334
+Mountain	1219	9530	8334
+Phelia, Exuberant Shepherd	1414	47054	8332
+Absorb	1232	8117	8331
+Stern Scolding	1348	26008	8323
+Re-Roll	1276	5090	8299
+Suspicious Stowaway	1310	28544	8299
+Seafaring Werewolf	1310	28544	8299
+Rewind	1276	5090	8299
+Sweltering Suns	1203	15721	8295
+Genesis	1260	8494	8295
+Rabid Bite	1178	6145	8294
+Tourach, Dread Cantor	1328	28091	8287
+Clone	1204	5590	8285
+Stay with Me	1526	4385	8283

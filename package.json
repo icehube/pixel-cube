@@ -1,0 +1,12 @@
+{
+  "name": "cube",
+  "version": "1.0.0",
+  "description": "Generate Magic: The Gathering card galleries from cube list files.",
+  "main": "scripts/generate.js",
+  "scripts": {
+    "generate": "node scripts/generate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
