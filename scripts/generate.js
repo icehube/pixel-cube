@@ -1352,16 +1352,13 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
 
         async function loadRemoteSelection() {
           if (!REMOTE_STORE) return [];
-          const baseUrl = REMOTE_STORE.baseUrl.replace(/\\\/$/, "");
+          const endpoint = REMOTE_STORE.endpoint;
+          if (!endpoint) return [];
           try {
-            const url =
-              baseUrl +
-              "/rest/v1/" +
-              REMOTE_STORE.table +
-              "?profile_id=eq." +
-              encodeURIComponent(REMOTE_STORE.profile) +
-              "&select=card_name";
-            const resp = await fetch(url, { headers: remoteHeaders() });
+            const resp = await fetch(endpoint + "?profile_id=" + encodeURIComponent(REMOTE_STORE.profile), {
+              headers: remoteHeaders(),
+              method: "GET",
+            });
             if (!resp.ok) {
               throw new Error("HTTP " + resp.status);
             }
@@ -1375,26 +1372,21 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
 
         async function saveRemoteSelection(list) {
           if (!REMOTE_STORE) return;
-          const baseUrl = REMOTE_STORE.baseUrl.replace(/\\\/$/, "");
+          const endpoint = REMOTE_STORE.endpoint;
+          if (!endpoint) return;
           try {
-            const tableUrl = baseUrl + "/rest/v1/" + REMOTE_STORE.table;
-            const query = "?profile_id=eq." + encodeURIComponent(REMOTE_STORE.profile);
-            await fetch(tableUrl + query, {
-              method: "DELETE",
-              headers: remoteHeaders(),
-            });
-            if (!list.length) {
-              return;
-            }
             const payload = list.map((name) => ({
               profile_id: REMOTE_STORE.profile,
               card_name: name,
             }));
-            await fetch(tableUrl, {
+            const resp = await fetch(endpoint + "?profile_id=" + encodeURIComponent(REMOTE_STORE.profile), {
               method: "POST",
-              headers: { ...remoteHeaders(), "Content-Type": "application/json", Prefer: "resolution=merge-duplicates" },
+              headers: { ...remoteHeaders(), "Content-Type": "application/json" },
               body: JSON.stringify(payload),
             });
+            if (!resp.ok) {
+              throw new Error("HTTP " + resp.status);
+            }
           } catch (error) {
             console.warn("Remote selection save failed", error);
           }
@@ -1501,8 +1493,8 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         function remoteHeaders() {
           if (!REMOTE_STORE) return {};
           return {
-            apikey: REMOTE_STORE.apiKey,
-            Authorization: "Bearer " + REMOTE_STORE.apiKey,
+            apikey: REMOTE_STORE.anonKey,
+            Authorization: "Bearer " + REMOTE_STORE.serviceRole,
           };
         }
         function loadData() {
@@ -1636,16 +1628,18 @@ function parseCliArguments(argv) {
 
 function buildRemoteStoreConfig() {
   const baseUrl = process.env.REMOTE_STORE_URL;
-  const apiKey = process.env.REMOTE_STORE_KEY;
+  const anonKey = process.env.REMOTE_STORE_KEY;
+  const serviceRole = process.env.REMOTE_STORE_SERVICE_ROLE || anonKey;
   const table = process.env.REMOTE_STORE_TABLE || "card_selections";
   const profile = process.env.REMOTE_STORE_PROFILE || null;
-  if (!baseUrl || !apiKey || !profile) {
+  if (!baseUrl || !anonKey || !profile) {
     return null;
   }
   return {
-    provider: "supabase",
     baseUrl,
-    apiKey,
+    endpoint: baseUrl,
+    anonKey,
+    serviceRole,
     table,
     profile,
   };

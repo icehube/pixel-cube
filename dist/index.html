@@ -280,7 +280,7 @@
   <body>
     <header>
       <h1>Pixel Cube Cards</h1>
-      <p class="notice">Generated 10/26/2025, 4:05:53 PM from cards.txt.</p>
+      <p class="notice">Generated 10/26/2025, 4:26:36 PM from cards.txt.</p>
     </header>
     <section class="controls" data-controls>
       <div class="control">
@@ -248560,16 +248560,13 @@
 
         async function loadRemoteSelection() {
           if (!REMOTE_STORE) return [];
-          const baseUrl = REMOTE_STORE.baseUrl.replace(/\/$/, "");
+          const endpoint = REMOTE_STORE.endpoint;
+          if (!endpoint) return [];
           try {
-            const url =
-              baseUrl +
-              "/rest/v1/" +
-              REMOTE_STORE.table +
-              "?profile_id=eq." +
-              encodeURIComponent(REMOTE_STORE.profile) +
-              "&select=card_name";
-            const resp = await fetch(url, { headers: remoteHeaders() });
+            const resp = await fetch(endpoint + "?profile_id=" + encodeURIComponent(REMOTE_STORE.profile), {
+              headers: remoteHeaders(),
+              method: "GET",
+            });
             if (!resp.ok) {
               throw new Error("HTTP " + resp.status);
             }
@@ -248583,26 +248580,21 @@
 
         async function saveRemoteSelection(list) {
           if (!REMOTE_STORE) return;
-          const baseUrl = REMOTE_STORE.baseUrl.replace(/\/$/, "");
+          const endpoint = REMOTE_STORE.endpoint;
+          if (!endpoint) return;
           try {
-            const tableUrl = baseUrl + "/rest/v1/" + REMOTE_STORE.table;
-            const query = "?profile_id=eq." + encodeURIComponent(REMOTE_STORE.profile);
-            await fetch(tableUrl + query, {
-              method: "DELETE",
-              headers: remoteHeaders(),
-            });
-            if (!list.length) {
-              return;
-            }
             const payload = list.map((name) => ({
               profile_id: REMOTE_STORE.profile,
               card_name: name,
             }));
-            await fetch(tableUrl, {
+            const resp = await fetch(endpoint + "?profile_id=" + encodeURIComponent(REMOTE_STORE.profile), {
               method: "POST",
-              headers: { ...remoteHeaders(), "Content-Type": "application/json", Prefer: "resolution=merge-duplicates" },
+              headers: { ...remoteHeaders(), "Content-Type": "application/json" },
               body: JSON.stringify(payload),
             });
+            if (!resp.ok) {
+              throw new Error("HTTP " + resp.status);
+            }
           } catch (error) {
             console.warn("Remote selection save failed", error);
           }
@@ -248709,8 +248701,8 @@
         function remoteHeaders() {
           if (!REMOTE_STORE) return {};
           return {
-            apikey: REMOTE_STORE.apiKey,
-            Authorization: "Bearer " + REMOTE_STORE.apiKey,
+            apikey: REMOTE_STORE.anonKey,
+            Authorization: "Bearer " + REMOTE_STORE.serviceRole,
           };
         }
         function loadData() {

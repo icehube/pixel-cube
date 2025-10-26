@@ -32,7 +32,7 @@ This personal tool converts a cube list (for example `cards.txt`) into a visual 
 - Cards introduced by a later run are tagged with a `NEW` badge so they’re easy to spot. Existing entries keep their previous data, and rerunning the same file simply refreshes those records without duplicating them.
 - To regenerate the HTML/CSS without re-importing data, re-run the command with `--render-only` (e.g. `npm run generate -- cards.txt --render-only`). This reuses the cached `dist/cards.json` and only rewrites the HTML shell.
 - Card selections are sticky: every card row now has a checkbox, and the “Copy Selected” button grabs the checked card names to your clipboard. Selections persist automatically via `localStorage`, so each device remembers its own picks.
-- Optional cloud sync: if you want selections to follow you across devices, provide a Supabase REST endpoint (free tier works great). Set these env vars while running the generator (or inside Cloudflare Pages → Settings → Environment variables):
+- Optional cloud sync: if you want selections to follow you across devices, provide a Supabase REST endpoint (free tier works great). Set these env vars **before running the generator** (or add them to Cloudflare Pages → Settings → Environment variables):
 
   ```bash
   REMOTE_STORE_URL="https://your-project.supabase.co" \
