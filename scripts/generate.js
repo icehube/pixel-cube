@@ -711,6 +711,9 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         opacity: 0.45;
         cursor: not-allowed;
       }
+      .recent-filters {
+        margin: 1rem 0;
+      }
       .card__image {
         display: block;
         border-bottom: 1px solid rgba(226, 232, 240, 0.9);
@@ -941,6 +944,12 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
     <p id="loading-state" class="loading">Loading cards…</p>
     <section id="cards-grid" class="grid" aria-live="polite"></section>
     <p id="empty-state" class="empty-state" hidden>No cards match the current filter.</p>
+    <section class="recent-filters" data-recent-filters hidden>
+      <label class="checkbox">
+        <input type="checkbox" id="recent-hide-selected" />
+        Hide checked cards
+      </label>
+    </section>
     <section id="recent-list" class="recent-list" hidden aria-live="polite"></section>
     <script id="card-data" type="application/json">${inlineDataset}</script>
     <script>
@@ -972,6 +981,8 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         const copyButton = document.getElementById("copy-selected");
         const controlsSection = document.querySelector("[data-controls]");
         const tabButtons = Array.from(document.querySelectorAll(".tab-button"));
+        const recentFilters = document.querySelector("[data-recent-filters]");
+        const hideSelectedToggle = document.getElementById("recent-hide-selected");
         const inlineDataEl = document.getElementById("card-data");
         const inlineData = inlineDataEl ? JSON.parse(inlineDataEl.textContent) : null;
 
@@ -986,7 +997,7 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
             allCards = Array.isArray(payload.cards) ? payload.cards : [];
             (storedSelection || []).forEach((name) => selectedNames.add(name));
             refreshCopyButton();
-            render();
+            renderActiveTab();
           })
           .catch((error) => {
             if (loadingState) {
@@ -1016,6 +1027,13 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           copyButton.addEventListener("click", copySelected);
           refreshCopyButton();
         }
+        if (hideSelectedToggle) {
+          hideSelectedToggle.addEventListener("change", () => {
+            if (activeTab === "recent") {
+              renderRecentList();
+            }
+          });
+        }
         tabButtons.forEach((button) => {
           button.addEventListener("click", () => {
             const tab = button.dataset.tab;
@@ -1029,6 +1047,7 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         function renderActiveTab() {
           if (activeTab === "gallery") {
             if (controlsSection) controlsSection.hidden = false;
+            if (recentFilters) recentFilters.hidden = true;
             grid.hidden = false;
             emptyState.hidden = true;
             recentList.hidden = true;
@@ -1037,6 +1056,7 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
             renderCards(sorted);
           } else if (activeTab === "recent") {
             if (controlsSection) controlsSection.hidden = true;
+            if (recentFilters) recentFilters.hidden = false;
             grid.hidden = true;
             emptyState.hidden = true;
             renderRecentList();
@@ -1155,13 +1175,19 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           if (loadingState) {
             loadingState.hidden = true;
           }
+          const hideSelected = hideSelectedToggle?.checked;
           const entries = allCards
             .map((card) => {
               const recentSet = latestRecentSet(card);
               return recentSet ? { card, recentSet } : null;
             })
             .filter(Boolean)
-            .sort((a, b) => new Date(b.recentSet.releasedAt || 0) - new Date(a.recentSet.releasedAt || 0) || a.card.name.localeCompare(b.card.name));
+            .filter((entry) => !(hideSelected && selectedNames.has(entry.card.name)))
+            .sort((a, b) => {
+              const dateDelta = new Date(b.recentSet.releasedAt || 0) - new Date(a.recentSet.releasedAt || 0);
+              if (dateDelta !== 0) return dateDelta;
+              return a.card.name.localeCompare(b.card.name);
+            });
 
           recentList.innerHTML = "";
           if (!entries.length) {
