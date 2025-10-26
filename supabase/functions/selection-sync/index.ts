@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "https://cube.kylehuberman.ca",
+  "Access-Control-Allow-Origin": "https://cube.kylehuberman.com",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type",
