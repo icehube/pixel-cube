@@ -769,7 +769,7 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
       }
       .card__sets-title {
         margin: 0 0 0.45rem;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 0.06em;
         color: #0f172a;
