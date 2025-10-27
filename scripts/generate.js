@@ -1482,7 +1482,7 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
               alert("No cards available to export yet.");
               return;
             }
-            const blob = new Blob([list.join("\n")], { type: "text/plain" });
+            const blob = new Blob([list.join("\\n")], { type: "text/plain" });
             const url = URL.createObjectURL(blob);
             const anchor = document.createElement("a");
             anchor.href = url;

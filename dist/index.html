@@ -308,7 +308,7 @@
   <body>
     <header>
       <h1>Pixel Cube Cards</h1>
-      <p class="notice">Generated 10/26/2025, 8:50:47 PM from cards.txt.</p>
+      <p class="notice">Generated 10/26/2025, 8:57:04 PM from cards.txt.</p>
     </header>
     <section class="controls" data-controls>
       <div class="control">
@@ -248690,8 +248690,7 @@
               alert("No cards available to export yet.");
               return;
             }
-            const blob = new Blob([list.join("
-")], { type: "text/plain" });
+            const blob = new Blob([list.join("\n")], { type: "text/plain" });
             const url = URL.createObjectURL(blob);
             const anchor = document.createElement("a");
             anchor.href = url;
