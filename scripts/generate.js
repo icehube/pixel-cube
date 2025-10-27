@@ -697,6 +697,34 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         opacity: 0.45;
         cursor: not-allowed;
       }
+      .multi-select {
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        border-radius: 12px;
+        padding: 0.35rem 0.65rem;
+        background: #fff;
+        max-width: 240px;
+      }
+      .multi-select summary {
+        cursor: pointer;
+        font-weight: 600;
+        list-style: none;
+      }
+      .multi-select[open] summary {
+        margin-bottom: 0.5rem;
+      }
+      .multi-select__options {
+        max-height: 220px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      .multi-select__option {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.9rem;
+      }
       .card__image {
         display: block;
         border-bottom: 1px solid rgba(226, 232, 240, 0.9);
@@ -907,6 +935,13 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         </select>
       </div>
       <div class="control">
+        <label class="control__label">Sets</label>
+        <details class="multi-select" id="set-filter">
+          <summary>Filter Sets</summary>
+          <div id="set-filter-options" class="multi-select__options"></div>
+        </details>
+      </div>
+      <div class="control">
         <label class="control__label" for="rarity-select">Rarity</label>
         <select id="rarity-select" class="sort-select">
           <option value="all">All rarities</option>
@@ -917,8 +952,8 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         </select>
       </div>
       <div class="control">
-        <span class="control__label">Selected Cards</span>
-        <button id="copy-selected" class="copy-button" disabled>Copy Selected</button>
+        <span class="control__label">Export</span>
+        <button id="export-selected" class="copy-button" disabled>Download Selected</button>
       </div>
     </section>
     <p id="loading-state" class="loading">Loading cards…</p>
@@ -950,10 +985,11 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         const sortSelect = document.getElementById("sort-select");
         const colorInputs = Array.from(document.querySelectorAll(".color-filter input"));
         const landsToggle = document.getElementById("lands-toggle");
-        const copyButton = document.getElementById("copy-selected");
         const recentFilterToggle = document.getElementById("filter-recent");
         const ownershipSelect = document.getElementById("ownership-select");
         const raritySelect = document.getElementById("rarity-select");
+        const setFilterOptionsEl = document.getElementById("set-filter-options");
+        const exportButton = document.getElementById("export-selected");
         const inlineDataEl = document.getElementById("card-data");
         const inlineData = inlineDataEl ? JSON.parse(inlineDataEl.textContent) : null;
 
@@ -961,13 +997,22 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
         let activeColors = new Set(FILTER_CODES);
         const selectedNames = new Set();
         let saveTimeout = null;
+        let renderTimeout = null;
+        let remoteSyncTriggered = false;
+        const activeSets = new Set();
+        const availableSets = new Map();
 
-        Promise.all([loadData(), loadSelectionState()])
-          .then(([payload, storedSelection]) => {
+        loadData()
+          .then((payload) => {
             allCards = Array.isArray(payload.cards) ? payload.cards : [];
-            (storedSelection || []).forEach((name) => selectedNames.add(name));
-            refreshCopyButton();
+            loadLocalSelection()
+              .filter(Boolean)
+              .forEach((name) => selectedNames.add(name));
+            refreshExportState();
+            buildAvailableSets();
+            populateSetFilters();
             renderCardsView();
+            return syncRemoteSelectionState();
           })
           .catch((error) => {
             if (loadingState) {
@@ -985,26 +1030,25 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
             } else {
               activeColors.delete(input.value);
             }
-            renderCardsView();
+            requestRender();
           });
         });
 
-        sortSelect.addEventListener("change", () => renderCardsView());
+        sortSelect.addEventListener("change", () => requestRender());
         if (landsToggle) {
-          landsToggle.addEventListener("change", () => renderCardsView());
+          landsToggle.addEventListener("change", () => requestRender());
         }
-        if (copyButton) {
-          copyButton.addEventListener("click", copySelected);
-          refreshCopyButton();
+        if (exportButton) {
+          exportButton.addEventListener("click", exportSelectedCards);
         }
         if (recentFilterToggle) {
-          recentFilterToggle.addEventListener("change", () => renderCardsView());
+          recentFilterToggle.addEventListener("change", () => requestRender());
         }
         if (ownershipSelect) {
-          ownershipSelect.addEventListener("change", () => renderCardsView());
+          ownershipSelect.addEventListener("change", () => requestRender());
         }
         if (raritySelect) {
-          raritySelect.addEventListener("change", () => renderCardsView());
+          raritySelect.addEventListener("change", () => requestRender());
         }
 
         function matchesColorFilter(card) {
@@ -1099,12 +1143,23 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           };
         }
 
+        function requestRender() {
+          if (renderTimeout !== null) {
+            return;
+          }
+          renderTimeout = setTimeout(() => {
+            renderTimeout = null;
+            renderCardsView();
+          }, 50);
+        }
+
         function renderCardsView() {
           const filtered = allCards
             .filter((card) => matchesColorFilter(card) && matchesLandFilter(card))
             .filter((card) => matchesRecentFilter(card))
             .filter((card) => matchesOwnershipFilter(card))
-            .filter((card) => matchesRarityFilter(card));
+            .filter((card) => matchesRarityFilter(card))
+            .filter((card) => matchesSetFilter(card));
           const sorted = sortCards(filtered, sortSelect.value);
           renderCards(sorted);
         }
@@ -1157,9 +1212,9 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
             } else {
               selectedNames.delete(card.name);
             }
-            refreshCopyButton();
+            refreshExportState();
             scheduleSaveSelection();
-            renderCardsView();
+            requestRender();
           });
           nameRow.appendChild(checkbox);
           const name = document.createElement("h2");
@@ -1303,11 +1358,9 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           return colors.map((code) => COLOR_LABELS[code] ?? code).join(", ");
         }
 
-        function refreshCopyButton() {
-          if (!copyButton) return;
-          const count = selectedNames.size;
-          copyButton.textContent = count ? "Copy Selected (" + count + ")" : "Copy Selected";
-          copyButton.disabled = count === 0;
+        function refreshExportState() {
+          if (!exportButton) return;
+          exportButton.disabled = !REMOTE_STORE && selectedNames.size === 0;
         }
 
         function scheduleSaveSelection() {
@@ -1317,17 +1370,6 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           saveTimeout = setTimeout(() => {
             persistSelectionState().catch((error) => console.warn("Failed to persist selections", error));
           }, 400);
-        }
-
-        async function loadSelectionState() {
-          if (REMOTE_STORE) {
-            const remoteData = await loadRemoteSelection();
-            if (remoteData && remoteData.length) {
-              saveLocalSelection(remoteData);
-              return remoteData;
-            }
-          }
-          return loadLocalSelection();
         }
 
         function loadLocalSelection() {
@@ -1392,6 +1434,29 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           }
         }
 
+        async function syncRemoteSelectionState() {
+          if (!REMOTE_STORE || remoteSyncTriggered) {
+            return;
+          }
+          remoteSyncTriggered = true;
+          const remoteData = await loadRemoteSelection();
+          if (!remoteData || !remoteData.length) {
+            return;
+          }
+          let changed = false;
+          remoteData.forEach((name) => {
+            if (!selectedNames.has(name)) {
+              selectedNames.add(name);
+              changed = true;
+            }
+          });
+          if (changed) {
+            saveLocalSelection(Array.from(selectedNames));
+            refreshExportState();
+            requestRender();
+          }
+        }
+
         async function persistSelectionState() {
           const list = Array.from(selectedNames);
           saveLocalSelection(list);
@@ -1400,20 +1465,42 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           }
         }
 
-        async function copySelected() {
-          if (!copyButton || !selectedNames.size) {
-            return;
-          }
-          const text = Array.from(selectedNames).join("\\n");
+        async function exportSelectedCards() {
+          if (!exportButton) return;
+          const previous = exportButton.textContent;
+          exportButton.disabled = true;
+          exportButton.textContent = "Exporting...";
           try {
-            await navigator.clipboard.writeText(text);
-            flashCopyState("Copied!");
+            let list = [];
+            if (REMOTE_STORE) {
+              list = await loadRemoteSelection();
+            }
+            if (!list || !list.length) {
+              list = Array.from(selectedNames);
+            }
+            if (!list.length) {
+              alert("No cards available to export yet.");
+              return;
+            }
+            const blob = new Blob([list.join("\n")], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const anchor = document.createElement("a");
+            anchor.href = url;
+            anchor.download = "selected-cards.txt";
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+            URL.revokeObjectURL(url);
           } catch (error) {
-            fallbackCopy(text);
+            console.error("Failed to export cards", error);
+            alert("Unable to export cards. Please try again.");
+          } finally {
+            exportButton.textContent = previous;
+            refreshExportState();
           }
         }
 
-        function matchesRecentFilter(card) {
+function matchesRecentFilter(card) {
           if (!recentFilterToggle?.checked) {
             return true;
           }
@@ -1444,6 +1531,67 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           return card.setPrintings.some((set) =>
             Array.isArray(set.rarities) && set.rarities.some((rarity) => rarity === desired)
           );
+        }
+
+        function matchesSetFilter(card) {
+          if (!setFilterOptionsEl || !activeSets.size) {
+            return true;
+          }
+          if (!Array.isArray(card.setPrintings)) {
+            return true;
+          }
+          return card.setPrintings.some((set) => set.setCode && activeSets.has(set.setCode));
+        }
+
+        function buildAvailableSets() {
+          availableSets.clear();
+          allCards.forEach((card) => {
+            (card.setPrintings || []).forEach((set) => {
+              if (!set.setCode) {
+                return;
+              }
+              if (!availableSets.has(set.setCode)) {
+                availableSets.set(set.setCode, set.setName || set.setCode);
+              }
+            });
+          });
+        }
+
+        function populateSetFilters() {
+          if (!setFilterOptionsEl) return;
+          if (!availableSets.size) {
+            buildAvailableSets();
+          }
+          if (!activeSets.size) {
+            availableSets.forEach((_, code) => activeSets.add(code));
+          }
+          const entries = Array.from(availableSets.entries()).sort((a, b) => a[1].localeCompare(b[1]));
+          setFilterOptionsEl.innerHTML = "";
+          entries.forEach(([code, name]) => {
+            const label = document.createElement("label");
+            label.className = "multi-select__option";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.value = code;
+            checkbox.checked = activeSets.has(code);
+            checkbox.addEventListener("change", () => {
+              if (checkbox.checked) {
+                activeSets.add(code);
+              } else {
+                activeSets.delete(code);
+              }
+              if (!activeSets.size) {
+                entries.forEach(([entryCode]) => activeSets.add(entryCode));
+                setFilterOptionsEl.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+                  input.checked = true;
+                });
+              }
+              requestRender();
+            });
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(name));
+            setFilterOptionsEl.appendChild(label);
+          });
         }
 
         function cardHasRecentSet(card) {
@@ -1486,7 +1634,7 @@ function renderHtml({ colorLabel, sourceFileName, dataPath, datasetString, datas
           copyButton.textContent = message;
           copyButton.disabled = true;
           setTimeout(() => {
-            refreshCopyButton();
+            refreshExportState();
           }, 1200);
         }
 
