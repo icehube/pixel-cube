@@ -127,6 +127,29 @@
       .multi-select[open] summary {
         margin-bottom: 0.5rem;
       }
+      .multi-select__controls {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        margin-bottom: 0.5rem;
+      }
+      .multi-select__controls input {
+        padding: 0.35rem 0.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+      }
+      .multi-select__actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .multi-select__actions button {
+        flex: 1;
+        padding: 0.25rem 0.5rem;
+        border-radius: 8px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: #f1f5f9;
+        cursor: pointer;
+      }
       .multi-select__options {
         max-height: 220px;
         overflow-y: auto;
@@ -168,13 +191,35 @@
       .card__badge {
         font-size: 0.72rem;
         font-weight: 700;
-        color: #f97316;
-        background: rgba(249, 115, 22, 0.15);
-        border: 1px solid rgba(249, 115, 22, 0.4);
         border-radius: 999px;
         padding: 0.05rem 0.45rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+        border: 1px solid transparent;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+      }
+      .card__badge--tier1 {
+        color: #92400e;
+        background: rgba(234, 179, 8, 0.18);
+        border-color: rgba(234, 179, 8, 0.45);
+      }
+      .card__badge--tier2 {
+        color: #1e293b;
+        background: rgba(148, 163, 184, 0.25);
+        border-color: rgba(100, 116, 139, 0.6);
+      }
+      .card__badge--tier3 {
+        color: #a16207;
+        background: rgba(249, 115, 22, 0.18);
+        border-color: rgba(234, 88, 12, 0.5);
+      }
+      .card__badge--tier4 {
+        color: #475569;
+        background: rgba(148, 163, 184, 0.18);
+        border-color: rgba(148, 163, 184, 0.35);
+        opacity: 0.9;
       }
       .card__mana-line {
         display: flex;
@@ -308,7 +353,7 @@
   <body>
     <header>
       <h1>Pixel Cube Cards</h1>
-      <p class="notice">Generated 10/26/2025, 8:57:04 PM from cards.txt.</p>
+      <p class="notice">Generated 10/26/2025, 9:49:16 PM from cards.txt.</p>
     </header>
     <section class="controls" data-controls>
       <div class="control">
@@ -379,6 +424,13 @@
         <label class="control__label">Sets</label>
         <details class="multi-select" id="set-filter">
           <summary>Filter Sets</summary>
+          <div class="multi-select__controls">
+            <input type="text" id="set-filter-search" placeholder="Search sets..." />
+            <div class="multi-select__actions">
+              <button type="button" id="set-filter-select-all">Select All</button>
+              <button type="button" id="set-filter-select-none">Select None</button>
+            </div>
+          </div>
           <div id="set-filter-options" class="multi-select__options"></div>
         </details>
       </div>
@@ -248197,6 +248249,9 @@
         const ownershipSelect = document.getElementById("ownership-select");
         const raritySelect = document.getElementById("rarity-select");
         const setFilterOptionsEl = document.getElementById("set-filter-options");
+        const setFilterSearchInput = document.getElementById("set-filter-search");
+        const setFilterSelectAll = document.getElementById("set-filter-select-all");
+        const setFilterSelectNone = document.getElementById("set-filter-select-none");
         const exportButton = document.getElementById("export-selected");
         const inlineDataEl = document.getElementById("card-data");
         const inlineData = inlineDataEl ? JSON.parse(inlineDataEl.textContent) : null;
@@ -248209,10 +248264,12 @@
         let remoteSyncTriggered = false;
         const activeSets = new Set();
         const availableSets = new Map();
+        let tierThresholds = null;
 
         loadData()
           .then((payload) => {
             allCards = Array.isArray(payload.cards) ? payload.cards : [];
+            tierThresholds = computeTierThresholds(allCards);
             loadLocalSelection()
               .filter(Boolean)
               .forEach((name) => selectedNames.add(name));
@@ -248257,6 +248314,21 @@
         }
         if (raritySelect) {
           raritySelect.addEventListener("change", () => requestRender());
+        }
+        if (setFilterOptionsEl) {
+          if (setFilterSearchInput) {
+            setFilterSearchInput.addEventListener("input", () => filterSetOptions());
+          }
+          if (setFilterSelectAll) {
+            setFilterSelectAll.addEventListener("click", () => {
+              selectAllSets();
+            });
+          }
+          if (setFilterSelectNone) {
+            setFilterSelectNone.addEventListener("click", () => {
+              clearAllSets();
+            });
+          }
         }
 
         function matchesColorFilter(card) {
@@ -248429,10 +248501,11 @@
           name.className = "card__name";
           name.textContent = card.name;
           nameRow.appendChild(name);
-          if (card.isNew) {
+          const tierLabel = getCardTierLabel(card);
+          if (tierLabel) {
             const badge = document.createElement("span");
-            badge.className = "card__badge";
-            badge.textContent = "NEW";
+            badge.className = "card__badge " + tierClassName(tierLabel);
+            badge.textContent = tierLabel;
             nameRow.appendChild(badge);
           }
           body.appendChild(nameRow);
@@ -248742,11 +248815,14 @@ function matchesRecentFilter(card) {
         }
 
         function matchesSetFilter(card) {
-          if (!setFilterOptionsEl || !activeSets.size) {
+          if (!setFilterOptionsEl || !availableSets.size) {
             return true;
           }
-          if (!Array.isArray(card.setPrintings)) {
-            return true;
+          if (!activeSets.size) {
+            return false;
+          }
+          if (!Array.isArray(card.setPrintings) || !card.setPrintings.length) {
+            return areAllSetsSelected();
           }
           return card.setPrintings.some((set) => set.setCode && activeSets.has(set.setCode));
         }
@@ -248763,6 +248839,9 @@ function matchesRecentFilter(card) {
               }
             });
           });
+          if (!activeSets.size) {
+            availableSets.forEach((_, code) => activeSets.add(code));
+          }
         }
 
         function populateSetFilters() {
@@ -248770,14 +248849,19 @@ function matchesRecentFilter(card) {
           if (!availableSets.size) {
             buildAvailableSets();
           }
+          if (!availableSets.size) {
+            setFilterOptionsEl.innerHTML = "";
+            return;
+          }
           if (!activeSets.size) {
-            availableSets.forEach((_, code) => activeSets.add(code));
+            selectAllSets({ silent: true });
           }
           const entries = Array.from(availableSets.entries()).sort((a, b) => a[1].localeCompare(b[1]));
           setFilterOptionsEl.innerHTML = "";
           entries.forEach(([code, name]) => {
             const label = document.createElement("label");
             label.className = "multi-select__option";
+            label.dataset.search = normalizeSearchText(`${name} ${code}`);
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.value = code;
@@ -248788,18 +248872,71 @@ function matchesRecentFilter(card) {
               } else {
                 activeSets.delete(code);
               }
-              if (!activeSets.size) {
-                entries.forEach(([entryCode]) => activeSets.add(entryCode));
-                setFilterOptionsEl.querySelectorAll('input[type="checkbox"]').forEach((input) => {
-                  input.checked = true;
-                });
-              }
               requestRender();
             });
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(name));
             setFilterOptionsEl.appendChild(label);
           });
+          updateSetCheckboxes();
+          filterSetOptions();
+          setFilterOptionsEl.scrollTop = 0;
+        }
+
+        function updateSetCheckboxes() {
+          if (!setFilterOptionsEl) return;
+          setFilterOptionsEl.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+            input.checked = activeSets.size ? activeSets.has(input.value) : false;
+          });
+        }
+
+        function filterSetOptions() {
+          if (!setFilterOptionsEl || !setFilterSearchInput) return;
+          const term = normalizeSearchText(setFilterSearchInput.value);
+          const options = setFilterOptionsEl.querySelectorAll(".multi-select__option");
+          options.forEach((label) => {
+            const text =
+              label.dataset.search ||
+              normalizeSearchText(
+                `${label.textContent || ""} ${(label.querySelector("input")?.value) || ""}`
+              );
+            const matches = !term || text.includes(term);
+            label.hidden = Boolean(term) && !matches;
+            label.style.display = matches ? "" : "none";
+          });
+          setFilterOptionsEl.dataset.filtering = term ? "true" : "false";
+        }
+
+        function selectAllSets(options = {}) {
+          activeSets.clear();
+          availableSets.forEach((_, code) => activeSets.add(code));
+          updateSetCheckboxes();
+          if (!options.silent) {
+            requestRender();
+          }
+        }
+
+        function clearAllSets(options = {}) {
+          activeSets.clear();
+          updateSetCheckboxes();
+          if (!options.silent) {
+            requestRender();
+          }
+        }
+
+        function areAllSetsSelected() {
+          return availableSets.size > 0 && activeSets.size === availableSets.size;
+        }
+
+        function normalizeSearchText(text) {
+          if (!text) {
+            return "";
+          }
+          let normalized = String(text).toLowerCase().trim();
+          if (typeof normalized.normalize === "function") {
+            normalized = normalized.normalize("NFD").replace(/[̀-ͯ]/g, "");
+          }
+          return normalized;
         }
 
         function cardHasRecentSet(card) {
@@ -248819,34 +248956,61 @@ function matchesRecentFilter(card) {
           return recentSets.sort((a, b) => new Date(b.releasedAt || 0) - new Date(a.releasedAt || 0))[0];
         }
 
-        function fallbackCopy(text) {
-          const textarea = document.createElement("textarea");
-          textarea.value = text;
-          textarea.setAttribute("readonly", "");
-          textarea.style.position = "absolute";
-          textarea.style.left = "-9999px";
-          document.body.appendChild(textarea);
-          textarea.select();
-          try {
-            document.execCommand("copy");
-            flashCopyState("Copied!");
-          } catch (error) {
-            flashCopyState("Copy failed");
-          } finally {
-            document.body.removeChild(textarea);
+        function computeTierThresholds(cards) {
+          const values = cards
+            .map((card) => Number(card.cubeCount) || 0)
+            .filter((value) => Number.isFinite(value))
+            .sort((a, b) => b - a);
+          if (!values.length) {
+            return null;
+          }
+          const q25 = valueAt(values, 0.25);
+          const q50 = valueAt(values, 0.5);
+          const q75 = valueAt(values, 0.75);
+          return { q25, q50, q75 };
+        }
+
+        function valueAt(sortedDescValues, fraction) {
+          if (!sortedDescValues.length) return 0;
+          const idx = Math.min(
+            sortedDescValues.length - 1,
+            Math.max(0, Math.ceil(sortedDescValues.length * fraction) - 1)
+          );
+          return sortedDescValues[idx];
+        }
+
+        function getCardTierLabel(card) {
+          if (!tierThresholds) {
+            return null;
+          }
+          const value = Number(card.cubeCount) || 0;
+          if (value >= tierThresholds.q25) {
+            return "1st";
+          }
+          if (value >= tierThresholds.q50) {
+            return "2nd";
+          }
+          if (value >= tierThresholds.q75) {
+            return "3rd";
+          }
+          return "4th";
+        }
+
+        function tierClassName(label) {
+          const key = String(label).trim().charAt(0);
+          switch (key) {
+            case "1":
+              return "card__badge--tier1";
+            case "2":
+              return "card__badge--tier2";
+            case "3":
+              return "card__badge--tier3";
+            default:
+              return "card__badge--tier4";
           }
         }
 
-        function flashCopyState(message) {
-          if (!copyButton) return;
-          copyButton.textContent = message;
-          copyButton.disabled = true;
-          setTimeout(() => {
-            refreshExportState();
-          }, 1200);
-        }
-
-        function remoteHeaders() {
+                function remoteHeaders() {
           if (!REMOTE_STORE) return {};
           return {
             apikey: REMOTE_STORE.anonKey,
